@@ -1,0 +1,15 @@
+version: '2.7'
+
+services:
+  database:
+    image: postgres:alpine
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: zoomin
+    restart: on-failure
+    ports:
+    - 5432:5432
+  redis:
+    image: redis:6.2
+    ports:
+      - 6379:6379
