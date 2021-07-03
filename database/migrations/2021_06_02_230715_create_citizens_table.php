@@ -16,7 +16,7 @@ class CreateCitizensTable extends Migration
         Schema::create('citizens', function (Blueprint $table) {
             $table->id();
             $table->string('telephone')->nullable();
-            $table->enum('profile', App\Models\Citizen::PROFILES)->nullable();
+            $table->enum('profile', [])->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
