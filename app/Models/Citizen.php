@@ -11,6 +11,13 @@ class Citizen extends Model
 {
     use HasFactory;
 
+    public const PROFILES = [
+      'profile 1',
+      'profile 2',
+      'profile 3',
+      'profile 4',
+    ];
+
     protected $fillable = [
         'telephone',
     ];
