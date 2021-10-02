@@ -34,5 +34,10 @@ class RoleSeeder extends Seeder
             'name' => AppRoles::ROLE_FIRST_PRESIDENT,
             'display_name' => ucfirst(AppRoles::ROLE_FIRST_PRESIDENT)
         ]);
+
+        Role::create([
+            'name' => AppRoles::CLERK,
+            'display_name' => ucfirst(AppRoles::CLERK)
+        ]);
     }
 }
