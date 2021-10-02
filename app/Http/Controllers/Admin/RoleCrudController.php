@@ -6,16 +6,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Role;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
-use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Illuminate\Http\Request;
 
 class RoleCrudController extends CrudController
 {
-    use ListOperation, CreateOperation, UpdateOperation, DeleteOperation;
+    use ListOperation, UpdateOperation;
 
+    /**
+     * @throws \Exception
+     */
     public function setup()
     {
         $this->crud->setModel(Role::class);
@@ -39,36 +40,6 @@ class RoleCrudController extends CrudController
                 'entity' => 'permissions',
             ]
         ]);
-    }
-
-    public function setupCreateOperation()
-    {
-        $this->crud->addFields([
-            [
-                'name' => 'name'
-            ],
-            [
-                'name' => 'display_name'
-            ],
-            [
-                'name' => 'description'
-            ],
-        ]);
-    }
-
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'name' => 'required|string|max:255'
-        ]);
-
-        Role::create([
-            'name' => $request->name,
-            'display_name' => $request->display_name,
-            'description' => $request->description
-        ]);
-
-        return redirect()->to($request->get('http_referrer', '/admin'));
     }
 
     public function setupUpdateOperation()

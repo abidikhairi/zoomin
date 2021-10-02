@@ -28,6 +28,12 @@ Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function 
         ->name('claim.store');
 });
 
+Route::prefix('/clerk')->middleware(['auth', 'role:clerk'])->group(function (){
+    Route::get('/', function (){
+        throw new Exception('Not Implemented');
+    });
+});
+
 Route::prefix('/magistrate')->middleware(['auth', 'role:magistrate'])->group(function (){
     Route::get('/', [\App\Http\Controllers\Magistrate\HomeController::class, 'home']);
     Route::get('/report', [\App\Http\Controllers\Magistrate\ReportController::class, 'index'])
