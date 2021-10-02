@@ -13,4 +13,6 @@ interface AppRoles
     public const ROLE_ROOM_PRESIDENT = 'room-president';
 
     public const ROLE_FIRST_PRESIDENT = 'first-president';
+
+    public const CLERK = 'clerk';
 }
