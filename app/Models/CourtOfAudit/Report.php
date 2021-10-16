@@ -12,15 +12,19 @@ class Report extends Model
 {
     use HasFactory;
 
-    // TODO: translate this
-    public const TYPE_1 = 'type 1';
-    public const TYPE_2 = 'type 2';
-    public const TYPE_3 = 'type 3';
+
+    public const TYPE_DIAGNOSTIC = 'Rapport de Diagnostic';
+    public const TYPE_PRELIMINAIRE = 'Rapport Préliminaire';
+    public const TYPE_SYNTHESE = 'Rapport de Synthése';
+    public const TYPE_ANNUEL = 'Rapport Annuel';
+    public const TYPE_SPECIFIQUE = 'Rapport Spécifiques';
 
     public const TYPES = [
-        self::TYPE_1,
-        self::TYPE_2,
-        self::TYPE_3
+        self::TYPE_DIAGNOSTIC,
+        self::TYPE_PRELIMINAIRE,
+        self::TYPE_SYNTHESE,
+        self::TYPE_ANNUEL,
+        self::TYPE_SPECIFIQUE
     ];
 
     protected $fillable = [
