@@ -7,24 +7,17 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class MagistrateCreated extends Notification
+class CommissionerCreated extends Notification
 {
     use Queueable;
 
-    /**
-     * @var string
-     */
-    private $plainPassword;
-    /**
-     * @var string
-     */
-    private $email;
+    private string $plainPassword;
+    private string $email;
 
     /**
      * Create a new notification instance.
      *
-     * @param string $plainPassword
-     * @param string $email
+     * @return void
      */
     public function __construct(string $plainPassword, string $email)
     {

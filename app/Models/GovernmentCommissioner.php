@@ -9,7 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class GovernmentCommissioner extends Model
 {
-    use HasFactory, CrudTrait;
+    use HasFactory;
+    use CrudTrait;
+
+    protected $table = 'government_commissioners';
 
     public function user()
     {

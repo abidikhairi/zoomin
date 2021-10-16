@@ -61,6 +61,11 @@
             </a>
         </li>
         <li class='nav-item'>
+            <a class='nav-link' href='{{ backpack_url('government-commission') }}'><i class='nav-icon la la-question'></i>
+                {{ __('government-commissioner') }}
+            </a>
+        </li>
+        <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('room-president') }}'><i class='nav-icon la la-question'></i>
                 {{ __('Room Presidents') }}
             </a>
