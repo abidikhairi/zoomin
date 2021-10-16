@@ -28,6 +28,12 @@ Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function 
         ->name('claim.store');
 });
 
+Route::prefix('/government-commissioner')->middleware(['auth', 'role:government-commissioner'])->group(function (){
+    Route::get('/', function (){
+        throw new Exception('Not Implemented: Government Commissioner Profile');
+    });
+});
+
 Route::prefix('/clerk')->middleware(['auth', 'role:clerk'])->group(function (){
     Route::get('/', function (){
         throw new Exception('Not Implemented');
