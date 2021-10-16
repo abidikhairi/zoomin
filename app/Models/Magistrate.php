@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Administration\Room;
 use App\Models\Citizen\Claim;
 use App\Models\Citizen\Response;
+use App\Models\CourtOfAudit\Comment;
 use App\Models\CourtOfAudit\Report;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,5 +39,10 @@ class Magistrate extends Model
     public function responses()
     {
         return $this->hasMany(Response::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

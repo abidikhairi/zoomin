@@ -54,4 +54,9 @@ class Report extends Model
     {
         return $this->belongsTo(Establishment::class);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
