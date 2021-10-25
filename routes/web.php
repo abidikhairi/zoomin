@@ -78,6 +78,12 @@ Route::prefix('/room-president')->middleware(['auth', 'role:room-president'])->g
         ->name('room-president.claim.assign');
     Route::get('/claim/response/{response}', [\App\Http\Controllers\RoomPresident\ResponseController::class, 'show'])
         ->name('room-president.claim.response.show');
+    Route::get('/report', [\App\Http\Controllers\RoomPresident\ReportController::class, 'index'])
+        ->name('room-president.report.index');
+    Route::get('/report/comment/{report}', [\App\Http\Controllers\RoomPresident\ReportController::class, 'show'])
+        ->name('room-president.report.comment.index');
+    Route::get('/report/publish/{report}', [\App\Http\Controllers\RoomPresident\ReportController::class, 'publish'])
+        ->name('room-president.report.publish');
 });
 
 Route::prefix('/first-president')->middleware(['auth', 'role:first-president'])->group(function () {

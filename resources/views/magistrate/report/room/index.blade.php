@@ -29,8 +29,10 @@
                                     <td>{{ $report->establishment->governorate->name }}</td>
                                     <td>{{ $report->type }}</td>
                                     <td>
-                                        <a href="{{ route('report.comment.show', ['report' => $report->id]) }}" class="btn btn-sm btn-primary">comment</a>
-                                        <a href="#" class="btn btn-sm btn-info">see comments</a>
+                                        <a href="{{ route('room-president.report.comment.index', ['report' => $report->id]) }}" class="btn btn-sm btn-primary">comment</a>
+                                        @if(auth()->user()->role == \App\AppRoles::ROLE_ROOM_PRESIDENT && $report->visible == false)
+                                            <a href="{{ route('room-president.report.publish', ['report' => $report->id]) }}" class="btn btn-sm btn-info">publish</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

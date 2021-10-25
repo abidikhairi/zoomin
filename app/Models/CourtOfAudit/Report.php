@@ -32,7 +32,8 @@ class Report extends Model
         'year',
         'link',
         'type',
-        'pdf_file'
+        'pdf_file',
+        'visible'
     ];
 
     public function observations()
