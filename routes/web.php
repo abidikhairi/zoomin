@@ -44,6 +44,8 @@ Route::prefix('/magistrate')->middleware(['auth', 'role:magistrate'])->group(fun
     Route::get('/', [\App\Http\Controllers\Magistrate\HomeController::class, 'home']);
     Route::get('/report', [\App\Http\Controllers\Magistrate\ReportController::class, 'index'])
         ->name('report.index');
+    Route::get('/report/room', [\App\Http\Controllers\Magistrate\ReportController::class, 'room'])
+        ->name('report.room.index');
     Route::get('/report/create', [\App\Http\Controllers\Magistrate\ReportController::class, 'create'])
         ->name('report.create');
     Route::post('/report/store/step1', [\App\Http\Controllers\Magistrate\ReportController::class, 'step1'])

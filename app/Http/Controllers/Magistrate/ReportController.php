@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Magistrate;
 
 
 use App\Models\Administration\Establishment;
+use App\Models\Administration\Room;
 use App\Models\Administration\Sector;
 use App\Models\CourtOfAudit\Observation;
 use App\Models\CourtOfAudit\Report;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -100,5 +102,20 @@ class ReportController extends Controller
         return [
             'message' => __('observation.stored.success')
         ];
+    }
+
+    public function room()
+    {
+        $magistrate = $this->magistrate();
+        $roomId = $magistrate->room->id;
+        $reports = Report::query()
+            ->join('sectors', 'sectors.id', '=', 'reports.sector_id')
+            ->join('establishments', 'establishments.id', '=', 'reports.establishment_id')
+            ->join('magistrates', 'magistrates.id', '=', 'reports.magistrate_id')
+            ->join('rooms', 'rooms.id', '=', 'magistrates.room_id')
+            ->where('magistrates.room_id', '=', $roomId)
+            ->get();
+
+        return view('magistrate.report.room.index', compact('reports'));
     }
 }

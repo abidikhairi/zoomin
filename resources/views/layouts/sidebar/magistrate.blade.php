@@ -23,6 +23,12 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link pl-3" href="{{ route('report.room.index') }}">
+                    <i class="fe fe-list"></i>
+                    <span class="ml-1 item-text">{{ __('Room Reports') }}</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link pl-3" href="{{ route('report.create') }}">
                     <i class="fe fe-plus"></i>
                     <span class="ml-1 item-text">{{ __('Add Report') }}</span>
