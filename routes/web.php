@@ -64,6 +64,8 @@ Route::prefix('/magistrate')->middleware(['auth', 'role:magistrate'])->group(fun
         ->name('report.claim.respond');
     Route::get('/report/comment/{report}', [\App\Http\Controllers\Magistrate\CommentController::class, 'show'])
         ->name('report.comment.show');
+    Route::post('/report/comment/store', [\App\Http\Controllers\Magistrate\CommentController::class, 'store'])
+        ->name('report.comment.store');
 });
 
 Route::prefix('/room-president')->middleware(['auth', 'role:room-president'])->group(function () {

@@ -57,13 +57,15 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <form action="" method="post">
+                <form action="{{ route('report.comment.store') }}" method="post">
+                    @csrf
                     <div class="card">
                         <div class="card-header">
                             <strong>Leave a Comment</strong>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
+                                <input type="hidden" name="report" value="{{ $report->id }}" required>
                                 <textarea name="content" id="content" cols="30" rows="5" class="form-control"></textarea>
                             </div>
                         </div>
