@@ -26,7 +26,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="financial_impact">{{ __('Financial Impact') }}</label>
-                        <input type="number" name="financial_impact" id="financial_impact" class="form-control">
+                        <textarea name="financial_impact" id="financial_impact" cols="30" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
             </div>
