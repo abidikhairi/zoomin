@@ -17,6 +17,7 @@
                                 <th>{{ __('establishment') }}</th>
                                 <th>{{ __('governorate') }}</th>
                                 <th>{{ __('type') }}</th>
+                                <th>{{ __('actions') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -27,6 +28,10 @@
                                     <td>{{ $report->establishment->name }}</td>
                                     <td>{{ $report->establishment->governorate->name }}</td>
                                     <td>{{ $report->type }}</td>
+                                    <td>
+                                        <a href="{{ route('report.comment.show', ['report' => $report->id]) }}" class="btn btn-sm btn-primary">comment</a>
+                                        <a href="#" class="btn btn-sm btn-info">see comments</a>
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
