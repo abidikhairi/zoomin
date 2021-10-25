@@ -114,6 +114,7 @@ class ReportController extends Controller
             ->join('magistrates', 'magistrates.id', '=', 'reports.magistrate_id')
             ->join('rooms', 'rooms.id', '=', 'magistrates.room_id')
             ->where('magistrates.room_id', '=', $roomId)
+            ->select(['reports.id', 'reports.sector_id', 'reports.establishment_id', 'reports.magistrate_id', 'reports.type'])
             ->get();
 
         return view('magistrate.report.room.index', compact('reports'));
