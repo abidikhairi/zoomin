@@ -14,7 +14,7 @@ class UpdateReportsType extends Migration
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->string('type')->nullable(false);
+            $table->string('type')->nullable(false)->change();
         });
     }
 
