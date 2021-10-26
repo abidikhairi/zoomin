@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +21,9 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomSeeder::class);
         $this->call(MagistrateSeeder::class);
         $this->call(RoomPresidentSeeder::class);
+
+        Team::create([
+            'name' => 'magistrates'
+        ]);
     }
 }

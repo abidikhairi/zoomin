@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\AppRoles;
 use App\Models\Administration\Room;
+use App\Models\Role;
 use App\Models\RoomPresident;
 use App\Models\User;
 use Faker\Factory;
@@ -29,7 +31,9 @@ class RoomPresidentSeeder extends Seeder
                 'password' => Hash::make('rootkit22'),
                 'email' => "room-president-$id@zoomin.com",
             ]);
-
+            $role = Role::query()->where('name', '=', AppRoles::ROLE_ROOM_PRESIDENT)->first();
+            $user->save();
+            $user->attachRole($role);
             $user->save();
             $roomPresident = new RoomPresident();
             $roomPresident->user()->associate($user);

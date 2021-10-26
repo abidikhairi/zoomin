@@ -7,6 +7,8 @@ use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+use Illuminate\Http\Request;
 
 class TeamCrudController extends CrudController
 {
@@ -36,5 +38,33 @@ class TeamCrudController extends CrudController
             'name' => 'name'
         ]);
     }
+
+    /**
+    public function setupUpdateOperation()
+    {
+        $this->crud->addField([
+            'label' => 'users',
+            'name' => 'users',
+            'entity' => 'users',
+            'type' => 'select2_multiple',
+            'attribute' => 'email_role'
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|exists:teams,id',
+            'users' => 'required'
+        ]);
+        $data = $request->all();
+
+        $team = Team::query()->find($data['id'])->firstOrFail();
+        $users = collect($data['users'])->values()->toArray();
+        $team->users()->sync($users);
+
+        return redirect()->to($request->get('http_referrer', '/admin'));
+
+    }*/
 
 }
