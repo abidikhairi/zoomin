@@ -21,6 +21,7 @@ Route::group([
     Route::crud('governorate', 'Administration\\GovernorateCrudController');
     Route::crud('room', 'Administration\\RoomCrudController');
     Route::crud('establishment', 'Administration\\EstablishmentCrudController');
+    Route::crud('report-type', 'Administration\\ReportTypeCrudController');
 
     Route::crud('magistrate', 'Actors\\MagistrateCrudController');
     Route::crud('room-president', 'Actors\\RoomPresidentCrudController');

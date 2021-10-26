@@ -44,6 +44,11 @@
                 {{ __('names.administration.rooms') }}
             </a>
         </li>
+        <li class='nav-item'>
+            <a class='nav-link' href='{{ backpack_url('report-type') }}'><i class='nav-icon la la-question'></i>
+                {{ __('names.administration.report-type') }}
+            </a>
+        </li>
     </ul>
 </li>
 
