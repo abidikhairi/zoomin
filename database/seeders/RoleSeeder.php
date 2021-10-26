@@ -36,8 +36,8 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => AppRoles::CLERK,
-            'display_name' => ucfirst(AppRoles::CLERK)
+            'name' => AppRoles::ROLE_GOVERNMENT_COMMISSIONER,
+            'display_name' => ucfirst(AppRoles::ROLE_GOVERNMENT_COMMISSIONER)
         ]);
     }
 }
