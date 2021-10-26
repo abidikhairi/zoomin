@@ -31,7 +31,6 @@ class Report extends Model
         'title',
         'year',
         'link',
-        'type',
         'pdf_file',
         'visible'
     ];
@@ -59,5 +58,10 @@ class Report extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(ReportType::class);
     }
 }
