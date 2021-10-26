@@ -16,6 +16,7 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('role', 'RoleCrudController');
     Route::crud('permission', 'PermissionCrudController');
+    Route::crud('team', 'TeamCrudController');
 
     Route::crud('sector', 'Administration\\SectorCrudController');
     Route::crud('governorate', 'Administration\\GovernorateCrudController');
