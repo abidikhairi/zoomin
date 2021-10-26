@@ -9,6 +9,7 @@ use App\Models\Administration\Room;
 use App\Models\Administration\Sector;
 use App\Models\CourtOfAudit\Observation;
 use App\Models\CourtOfAudit\Report;
+use App\Models\CourtOfAudit\ReportType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,8 @@ class ReportController extends Controller
     public function create()
     {
         $sectors = Sector::all();
-        return view('magistrate.report.create', compact('sectors'));
+        $types = ReportType::all();
+        return view('magistrate.report.create', compact('sectors', 'types'));
     }
 
     public function showObservationsForm(Report $report, int $observations)
@@ -45,7 +47,7 @@ class ReportController extends Controller
             'title' => 'required|string|max:255',
             'link' => 'required|string|max:255',
             'year' => 'required|numeric',
-            'type' => 'required|string',
+            'type' => 'required|exists:report_types,id',
             'pdf_file' => 'required|file',
             'sector' => 'required',
             'establishment' => 'required',
@@ -54,6 +56,7 @@ class ReportController extends Controller
 
         $sector = Sector::find($request->sector);
         $establishment = Establishment::find($request->establishment);
+        $type = ReportType::find($request->type);
         $magistrate = $this->magistrate();
 
         $pdfFileName = uniqid().'-'.$request->file('pdf_file')->getClientOriginalName();
@@ -63,10 +66,10 @@ class ReportController extends Controller
             'title' => $request->title,
             'link' => $request->link,
             'year' => $request->year,
-            'type' => $request->type,
             'pdf_file' => $pdfFileName
         ]);
 
+        $report->type()->associate($type);
         $report->sector()->associate($sector);
         $report->establishment()->associate($establishment);
         $report->magistrate()->associate($magistrate);
@@ -112,9 +115,10 @@ class ReportController extends Controller
             ->join('sectors', 'sectors.id', '=', 'reports.sector_id')
             ->join('establishments', 'establishments.id', '=', 'reports.establishment_id')
             ->join('magistrates', 'magistrates.id', '=', 'reports.magistrate_id')
+            ->join('report_types', 'report_types.id', '=', 'reports.report_type_id')
             ->join('rooms', 'rooms.id', '=', 'magistrates.room_id')
             ->where('magistrates.room_id', '=', $roomId)
-            ->select(['reports.id', 'reports.sector_id', 'reports.establishment_id', 'reports.magistrate_id', 'reports.type', 'reports.visible'])
+            ->select(['reports.id', 'reports.sector_id', 'reports.establishment_id', 'reports.magistrate_id', 'reports.visible', 'report_types.type'])
             ->get();
 
         return view('magistrate.report.room.index', compact('reports'));

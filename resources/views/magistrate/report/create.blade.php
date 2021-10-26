@@ -28,8 +28,8 @@
                                     <div class="form-group mb-3">
                                         <label for="type">{{ __('type') }}</label>
                                         <select name="type" id="type" class="form-control select2">
-                                            @foreach(\App\Models\CourtOfAudit\Report::TYPES as $type)
-                                                <option value="{{ $type }}">{{ $type }}</option>
+                                            @foreach($types as $type)
+                                                <option value="{{ $type->id }}">{{ $type->type }}</option>
                                             @endforeach
                                         </select>
                                     </div>
