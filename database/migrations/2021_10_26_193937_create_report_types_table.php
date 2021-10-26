@@ -25,7 +25,7 @@ class CreateReportTypesTable extends Migration
 
         Schema::table('reports', function (Blueprint $table) {
             $table->unsignedBigInteger('report_type_id');
-            $table->foreign('report_type_id')->references('id')->on('report_type')
+            $table->foreign('report_type_id')->references('id')->on('report_types')
                 ->onDelete('cascade');
         });
 
