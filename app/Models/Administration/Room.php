@@ -15,9 +15,9 @@ class Room extends Model
 
     protected $fillable = ['name'];
 
-    public function governorates()
+    public function governorate()
     {
-        return $this->hasMany(Governorate::class);
+        return $this->hasOne(Governorate::class);
     }
 
     public function magistrates()
