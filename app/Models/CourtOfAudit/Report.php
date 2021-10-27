@@ -60,7 +60,7 @@ class Report extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function type()
+    public function ReportType()
     {
         return $this->belongsTo(ReportType::class);
     }

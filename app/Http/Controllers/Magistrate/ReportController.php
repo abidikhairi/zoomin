@@ -69,7 +69,7 @@ class ReportController extends Controller
             'pdf_file' => $pdfFileName
         ]);
 
-        $report->type()->associate($type);
+        $report->reportType()->associate($type);
         $report->sector()->associate($sector);
         $report->establishment()->associate($establishment);
         $report->magistrate()->associate($magistrate);

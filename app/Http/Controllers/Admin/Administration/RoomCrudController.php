@@ -40,12 +40,6 @@ class RoomCrudController extends CrudController
                 'entity' => 'magistrates',
                 'type' => 'relationship_count',
                 'label' => __('names.administration.magistrates')
-            ],
-            [
-                'name' => 'governorates',
-                'entity' => 'governorates',
-                'type' => 'relationship_count',
-                'label' => __('names.administration.governorates')
             ]
         ]);
     }
