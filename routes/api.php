@@ -34,3 +34,5 @@ Route::get('/room-president/claim/{roomPresident}/type', [\App\Http\Controllers\
 
 Route::get('/magistrate', [\App\Http\Controllers\Api\MagistrateController::class, 'index']);
 Route::get('/magistrate/room/{room}', [\App\Http\Controllers\Api\MagistrateController::class, 'magistrates']);
+
+Route::get('/report-type/{reportType}', [\App\Http\Controllers\Api\ReportTypeController::class, 'show']);
