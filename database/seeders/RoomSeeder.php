@@ -15,15 +15,16 @@ class RoomSeeder extends Seeder
      */
     public function run()
     {
-        $govs = Governorate::all();
+        $govs = ['الكاف', 'سليانة', 'باجة', 'جندوبة'];
+        $room = Room::create([
+            'name' => 'room-1'
+        ]);
 
-        foreach($govs as $gov) {
-            $room = new Room([
-                'name' => 'room-' . $gov->name
-            ]);
-            $gov->room()->associate($room);
-            $gov->save();
-            $room->save();
+        $g = [];
+        foreach ($govs as $name) {
+            $g[] = Governorate::query()->where('name', '=', $name)->firstOrFail();
         }
+
+        $room->governorates()->saveMany($g);
     }
 }

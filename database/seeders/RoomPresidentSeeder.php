@@ -22,25 +22,23 @@ class RoomPresidentSeeder extends Seeder
     {
         $faker = Factory::create('ar_AR');
         $rooms = Room::all();
-        for ($i = 0; $i < 4; $i++) {
-            $room = $rooms->get($i);
-            $id = $i;
-            $user = new User([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'password' => Hash::make('rootkit22'),
-                'email' => "room-president-$id@zoomin.com",
-            ]);
-            $role = Role::query()->where('name', '=', AppRoles::ROLE_ROOM_PRESIDENT)->first();
-            $user->save();
-            $user->attachRole($role);
-            $user->save();
-            $roomPresident = new RoomPresident();
-            $roomPresident->user()->associate($user);
-            $roomPresident->save();
+        $room = $rooms->get(0);
+        $id = 1;
+        $user = new User([
+            'first_name' => $faker->firstName,
+            'last_name' => $faker->lastName,
+            'password' => Hash::make('rootkit22'),
+            'email' => "room-president-$id@zoomin.com",
+        ]);
+        $role = Role::query()->where('name', '=', AppRoles::ROLE_ROOM_PRESIDENT)->first();
+        $user->save();
+        $user->attachRole($role);
+        $user->save();
+        $roomPresident = new RoomPresident();
+        $roomPresident->user()->associate($user);
+        $roomPresident->save();
 
-            $room->roomPresident()->associate($roomPresident);
-            $room->save();
-        }
+        $room->roomPresident()->associate($roomPresident);
+        $room->save();
     }
 }
