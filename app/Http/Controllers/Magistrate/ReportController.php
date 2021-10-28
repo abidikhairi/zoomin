@@ -46,12 +46,11 @@ class ReportController extends Controller
         $this->validate($request, [
             'title' => 'required|string|max:255',
             'link' => 'required|string|max:255',
-            'year' => 'required|numeric',
+            'year' => 'required|digits:4|integer|min:2000|max:'.(date('Y')),
             'type' => 'required|exists:report_types,id',
+            'sector' => 'exists:sectors,id',
+            'establishment' => 'exists:establishments,id',
             'pdf_file' => 'required|file',
-            'sector' => 'required',
-            'establishment' => 'required',
-            'observations' => 'required|numeric'
         ]);
 
         $sector = Sector::find($request->sector);
@@ -75,6 +74,10 @@ class ReportController extends Controller
         $report->magistrate()->associate($magistrate);
         $report->save();
 
+        if (!$type->has_observations) {
+            return redirect('/magistrate');
+        }
+
         return redirect()->route('report.observations.create', [
             'report' => $report->id,
             'observations' => $request->observations
@@ -86,8 +89,9 @@ class ReportController extends Controller
         $this->validate($request, [
             'financial_impact' => 'required',
             'content' => 'required',
-            'fault' => 'required',
-            'report' => 'required'
+            'title' => 'required',
+            'report' => 'required',
+            'impact' => 'numeric'
         ]);
         $data = $request->all();
 
@@ -95,8 +99,9 @@ class ReportController extends Controller
 
         $observation = new Observation([
             'financial_impact' => $data['financial_impact'],
-            'fault' => $data['fault'],
+            'title' => $data['title'],
             'observation' => $data['content'],
+            'impact' => $data['impact']
         ]);
 
         $observation->report()->associate($report);
