@@ -12,6 +12,9 @@ class ReportTypeCrudController extends CrudController
 {
     use ListOperation, CreateOperation, DeleteOperation;
 
+    /**
+     * @throws \Exception
+     */
     public function setup()
     {
         $this->crud->setModel(ReportType::class);
@@ -20,14 +23,39 @@ class ReportTypeCrudController extends CrudController
     }
 
     public function setupListOperation() {
-        $this->crud->addColumn([
-            'name' => 'type'
+        $this->crud->addColumns([
+            [
+                'name' => 'type'
+            ],
+            [
+                'name' => 'has_observations',
+            ],
+            [
+                'name' => 'has_sector'
+            ],
+            [
+                'name' => 'has_establishment'
+            ]
         ]);
     }
 
     public function setupCreateOperation() {
-        $this->crud->addField([
-            'name' => 'type'
+        $this->crud->addFields([
+            [
+                'name' => 'type'
+            ],
+            [
+                'name' => 'has_establishment',
+                'type' => 'checkbox'
+            ],
+            [
+                'name' => 'has_sector',
+                'type' => 'checkbox'
+            ],
+            [
+                'name' => 'has_observations',
+                'type' => 'checkbox'
+            ]
         ]);
     }
 }
