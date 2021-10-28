@@ -13,9 +13,16 @@ class CreateReportTeamTable extends Migration
      */
     public function up()
     {
-        Schema::create('report_team', function (Blueprint $table) {
+        Schema::create('report_type_team', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('report_type_id');
+            $table->unsignedBigInteger('team_id');
             $table->timestamps();
+
+            $table->foreign('report_type_id')->references('id')->on('report_types')
+                ->onDelete('cascade');
+            $table->foreign('team_id')->references('id')->on('teams')
+                ->onDelete('cascade');
         });
     }
 
