@@ -55,6 +55,11 @@ class ReportTypeCrudController extends CrudController
             [
                 'name' => 'has_observations',
                 'type' => 'checkbox'
+            ],
+            [
+                'name' => 'teams',
+                'type' => 'select2_multiple',
+                'entity' => 'teams'
             ]
         ]);
     }

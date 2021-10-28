@@ -32,7 +32,16 @@ class ReportController extends Controller
     public function create()
     {
         $sectors = Sector::all();
-        $types = ReportType::all();
+
+        $teams = auth()->user()->teams;
+        $types = collect();
+
+        foreach ($teams as $team) {
+            foreach ($team->reportTypes as $type) {
+                $types->push($type);
+            }
+        }
+
         return view('magistrate.report.create', compact('sectors', 'types'));
     }
 

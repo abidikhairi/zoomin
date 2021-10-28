@@ -28,6 +28,7 @@
                                     <div class="form-group mb-3">
                                         <label for="type">{{ __('type') }}</label>
                                         <select name="type" id="type" class="form-control select2">
+                                            <option value="">Choose ...</option>
                                             @foreach($types as $type)
                                                 <option value="{{ $type->id }}">{{ $type->type }}</option>
                                             @endforeach
@@ -38,14 +39,16 @@
                                     <div class="form-group mb-3" id="sector-section">
                                         <label for="sector">{{ __('Sector') }}</label>
                                         <select name="sector" id="sector" class="form-control select2">
+                                            <option value="">Choose ...</option>
                                             @foreach($sectors as $sector)
+
                                                 <option value="{{ $sector->id }}"> {{ $sector->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group mb-3" id="establishment-section">
                                         <label for="establishment">{{ __('Establishment') }}</label>
-                                        <select name="establishment" id="establishment" class="form-control">
+                                            <select name="establishment" id="establishment" class="form-control">
                                         </select>
                                     </div>
                                     <div class="form-group mb-3" id="observations-section">
