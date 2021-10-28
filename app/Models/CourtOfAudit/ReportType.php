@@ -11,7 +11,12 @@ class ReportType extends Model
     use HasFactory;
     use CrudTrait;
 
-    protected $fillable = ['type'];
+    protected $fillable = [
+        'type',
+        'has_observations',
+        'has_sector',
+        'has_establishment'
+    ];
 
     public function reports()
     {
