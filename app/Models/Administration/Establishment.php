@@ -3,6 +3,7 @@
 namespace App\Models\Administration;
 
 use App\Models\Citizen\Claim;
+use App\Models\CourtOfAudit\Report;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,5 +27,9 @@ class Establishment extends Model
     public function claims()
     {
         return $this->hasMany(Claim::class);
+    }
+
+    public function reports() {
+        return $this->hasMany(Report::class);
     }
 }

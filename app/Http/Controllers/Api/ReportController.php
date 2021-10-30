@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Administration\Establishment;
 use App\Models\Administration\Governorate;
 use App\Models\CourtOfAudit\Report;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -19,11 +20,10 @@ class ReportController extends Controller
      */
     public function reportByGovernorateEstablishment(Governorate $governorate, Establishment $establishment)
     {
-        return $governorate->establishments()->where('establishments.id', '=', $establishment->id)
-            ->join('reports', 'reports.establishment_id', '=', 'establishments.id')
-            ->join('report_types', 'report_types.id', '=', 'reports.report_type_id')
+        return Report::with('observations', 'reportType', 'establishment')
+            ->where('establishment_id', '=', $establishment->id)
             ->get()
-            ->filter(fn ($obj) => $obj->is_public === true );
+            ->filter(fn ($obj) => $obj->reportType->is_public === true);
     }
 
     public function index() {

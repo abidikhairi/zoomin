@@ -12,6 +12,7 @@ export default class TableProxy extends Component {
 
     render() {
         const { filter, governorate, establishment } = this.props
+
         if (filter === FILTERS.OBSERVATIONS) {
             return <ObservationsGovernorateTable establishment={establishment} governorate={governorate} />
         }else if (filter === FILTERS.REPORTS) {

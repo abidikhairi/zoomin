@@ -60,6 +60,11 @@ class PublicMap extends React.Component {
     }
 
     handleClick(event, governorate) {
+
+        this.setState({
+            establishment: null
+        })
+
         axios.get('api/governorate/'+governorate)
             .then(response => {
                 this.setState({
@@ -89,8 +94,30 @@ class PublicMap extends React.Component {
         })
     }
 
+    handleEstablishmentChange(event, governorate, establishment) {
+        event.preventDefault()
+        axios.get('api/governorate/'+governorate.id)
+            .then(response => {
+                this.setState({
+                    governorate: response.data
+                })
+            }).catch(err => {
+            alert(err)
+        })
+
+        axios.get('api/establishment/show/'+establishment)
+            .then(response => {
+                this.setState({
+                    establishment: response.data
+                })
+            }).catch(err => {
+            alert(err)
+        })
+
+    }
+
     render() {
-        const {isLoading, reports, governorates, governorate, rooms, filter, establishments, establishment} = this.state
+        const {isLoading, governorates, governorate, rooms, filter, establishments, establishment} = this.state
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
@@ -117,7 +144,7 @@ class PublicMap extends React.Component {
                                             aria-expanded="false"> Establishments
                                     </button>
                                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="rangeDropdown">
-                                        {establishments.map(estb => <a key={estb.id} href="#" className="dropdown-item small text-muted" onClick={() => this.setState({establishment: estb})}>{estb.name}</a>)}
+                                        {establishments.map(estb => <a key={estb.id} href="#" className="dropdown-item small text-muted" onClick={(e) => this.handleEstablishmentChange(e, governorate, estb.id)}>{estb.name}</a>)}
                                     </div>
                                 </div> : null}
                             </div>
@@ -163,7 +190,7 @@ class PublicMap extends React.Component {
                                             <div className="card-header">
                                                 <div className="card-header">{filter.capitalize()}</div>
                                                 <div className="card-body">
-                                                    {governorate && establishment ? <TableProxy establishment={establishment} governorate={governorate} filter={filter} /> : <h3>Choississez une Gouvernorat</h3>}
+                                                    {governorate && establishment !== null ? <TableProxy establishment={establishment} governorate={governorate} filter={filter} /> : <h5>Choississez une Gouvernorat et une etablissement</h5>}
                                                 </div>
                                             </div>
                                         </div>
