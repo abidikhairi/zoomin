@@ -28,6 +28,12 @@ Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function 
         ->name('claim.store');
 });
 
+Route::prefix('/government-commissioner')->middleware(['auth', 'role:government-commissioner'])->group(function (){
+    Route::get('/', function (){
+        throw new Exception('Not Implemented: Government Commissioner Profile');
+    });
+});
+
 Route::prefix('/clerk')->middleware(['auth', 'role:clerk'])->group(function (){
     Route::get('/', function (){
         throw new Exception('Not Implemented');
@@ -38,6 +44,8 @@ Route::prefix('/magistrate')->middleware(['auth', 'role:magistrate'])->group(fun
     Route::get('/', [\App\Http\Controllers\Magistrate\HomeController::class, 'home']);
     Route::get('/report', [\App\Http\Controllers\Magistrate\ReportController::class, 'index'])
         ->name('report.index');
+    Route::get('/report/room', [\App\Http\Controllers\Magistrate\ReportController::class, 'room'])
+        ->name('report.room.index');
     Route::get('/report/create', [\App\Http\Controllers\Magistrate\ReportController::class, 'create'])
         ->name('report.create');
     Route::post('/report/store/step1', [\App\Http\Controllers\Magistrate\ReportController::class, 'step1'])
@@ -54,6 +62,10 @@ Route::prefix('/magistrate')->middleware(['auth', 'role:magistrate'])->group(fun
         ->name('report.claim.respond.form');
     Route::post('/claim/respond', [\App\Http\Controllers\Magistrate\ClaimController::class, 'respond'])
         ->name('report.claim.respond');
+    Route::get('/report/comment/{report}', [\App\Http\Controllers\Magistrate\CommentController::class, 'show'])
+        ->name('report.comment.show');
+    Route::post('/report/comment/store', [\App\Http\Controllers\Magistrate\CommentController::class, 'store'])
+        ->name('report.comment.store');
 });
 
 Route::prefix('/room-president')->middleware(['auth', 'role:room-president'])->group(function () {
@@ -66,6 +78,12 @@ Route::prefix('/room-president')->middleware(['auth', 'role:room-president'])->g
         ->name('room-president.claim.assign');
     Route::get('/claim/response/{response}', [\App\Http\Controllers\RoomPresident\ResponseController::class, 'show'])
         ->name('room-president.claim.response.show');
+    Route::get('/report', [\App\Http\Controllers\RoomPresident\ReportController::class, 'index'])
+        ->name('room-president.report.index');
+    Route::get('/report/comment/{report}', [\App\Http\Controllers\RoomPresident\ReportController::class, 'show'])
+        ->name('room-president.report.comment.index');
+    Route::get('/report/publish/{report}', [\App\Http\Controllers\RoomPresident\ReportController::class, 'publish'])
+        ->name('room-president.report.publish');
 });
 
 Route::prefix('/first-president')->middleware(['auth', 'role:first-president'])->group(function () {

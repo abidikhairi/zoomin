@@ -16,6 +16,11 @@
                 {{ __('Permissions') }}
             </a>
         </li>
+        <li class='nav-item'>
+            <a class='nav-link' href='{{ backpack_url('team') }}'><i class='nav-icon la la-question'></i>
+                {{ __('Teams') }}
+            </a>
+        </li>
     </ul>
 </li>
 
@@ -44,6 +49,11 @@
                 {{ __('names.administration.rooms') }}
             </a>
         </li>
+        <li class='nav-item'>
+            <a class='nav-link' href='{{ backpack_url('report-type') }}'><i class='nav-icon la la-question'></i>
+                {{ __('names.administration.report-type') }}
+            </a>
+        </li>
     </ul>
 </li>
 
@@ -58,6 +68,11 @@
         <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('magistrate') }}'><i class='nav-icon la la-question'></i>
                 {{ __('names.administration.magistrates') }}
+            </a>
+        </li>
+        <li class='nav-item'>
+            <a class='nav-link' href='{{ backpack_url('government-commission') }}'><i class='nav-icon la la-question'></i>
+                {{ __('government-commissioner') }}
             </a>
         </li>
         <li class='nav-item'>

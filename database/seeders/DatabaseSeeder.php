@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Team;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,8 +14,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $this->call(AdminSeeder::class);
         $this->call(GovernorateSeeder::class);
         $this->call(RoleSeeder::class);
+        $this->call(RoomSeeder::class);
+        $this->call(MagistrateSeeder::class);
+        $this->call(RoomPresidentSeeder::class);
+
+        Team::create([
+            'name' => 'magistrates'
+        ]);
     }
 }

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+Route::get('/room', [\App\Http\Controllers\Api\RoomController::class, 'index']);
 Route::get('/claim/{governorate}', [App\Http\Controllers\Api\ClaimController::class, 'governorate']);
 Route::get('/governorate', [\App\Http\Controllers\Api\GovernorateController::class, 'index']);
 Route::get('/governorate/{governorate}', [\App\Http\Controllers\Api\GovernorateController::class, 'show']);
@@ -34,3 +34,5 @@ Route::get('/room-president/claim/{roomPresident}/type', [\App\Http\Controllers\
 
 Route::get('/magistrate', [\App\Http\Controllers\Api\MagistrateController::class, 'index']);
 Route::get('/magistrate/room/{room}', [\App\Http\Controllers\Api\MagistrateController::class, 'magistrates']);
+
+Route::get('/report-type/{reportType}', [\App\Http\Controllers\Api\ReportTypeController::class, 'show']);

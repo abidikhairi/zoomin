@@ -55,7 +55,7 @@ class MagistrateCreated extends Notification
             ->line('Un compte magistrat a été créer')
             ->line('email: '. $this->email)
             ->line('mot de passe: '. $this->plainPassword)
-            ->action('Se connecté', url('/login'));
+            ->action('Se connecter', url('/login'));
     }
 
     /**

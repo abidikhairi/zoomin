@@ -16,15 +16,18 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('role', 'RoleCrudController');
     Route::crud('permission', 'PermissionCrudController');
+    Route::crud('team', 'TeamCrudController');
 
     Route::crud('sector', 'Administration\\SectorCrudController');
     Route::crud('governorate', 'Administration\\GovernorateCrudController');
     Route::crud('room', 'Administration\\RoomCrudController');
     Route::crud('establishment', 'Administration\\EstablishmentCrudController');
+    Route::crud('report-type', 'Administration\\ReportTypeCrudController');
 
     Route::crud('magistrate', 'Actors\\MagistrateCrudController');
     Route::crud('room-president', 'Actors\\RoomPresidentCrudController');
     Route::crud('first-president', 'Actors\\FirstPresidentCrudController');
+    Route::crud('government-commission', 'Actors\\GovernmentCommissionerCrudController');
 
     Route::crud('profile', 'Citizen\\ProfileCrudController');
     Route::crud('claim-type', 'Citizen\\ClaimTypeCrudController');

@@ -83,4 +83,13 @@ class User extends Authenticatable
     {
         return $this->roles()->first()->name;
     }
+
+    public function getEmailRoleAttribute()
+    {
+        return $this->role.': '.$this->email;
+    }
+
+    public function teams() {
+        return $this->belongsToMany(Team::class)->withTimestamps();
+    }
 }

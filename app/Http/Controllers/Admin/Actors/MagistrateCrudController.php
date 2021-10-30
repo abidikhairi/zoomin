@@ -8,18 +8,20 @@ use App\AppRoles;
 use App\Models\Administration\Room;
 use App\Models\Magistrate;
 use App\Models\Role;
+use App\Models\Team;
 use App\Models\User;
 use App\Notifications\MagistrateCreated;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
 use Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
+use Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 
 class MagistrateCrudController extends CrudController
 {
-    use ListOperation, CreateOperation;
+    use ListOperation, CreateOperation, UpdateOperation;
 
     /**
      * @throws \Exception
@@ -116,7 +118,36 @@ class MagistrateCrudController extends CrudController
         $magistrate->user()->associate($user);
         $magistrate->save();
 
+        $team = Team::query()->where('name', '=', 'magistrates')->firstOrCreate();
+        $team->sync($magistrate->user);
+
         Notification::send($user, new MagistrateCreated($plainPassword, $user->email));
+
+        return redirect()->to($request->get('http_referrer', '/admin'));
+    }
+
+    public function setupUpdateOperation()
+    {
+        $this->crud->addField([
+            'name' => 'teams',
+            'entity' => 'user.teams',
+            'type' => 'select2_multiple',
+        ]);
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'id' => 'required|exists:magistrates,id',
+            'teams' => 'required'
+        ]);
+
+        $data = $request->all();
+
+        $magistrate = Magistrate::find($data['id']);
+        $teams = collect($data['teams'])->values()->toArray();
+
+        $magistrate->user->teams()->sync($teams);
 
         return redirect()->to($request->get('http_referrer', '/admin'));
     }

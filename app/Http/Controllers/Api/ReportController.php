@@ -11,7 +11,7 @@ class ReportController extends Controller
 {
 
     public function index() {
-        return Report::with('sector', 'establishment')->get();
+        return Report::with('sector', 'establishment')->where('visible', '=' , true)->get();
     }
 
 }

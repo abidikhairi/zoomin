@@ -23,10 +23,19 @@
                                 @foreach($reports as $report)
                                     <tr>
                                         <td>{{ $report->title }}</td>
-                                        <td>{{ $report->sector->name }}</td>
-                                        <td>{{ $report->establishment->name }}</td>
-                                        <td>{{ $report->establishment->governorate->name }}</td>
-                                        <td>{{ $report->type }}</td>
+                                        @if($report->reportType->has_sector)
+                                            <td>{{ $report->sector->name }}</td>
+                                        @else
+                                            <td></td>
+                                        @endif
+                                        @if($report->reportType->has_establishment)
+                                            <td>{{ $report->establishment->name }}</td>
+                                            <td>{{ $report->establishment->governorate->name }}</td>
+                                        @else
+                                            <td></td>
+                                            <td></td>
+                                        @endif
+                                        <td>{{ $report->reportType->type }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>

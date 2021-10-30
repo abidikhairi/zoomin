@@ -2,6 +2,7 @@
 
 namespace App\Models\Administration;
 
+use App\Models\GovernmentCommissioner;
 use App\Models\Magistrate;
 use App\Models\RoomPresident;
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
@@ -28,4 +29,10 @@ class Room extends Model
     {
         return $this->belongsTo(RoomPresident::class);
     }
+
+    public function governmentCommissioner()
+    {
+        return $this->belongsTo(GovernmentCommissioner::class);
+    }
+
 }

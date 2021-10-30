@@ -14,5 +14,5 @@ interface AppRoles
 
     public const ROLE_FIRST_PRESIDENT = 'first-president';
 
-    public const CLERK = 'clerk';
+    public const ROLE_GOVERNMENT_COMMISSIONER = 'government-commissioner';
 }

@@ -13,3 +13,13 @@
 @import "~datatables.net-bs4/css/dataTables.bootstrap4.css";
 @import "~datatables.net-colreorder-bs4/css/colReorder.bootstrap4.min.css";
 @import "~datatables.net-rowgroup-bs4/css/rowGroup.bootstrap4.min.css";
+
+path {
+    fill: #3498db;
+    stroke: #0b0b0b;
+    stroke-width: 0.5px;
+}
+
+path:hover {
+    fill: #e74c3c;
+}
