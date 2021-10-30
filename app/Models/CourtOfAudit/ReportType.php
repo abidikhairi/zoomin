@@ -16,7 +16,8 @@ class ReportType extends Model
         'type',
         'has_observations',
         'has_sector',
-        'has_establishment'
+        'has_establishment',
+        'is_public'
     ];
 
     public function reports()

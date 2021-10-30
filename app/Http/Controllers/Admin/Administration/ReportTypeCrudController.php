@@ -28,6 +28,9 @@ class ReportTypeCrudController extends CrudController
                 'name' => 'type'
             ],
             [
+                'name' => 'is_public'
+            ],
+            [
                 'name' => 'has_observations',
             ],
             [
@@ -43,6 +46,10 @@ class ReportTypeCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name' => 'type'
+            ],
+            [
+                'name' => 'is_public',
+                'type' => 'checkbox'
             ],
             [
                 'name' => 'has_establishment',
