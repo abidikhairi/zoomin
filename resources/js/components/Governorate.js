@@ -8,7 +8,7 @@ export default class Governorate extends React.Component {
     }
 
     render() {
-        let { coord, id, title, clickHandler } = this.props
-        return ( <path id={id} title={title} d={ coord } onClick={e => clickHandler(e, id)} /> );
+        let { coord, id, title, clickHandler, room } = this.props
+        return ( <path id={id} title={title} d={ coord } onClick={e => clickHandler(e, id)} data-room={room} /> );
     }
 }
