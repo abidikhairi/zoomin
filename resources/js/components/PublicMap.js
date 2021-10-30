@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import axios from "axios";
-import $ from 'jquery';
 import Loader from "./Loader";
 import Governorate from "./Governorate";
 import ReportTable from "./ReportTable";
 import FaultChart from "./Charts/FaultChart";
 import FinancialImpact from "./Charts/FinancialImpact";
+
+const FILTERS = {
+    REPORTS: 'reports',
+    OBSERVATIONS: 'observations'
+}
 
 class PublicMap extends React.Component {
     constructor(props) {
@@ -17,6 +21,7 @@ class PublicMap extends React.Component {
             governorates: [],
             rooms: [],
             reports: [],
+            filter: FILTERS.REPORTS,
             governorate: null
         }
     }
@@ -72,7 +77,7 @@ class PublicMap extends React.Component {
     }
 
     render() {
-        const {isLoading, reports, governorates, governorate, rooms} = this.state
+        const {isLoading, reports, governorates, governorate, rooms, filter} = this.state
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
@@ -113,7 +118,27 @@ class PublicMap extends React.Component {
                         }
                         { reports ?
                             <div className={'col-md-6'}>
-                                <ReportTable reports={reports}/>
+                                <div className={'card'}>
+                                    <div className="card-header">Choose Filter</div>
+                                    <div className={'card-body'}>
+                                        <div className={'form-group'}>
+                                            <div className="custom-control custom-radio">
+                                                <input type="radio" id="filter-reports" name="filter-reports"
+                                                       className="custom-control-input" checked={filter === FILTERS.REPORTS} onChange={() => this.setState({filter: FILTERS.REPORTS}) } />
+                                                    <label className="custom-control-label" htmlFor="filter-reports">
+                                                        { FILTERS.REPORTS }
+                                                    </label>
+                                            </div>
+                                            <div className="custom-control custom-radio">
+                                                <input type="radio" id="filter-observations" name="filter-observations"
+                                                       className="custom-control-input" checked={filter === FILTERS.OBSERVATIONS} onChange={() => this.setState({filter: FILTERS.OBSERVATIONS})} />
+                                                <label className="custom-control-label" htmlFor="filter-observations">
+                                                    { FILTERS.OBSERVATIONS }
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>: <Loader kind={'progress'} color={'warning'} styles={{width: '15rem', height: '15rem'}} />
                         }
                         { governorate ?
