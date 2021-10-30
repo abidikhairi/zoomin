@@ -23,6 +23,7 @@ Route::get('/governorate', [\App\Http\Controllers\Api\GovernorateController::cla
 Route::get('/governorate/{governorate}', [\App\Http\Controllers\Api\GovernorateController::class, 'show']);
 Route::get('/governorate/{governorate}/establishment', [\App\Http\Controllers\Api\GovernorateController::class, 'establishments']);
 Route::get('/report', [\App\Http\Controllers\Api\ReportController::class, 'index']);
+Route::get('/report/governorate/{governorate}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorate']);
 Route::get('/report/{governorate}/{establishment}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorateEstablishment']);
 Route::get('/establishment/{sector}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'index']);
 Route::get('/establishment/show/{establishment}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'show']);

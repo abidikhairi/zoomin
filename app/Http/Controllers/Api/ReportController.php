@@ -26,6 +26,25 @@ class ReportController extends Controller
             ->filter(fn ($obj) => $obj->reportType->is_public === true);
     }
 
+    public function reportByGovernorate(Governorate $governorate)
+    {
+        $data = [];
+        $result = $governorate->establishments()
+            ->with(['reports', 'reports.reportType'])
+            ->whereHas('reports.reportType', function ($query) {
+                return $query->where('is_public', '=', true);
+            })
+            ->get();
+
+        foreach ($result as $establishment) {
+            foreach ($establishment->reports as $report) {
+                $data[] = sprintf('%s: %s', $establishment->name, $report->title);
+            }
+        }
+
+        return $data;
+    }
+
     public function index() {
         return Report::with('sector', 'establishment')->where('visible', '=' , true)->get();
     }
