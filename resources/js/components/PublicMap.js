@@ -6,11 +6,13 @@ import Governorate from "./Governorate";
 import ReportTable from "./ReportTable";
 import FaultChart from "./Charts/FaultChart";
 import FinancialImpact from "./Charts/FinancialImpact";
+import TableProxy from "./TableProxy";
 
 const FILTERS = {
     REPORTS: 'reports',
     OBSERVATIONS: 'observations'
 }
+export { FILTERS };
 
 class PublicMap extends React.Component {
     constructor(props) {
@@ -21,6 +23,8 @@ class PublicMap extends React.Component {
             governorates: [],
             rooms: [],
             reports: [],
+            establishments: [],
+            establishment: null,
             filter: FILTERS.REPORTS,
             governorate: null
         }
@@ -64,6 +68,15 @@ class PublicMap extends React.Component {
             }).catch(err => {
                 alert(err)
             })
+
+        axios.get('api/governorate/'+governorate+'/establishment')
+            .then(response => {
+                this.setState({
+                    establishments: response.data
+                })
+            }).catch(err => {
+                alert(err)
+            })
     }
 
     selectGovernoratesPerRoom(room) {
@@ -77,7 +90,7 @@ class PublicMap extends React.Component {
     }
 
     render() {
-        const {isLoading, reports, governorates, governorate, rooms, filter} = this.state
+        const {isLoading, reports, governorates, governorate, rooms, filter, establishments, establishment} = this.state
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
@@ -96,8 +109,17 @@ class PublicMap extends React.Component {
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="rangeDropdown">
                                     <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>All</a>
-                                    {rooms.map(room => <a key={room.id} className="dropdown-item small text-muted" href="#" onClick={(e) => this.selectGovernoratesPerRoom(room)}>{room.name}</a>)}
+                                    {rooms.map(room => <a key={room.id} className="dropdown-item small text-muted" href="#" onClick={() => this.selectGovernoratesPerRoom(room)}>{room.name}</a>)}
                                 </div>
+                                {governorate ? <div className={'d-inline'}>
+                                    <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
+                                            id="rangeDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false"> Establishments
+                                    </button>
+                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="rangeDropdown">
+                                        {establishments.map(estb => <a key={estb.id} href="#" className="dropdown-item small text-muted" onClick={() => this.setState({establishment: estb})}>{estb.name}</a>)}
+                                    </div>
+                                </div> : null}
                             </div>
                         </div>
                         <div className={'card-body justify-content-center'}>
@@ -111,38 +133,50 @@ class PublicMap extends React.Component {
                 </div>
                 <div className={'col-md-8'}>
                     <div className={"row"}>
+                        <div className={'col-md-6'}>
+                                <div className={'row'}>
+                                    <div className="col-md-12">
+                                        <div className={'card'}>
+                                            <div className="card-header">Choose Filter</div>
+                                            <div className={'card-body'}>
+                                                <div className={'form-group'}>
+                                                    <div className="custom-control custom-radio">
+                                                        <input type="radio" id="filter-reports" name="filter-reports"
+                                                               className="custom-control-input" checked={filter === FILTERS.REPORTS} onChange={() => this.setState({filter: FILTERS.REPORTS}) } />
+                                                        <label className="custom-control-label" htmlFor="filter-reports">
+                                                            { FILTERS.REPORTS }
+                                                        </label>
+                                                    </div>
+                                                    <div className="custom-control custom-radio">
+                                                        <input type="radio" id="filter-observations" name="filter-observations"
+                                                               className="custom-control-input" checked={filter === FILTERS.OBSERVATIONS} onChange={() => this.setState({filter: FILTERS.OBSERVATIONS})} />
+                                                        <label className="custom-control-label" htmlFor="filter-observations">
+                                                            { FILTERS.OBSERVATIONS }
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-12 mt-2">
+                                        <div className="card">
+                                            <div className="card-header">
+                                                <div className="card-header">{filter.capitalize()}</div>
+                                                <div className="card-body">
+                                                    {governorate && establishment ? <TableProxy establishment={establishment} governorate={governorate} filter={filter} /> : <h3>Choississez une Gouvernorat</h3>}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                         { governorate ?
                             <div className={'col-md-6'}>
                                 <FinancialImpact governorate={governorate} />
                             </div>:  <Loader kind={'progress'} color={'warning'} styles={{width: '15rem', height: '15rem'}} />
                         }
-                        { reports ?
-                            <div className={'col-md-6'}>
-                                <div className={'card'}>
-                                    <div className="card-header">Choose Filter</div>
-                                    <div className={'card-body'}>
-                                        <div className={'form-group'}>
-                                            <div className="custom-control custom-radio">
-                                                <input type="radio" id="filter-reports" name="filter-reports"
-                                                       className="custom-control-input" checked={filter === FILTERS.REPORTS} onChange={() => this.setState({filter: FILTERS.REPORTS}) } />
-                                                    <label className="custom-control-label" htmlFor="filter-reports">
-                                                        { FILTERS.REPORTS }
-                                                    </label>
-                                            </div>
-                                            <div className="custom-control custom-radio">
-                                                <input type="radio" id="filter-observations" name="filter-observations"
-                                                       className="custom-control-input" checked={filter === FILTERS.OBSERVATIONS} onChange={() => this.setState({filter: FILTERS.OBSERVATIONS})} />
-                                                <label className="custom-control-label" htmlFor="filter-observations">
-                                                    { FILTERS.OBSERVATIONS }
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>: <Loader kind={'progress'} color={'warning'} styles={{width: '15rem', height: '15rem'}} />
-                        }
                         { governorate ?
-                            <div className={'col-md-6'}>
+                            <div className={'col-md-6 mt-2'}>
                                 <FaultChart governorate={governorate}/>
                             </div>: <Loader kind={'progress'} color={'success'} styles={{width: '15rem', height: '15rem'}} />
                         }
