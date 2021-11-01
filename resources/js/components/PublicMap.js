@@ -3,10 +3,10 @@ import ReactDom from 'react-dom';
 import axios from "axios";
 import Loader from "./Loader";
 import Governorate from "./Governorate";
-import ReportTable from "./ReportTable";
 import FaultChart from "./Charts/FaultChart";
 import FinancialImpact from "./Charts/FinancialImpact";
 import TableProxy from "./TableProxy";
+import ReportSectorTable from "./Tables/ReportSectorTable";
 
 const FILTERS = {
     REPORTS: 'reports',
@@ -22,11 +22,12 @@ class PublicMap extends React.Component {
             isLoading: true,
             governorates: [],
             rooms: [],
-            reports: [],
             establishments: [],
             establishment: null,
             filter: FILTERS.REPORTS,
-            governorate: null
+            governorate: null,
+            sectors: [],
+            sector: null,
         }
     }
 
@@ -49,12 +50,13 @@ class PublicMap extends React.Component {
             .catch(err => {
                 alert(err)
             })
-        axios.get('/api/report')
+        axios.get('/api/sector')
             .then(response => {
                 this.setState({
-                    reports: response.data
+                    sectors: response.data
                 })
-            }).catch(err => {
+            })
+            .catch(err => {
                 alert(err)
             })
     }
@@ -117,10 +119,17 @@ class PublicMap extends React.Component {
     }
 
     render() {
-        const {isLoading, governorates, governorate, rooms, filter, establishments, establishment} = this.state
+        const {isLoading, sectors, governorates, governorate, rooms, sector, filter, establishments, establishment} = this.state
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
+        }
+        let reportTableKey = null;
+        if (sector) {
+            reportTableKey = sector.id
+            if (governorate) {
+                reportTableKey = sector.id + governorate.id
+            }
         }
 
         return (<div className={'container-fluid'}>
@@ -131,22 +140,35 @@ class PublicMap extends React.Component {
                             Map Tunisia
                             <div className="dropdown float-right">
                                 <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
-                                        id="rangeDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                        id="list-sectors" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"> Sectors
+                                </button>
+                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-sectors">
+                                    {sectors.map(sector => <a key={sector.id} className="dropdown-item small text-muted" href="#" onClick={() => this.setState({sector: sector, governorate: null})}>{sector.name}</a>)}
+                                </div>
+                            </div>
+
+                            <div className="dropdown float-right">
+                                <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
+                                        id="list-rooms" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false"> Rooms
                                 </button>
-                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="rangeDropdown">
+                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-rooms">
                                     <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>All</a>
                                     {rooms.map(room => <a key={room.id} className="dropdown-item small text-muted" href="#" onClick={() => this.selectGovernoratesPerRoom(room)}>{room.name}</a>)}
                                 </div>
-                                {governorate ? <div className={'d-inline'}>
+                            </div>
+
+                            <div className="dropdown float-right">
+                                {governorate ? <>
                                     <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
-                                            id="rangeDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                            id="list-establishment" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false"> Establishments
                                     </button>
-                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="rangeDropdown">
+                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-establishment">
                                         {establishments.map(estb => <a key={estb.id} href="#" className="dropdown-item small text-muted" onClick={(e) => this.handleEstablishmentChange(e, governorate, estb.id)}>{estb.name}</a>)}
                                     </div>
-                                </div> : null}
+                                </> : null}
                             </div>
                         </div>
                         <div className={'card-body justify-content-center'}>
@@ -159,54 +181,10 @@ class PublicMap extends React.Component {
                     </div>
                 </div>
                 <div className={'col-md-8'}>
-                    <div className={"row"}>
-                        <div className={'col-md-6'}>
-                                <div className={'row'}>
-                                    <div className="col-md-12">
-                                        <div className={'card'}>
-                                            <div className="card-header">Choose Filter</div>
-                                            <div className={'card-body'}>
-                                                <div className={'form-group'}>
-                                                    <div className="custom-control custom-radio">
-                                                        <input type="radio" id="filter-reports" name="filter-reports"
-                                                               className="custom-control-input" checked={filter === FILTERS.REPORTS} onChange={() => this.setState({filter: FILTERS.REPORTS}) } />
-                                                        <label className="custom-control-label" htmlFor="filter-reports">
-                                                            { FILTERS.REPORTS }
-                                                        </label>
-                                                    </div>
-                                                    <div className="custom-control custom-radio">
-                                                        <input type="radio" id="filter-observations" name="filter-observations"
-                                                               className="custom-control-input" checked={filter === FILTERS.OBSERVATIONS} onChange={() => this.setState({filter: FILTERS.OBSERVATIONS})} />
-                                                        <label className="custom-control-label" htmlFor="filter-observations">
-                                                            { FILTERS.OBSERVATIONS }
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12 mt-2">
-                                        <div className="card">
-                                            <div className="card-header">
-                                                <div className="card-header">{filter.capitalize()}</div>
-                                                <div className="card-body">
-                                                    {governorate && establishment !== null ? <TableProxy establishment={establishment} governorate={governorate} filter={filter} /> : <h5>Choississez une Gouvernorat et une etablissement</h5>}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div className="row">
+                        <div className="col-md-8">
+                            <ReportSectorTable governorate={governorate} sector={sector} key={reportTableKey} />
                         </div>
-                        { governorate ?
-                            <div className={'col-md-6'}>
-                                <FinancialImpact governorate={governorate} />
-                            </div>:  <Loader kind={'progress'} color={'warning'} styles={{width: '15rem', height: '15rem'}} />
-                        }
-                        { governorate ?
-                            <div className={'col-md-6 mt-2'}>
-                                <FaultChart governorate={governorate}/>
-                            </div>: <Loader kind={'progress'} color={'success'} styles={{width: '15rem', height: '15rem'}} />
-                        }
                     </div>
                 </div>
             </div>

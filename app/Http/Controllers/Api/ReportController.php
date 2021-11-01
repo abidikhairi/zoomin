@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Administration\Establishment;
 use App\Models\Administration\Governorate;
+use App\Models\Administration\Sector;
 use App\Models\CourtOfAudit\Report;
 use Illuminate\Support\Facades\DB;
 
@@ -45,8 +46,41 @@ class ReportController extends Controller
         return $data;
     }
 
+    public function reportByGovernorateAndSector(Sector $sector, Governorate $governorate) {
+        return Report::with('sector', 'establishment', 'reportType')
+            ->whereHas('sector', function ($query) use($sector) {
+                return $query->where('id', '=', $sector->id);
+            })
+            ->whereHas('establishment', function ($query) use ($governorate) {
+                return $query->where('governorate_id', '=', $governorate->id);
+            })
+            ->where('visible', '=' , false)
+            ->whereHas('reportType', function($query) {
+                return $query->where('is_public', '=', true);
+            })
+            ->get();
+
+    }
+
+    public function reportBySector(Sector $sector) {
+        return Report::with('sector', 'establishment', 'reportType')
+            ->whereHas('sector', function ($query) use($sector) {
+                return $query->where('id', '=', $sector->id);
+            })
+            ->where('visible', '=' , false)
+            ->whereHas('reportType', function($query) {
+                return $query->where('is_public', '=', true);
+            })
+            ->get();
+    }
+
     public function index() {
-        return Report::with('sector', 'establishment')->where('visible', '=' , true)->get();
+        return Report::with('sector', 'establishment', 'reportType')
+            ->where('visible', '=' , false)
+            ->whereHas('reportType', function($query) {
+                return $query->where('is_public', '=', true);
+            })
+            ->get();
     }
 
 }
