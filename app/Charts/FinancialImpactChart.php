@@ -5,7 +5,6 @@ declare(strict_types = 1);
 namespace App\Charts;
 
 use App\Models\Administration\Sector;
-use App\Models\CourtOfAudit\Report;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;

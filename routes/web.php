@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/report/{report}/observation', [\App\Http\Controllers\ReportController::class, 'observations']);
+
 Auth::routes(['verify' => true]);
 
 Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function (){
@@ -31,12 +33,6 @@ Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function 
 Route::prefix('/government-commissioner')->middleware(['auth', 'role:government-commissioner'])->group(function (){
     Route::get('/', function (){
         throw new Exception('Not Implemented: Government Commissioner Profile');
-    });
-});
-
-Route::prefix('/clerk')->middleware(['auth', 'role:clerk'])->group(function (){
-    Route::get('/', function (){
-        throw new Exception('Not Implemented');
     });
 });
 

@@ -10,6 +10,7 @@ import ReportSectorTable from "./Tables/ReportSectorTable";
 import FinancialImpactPerRoom from "./Charts/FinancialImpactPerRoom";
 import FinancialImpactPerGovernorate from "./Charts/FinancialImpactPerGovernorate";
 import MunicipalitiesLineCharts from "./Charts/MunicipalitiesLineCharts";
+import NbObservationPerSector from "./Charts/NbObservationPerSector";
 
 const FILTERS = {
     REPORTS: 'reports',
@@ -193,6 +194,11 @@ class PublicMap extends React.Component {
                     <div className="row">
                         <div className="col-md-12">
                             <ReportSectorTable governorate={governorate} sector={sector} key={reportTableKey} />
+                        </div>
+                    </div>
+                    <div className="row mt-2">
+                        <div className="col-md-12">
+                            <NbObservationPerSector />
                         </div>
                     </div>
                 </div>

@@ -115,7 +115,32 @@ export default class ReportSectorTable extends Component {
                 </div>: null}
             </div>
             <div className="card-body">
-                {reportsView}
+                <table className="table table-hover">
+                    <thead>
+                    <tr>
+                        <th className={'text-center'}>
+                            Title
+                        </th>
+                        <th>Observations</th>
+                        <th>PDF</th>
+                    </tr>
+                    </thead>
+                        {reports.map(report => {
+                            return <tr key={report.id}>
+                                <td>{report.title}</td>
+                                <td>
+                                    <a href={'/report/{report}/observation'.replace('{report}', report.id)} target={'_blank'} className={'btn btn-sm btn-primary'}>
+                                        Voir Observations
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href={'storage/reports/'+report.pdf_file} target={'_blank'} className={'btn btn-sm btn-info'}>Télecharger Rapport</a>
+                                </td>
+                            </tr>
+                        })}
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
         </div>)
     }
