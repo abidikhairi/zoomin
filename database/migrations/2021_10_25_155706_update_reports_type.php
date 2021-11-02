@@ -14,7 +14,7 @@ class UpdateReportsType extends Migration
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->string('type')->nullable(false)->change();
+            //$table->string('type')->nullable(false)->change();
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateReportsType extends Migration
     public function down()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn('type');
+            //$table->dropColumn('type');
         });
     }
 }

@@ -13,9 +13,6 @@ class CreateReportTypesTable extends Migration
      */
     public function up()
     {
-        Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn('type');
-        });
 
         Schema::create('report_types', function (Blueprint $table) {
             $table->id();
