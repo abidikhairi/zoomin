@@ -21,9 +21,14 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomSeeder::class);
         $this->call(MagistrateSeeder::class);
         $this->call(RoomPresidentSeeder::class);
+        $this->call(ProfileSeeder::class);
 
         Team::create([
             'name' => 'magistrates'
+        ]);
+
+        Team::create([
+            'name' => 'G-24'
         ]);
     }
 }
