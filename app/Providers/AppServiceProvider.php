@@ -9,7 +9,10 @@ use App\Charts\ClaimByTypeChart;
 use App\Charts\ClaimChart;
 use App\Charts\FaultChart;
 use App\Charts\FinancialImpactChart;
+use App\Charts\FinancialImpactPerGovernorate;
+use App\Charts\FinancialImpactPerRoom;
 use App\Charts\GovernorateChart;
+use App\Charts\MunicipalitiesNbObservations;
 use App\Charts\ReportPerYearChart;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Events\QueryExecuted;
@@ -63,7 +66,10 @@ class AppServiceProvider extends ServiceProvider
             ClaimByProfileChart::class,
             ClaimByEstablishmentChart::class,
             ClaimBySectorChart::class,
-            ClaimByTypeChart::class
+            ClaimByTypeChart::class,
+            FinancialImpactPerRoom::class,
+            FinancialImpactPerGovernorate::class,
+            MunicipalitiesNbObservations::class
         ]);
     }
 }

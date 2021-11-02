@@ -32,9 +32,11 @@ class ReportController extends Controller
         $data = [];
         $result = $governorate->establishments()
             ->with(['reports', 'reports.reportType'])
-            ->where('visible', '=', true)
             ->whereHas('reports.reportType', function ($query) {
                 return $query->where('is_public', '=', true);
+            })
+            ->whereHas('reports', function ($query) {
+                return $query->where('visible', '=', true);
             })
             ->get();
 

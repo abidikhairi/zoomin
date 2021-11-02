@@ -7,6 +7,9 @@ import FaultChart from "./Charts/FaultChart";
 import FinancialImpact from "./Charts/FinancialImpact";
 import TableProxy from "./TableProxy";
 import ReportSectorTable from "./Tables/ReportSectorTable";
+import FinancialImpactPerRoom from "./Charts/FinancialImpactPerRoom";
+import FinancialImpactPerGovernorate from "./Charts/FinancialImpactPerGovernorate";
+import MunicipalitiesLineCharts from "./Charts/MunicipalitiesLineCharts";
 
 const FILTERS = {
     REPORTS: 'reports',
@@ -28,6 +31,8 @@ class PublicMap extends React.Component {
             governorate: null,
             sectors: [],
             sector: null,
+            roomSelected: false,
+            room: null
         }
     }
 
@@ -94,6 +99,10 @@ class PublicMap extends React.Component {
         this.setState({
             governorates: ngovs
         })
+        this.setState({
+            roomSelected: true,
+            room: room
+        })
     }
 
     handleEstablishmentChange(event, governorate, establishment) {
@@ -119,7 +128,7 @@ class PublicMap extends React.Component {
     }
 
     render() {
-        const {isLoading, sectors, governorates, governorate, rooms, sector, filter, establishments, establishment} = this.state
+        const {isLoading, sectors, room, roomSelected, governorates, governorate, rooms, sector, filter, establishments, establishment} = this.state
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
@@ -180,29 +189,34 @@ class PublicMap extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={'col-md-6'}>
+                <div className={'col-md-4'}>
                     <div className="row">
-                        <div className="col-md-8">
+                        <div className="col-md-12">
                             <ReportSectorTable governorate={governorate} sector={sector} key={reportTableKey} />
                         </div>
                     </div>
                 </div>
-                <div className="col-md-2">
+                <div className="col-md-4">
                     <div className="row">
                         <div className="col-md-12">
-                            <h4>Chart 1</h4>
+                            <FinancialImpact />
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <h4>Chart 1</h4>
+                            {roomSelected ? <FinancialImpactPerRoom room={room} /> : null}
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-12">
-                            <h4>Chart 1</h4>
+                            { governorate ? <FinancialImpactPerGovernorate governorate={governorate} /> : null }
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className={'row'}>
+                <div className="col-md-12 mt-2">
+                    {governorate ? <MunicipalitiesLineCharts governorate={governorate} /> : null}
                 </div>
             </div>
         </div>);

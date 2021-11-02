@@ -57,7 +57,7 @@ class ReportController extends Controller
             'link' => 'required|string|max:255',
             'year' => 'required|digits:4|integer|min:2000|max:'.(date('Y')),
             'type' => 'required|exists:report_types,id',
-            'sector' => 'exists:sectors,id',
+            'sector' => 'nullable|exists:sectors,id',
             'establishment' => 'exists:establishments,id',
             'pdf_file' => 'required|file',
         ]);
