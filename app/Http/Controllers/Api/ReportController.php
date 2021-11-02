@@ -9,7 +9,6 @@ use App\Models\Administration\Establishment;
 use App\Models\Administration\Governorate;
 use App\Models\Administration\Sector;
 use App\Models\CourtOfAudit\Report;
-use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
@@ -23,6 +22,7 @@ class ReportController extends Controller
     {
         return Report::with('observations', 'reportType', 'establishment')
             ->where('establishment_id', '=', $establishment->id)
+            ->where('visible', '=', true)
             ->get()
             ->filter(fn ($obj) => $obj->reportType->is_public === true);
     }
@@ -32,6 +32,7 @@ class ReportController extends Controller
         $data = [];
         $result = $governorate->establishments()
             ->with(['reports', 'reports.reportType'])
+            ->where('visible', '=', true)
             ->whereHas('reports.reportType', function ($query) {
                 return $query->where('is_public', '=', true);
             })
@@ -54,7 +55,7 @@ class ReportController extends Controller
             ->whereHas('establishment', function ($query) use ($governorate) {
                 return $query->where('governorate_id', '=', $governorate->id);
             })
-            ->where('visible', '=' , false)
+            ->where('visible', '=' , true)
             ->whereHas('reportType', function($query) {
                 return $query->where('is_public', '=', true);
             })
@@ -67,7 +68,7 @@ class ReportController extends Controller
             ->whereHas('sector', function ($query) use($sector) {
                 return $query->where('id', '=', $sector->id);
             })
-            ->where('visible', '=' , false)
+            ->where('visible', '=' , true)
             ->whereHas('reportType', function($query) {
                 return $query->where('is_public', '=', true);
             })
@@ -76,7 +77,7 @@ class ReportController extends Controller
 
     public function index() {
         return Report::with('sector', 'establishment', 'reportType')
-            ->where('visible', '=' , false)
+            ->where('visible', '=' , true)
             ->whereHas('reportType', function($query) {
                 return $query->where('is_public', '=', true);
             })
