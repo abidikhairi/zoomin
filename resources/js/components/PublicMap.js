@@ -133,7 +133,7 @@ class PublicMap extends React.Component {
         }
 
         return (<div className={'container-fluid'}>
-            <div className={"row justify-content-between"}>
+            <div className={"row"}>
                 <div className="col-md-4">
                     <div className={'card'}>
                         <div className={'card-header'}>
@@ -180,10 +180,27 @@ class PublicMap extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={'col-md-8'}>
+                <div className={'col-md-6'}>
                     <div className="row">
                         <div className="col-md-8">
                             <ReportSectorTable governorate={governorate} sector={sector} key={reportTableKey} />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-2">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h4>Chart 1</h4>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h4>Chart 1</h4>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h4>Chart 1</h4>
                         </div>
                     </div>
                 </div>

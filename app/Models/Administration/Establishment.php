@@ -12,7 +12,7 @@ class Establishment extends Model
 {
     use HasFactory, CrudTrait;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'is_municipality'];
 
     public function sector()
     {
