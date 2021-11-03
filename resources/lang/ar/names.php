@@ -21,6 +21,7 @@ return [
         'clear-all' => 'امسح الكل'
     ],
     'claims' => [
+        'plural' => 'الشكاوي',
         'archived' => 'الأرشيف'
     ],
     'citizen' => [

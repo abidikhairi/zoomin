@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Models\Administration\Room;
 use App\Models\Citizen\Claim;
 use App\Models\RoomPresident;
 use Chartisan\PHP\Chartisan;
@@ -26,9 +27,9 @@ class ClaimBySectorChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        $roomPresident = RoomPresident::find($request->get('roomPresident'));
+        $room = Room::query()->where('id', '=', $request->get('room'))->firstOrFail();
 
-        $governorates = $roomPresident->room->governorates->map(function($g) { return $g->id;})->toArray();
+        $governorates = $room->governorates->map(function($g) { return $g->id;})->toArray();
 
         $result = Claim::query()
             ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
@@ -44,6 +45,6 @@ class ClaimBySectorChart extends BaseChart
 
         return Chartisan::build()
             ->labels($labels)
-            ->dataset(__('sectors'), $data);
+            ->dataset(__('fields.sector.name'), $data);
     }
 }

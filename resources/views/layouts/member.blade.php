@@ -11,7 +11,11 @@
                     <li class="nav-item nav-notif">
                         <a class="nav-link text-muted my-2" href="./#" data-toggle="modal" data-target=".modal-notif">
                             <span class="fe fe-bell fe-16"></span>
-                            <span class="dot dot-md bg-success"></span>
+                            @if(auth()->user()->unreadNotifications->count() != 0)
+                                <span class="dot dot-md bg-danger"></span>
+                            @else
+                                <span class="dot dot-md bg-success"></span>
+                            @endif
                         </a>
                     </li>
                     <li class="nav-item dropdown">

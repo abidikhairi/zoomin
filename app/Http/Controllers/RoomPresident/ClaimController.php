@@ -19,20 +19,6 @@ class ClaimController extends Controller
     public function index()
     {
         $roomPresident = $this->roomPresident();
-        $governorates = $roomPresident->room->governorates->map(function($g) { return $g->id;})->toArray();
-
-        $respondedClaims = Claim::query()
-            ->selectRaw(DB::raw('claims.id as claim_id'))
-            ->addSelect('assigned')
-            ->addSelect('citizen_id')
-            ->addSelect('claims.magistrate_id')
-            ->addSelect('claims.sector_id')
-            ->addSelect('claims.establishment_id')
-            ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
-            ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
-            ->whereIn('governorates.id', $governorates)
-            ->where('assigned', '=', 'true')
-            ->get();
 
         return view('room-president.claim.index', compact('roomPresident'));
     }

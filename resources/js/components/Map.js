@@ -30,7 +30,7 @@ class Map extends React.Component {
     }
 
     handleClick(event, governorate) {
-        const endpoint = 'api/claim/{governorate}'.replace('{governorate}', governorate)
+        const endpoint = '/api/claim/{governorate}'.replace('{governorate}', governorate)
         axios.get(endpoint)
             .then(response => {
                 let claims = response.data.claims
@@ -64,14 +64,10 @@ class Map extends React.Component {
             { governorate ? (<div className="col-md-7">
                     <div className={'row'}>
                         <div className={'col-md-12'}>
-                            <ClaimTable claims={governorate.claims} governorate={governorate.governorate}/>
-                        </div>
-                        <div className={'col-md-12'}>
                             <GovernorateChart governorate={governorate.governorate} />
                         </div>
                     </div>
-                </div>) : <div>world</div>
-                }
+                </div>) : null }
         </div>);
     }
 }

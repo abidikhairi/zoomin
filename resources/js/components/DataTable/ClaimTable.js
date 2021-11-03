@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import axios from "axios";
 import $ from 'jquery';
+import he from 'he';
 import Loader from "../Loader";
 import ClaimEntry from "./ClaimEntry";
 import ClaimsByProfileChart from "../Charts/ClaimsByProfileChart";
@@ -51,7 +52,6 @@ class ClaimTable extends Component {
         let president_id = $('#claim-table-app').data('room-president')
         axios.get('/api/room-president/claim/sector/'+president_id)
             .then(response => {
-                console.log(response.data)
                 let { claims } = response.data
                 this.setState({
                     claims: claims,
@@ -79,7 +79,6 @@ class ClaimTable extends Component {
 
     loadClaims(e) {
         e.preventDefault()
-        console.log(this)
         this.setState({
             isLoading: false,
         })
@@ -132,8 +131,25 @@ class ClaimTable extends Component {
             })
     }
 
+    handlePageChange(link) {
+        this.setState({
+            isLoading: true
+        })
+        axios.get(link.url)
+            .then(response => {
+                this.setState({
+                    claims: response.data.claims,
+                    isLoading: false
+                })
+            })
+            .catch(err => {
+                alert(err)
+            })
+    }
+
     render() {
         const {isLoading, claims, roomPresident, chart, claimTypes} = this.state
+        let room_president_id = $('#claim-table-app').data('room-president');
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
@@ -207,21 +223,21 @@ class ClaimTable extends Component {
                         </table>
                         <nav aria-label="Table Paging" className="mb-0 text-muted">
                             <ul className="pagination justify-content-end mb-0">
-                                <li className="page-item"><a className="page-link" href="#">Previous</a></li>
-                                <li className="page-item"><a className="page-link" href="#">1</a></li>
-                                <li className="page-item"><a className="page-link" href="#">2</a></li>
-                                <li className="page-item"><a className="page-link" href="#">3</a></li>
-                                <li className="page-item"><a className="page-link" href="#">Next</a></li>
+                                {claims.links.map((link, index) => {
+                                    return <li key={index} className={'page-item mr-2 ' + (link.active ? 'active' : '')}>
+                                        <a className={'page-link'} href="#" onClick={() => this.handlePageChange(link)} >{he.decode(link.label)}</a>
+                                    </li>
+                                })}
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
             <div className={'col-md-4'}>
-                {chart === 'type' ? <ClaimsByTypesChart roomPresident={$('#claim-table-app').data('room-president')} /> : null }
-                {chart === 'citizen' ? <ClaimsByProfileChart roomPresident={$('#claim-table-app').data('room-president')} />: null}
-                {chart === 'establishment' ? <ClaimsByEstablishmentsChart roomPresident={$('#claim-table-app').data('room-president')} />: null}
-                {chart === 'sector' ? <ClaimsBySectorsChart roomPresident={$('#claim-table-app').data('room-president')} />: null}
+                {chart === 'type' ? <ClaimsByTypesChart roomPresident={room_president_id} /> : null }
+                {chart === 'citizen' ? <ClaimsByProfileChart roomPresident={room_president_id} />: null}
+                {chart === 'establishment' ? <ClaimsByEstablishmentsChart roomPresident={room_president_id} />: null}
+                {chart === 'sector' ? <ClaimsBySectorsChart roomPresident={room_president_id} />: null}
             </div>
         </div>)
     }
