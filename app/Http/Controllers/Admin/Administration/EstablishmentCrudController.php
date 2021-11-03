@@ -51,19 +51,28 @@ class EstablishmentCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name' => 'name',
-                'label' => __('fields.establishment.name')
+                'label' => __('fields.establishment.name'),
+                'required' => true
+            ],
+            [
+                'name' => 'is_municipality',
+                'label' => __('municipality'),
+                'type' => 'checkbox',
+                'required' => false
             ],
             [
                 'name' => 'sector',
                 'entity' => 'sector',
                 'type' => 'select2',
-                'label' => __('names.administration.sector')
+                'label' => __('names.administration.sector'),
+                'required' => true
             ],
             [
                 'name' => 'governorate',
                 'entity' => 'governorate',
                 'type' => 'select2',
-                'label' => __('names.administration.governorate')
+                'label' => __('names.administration.governorate'),
+                'required' => true
             ]
         ]);
     }
@@ -76,7 +85,8 @@ class EstablishmentCrudController extends CrudController
         $sector = Sector::find($data['sector']);
 
         $establishment = new Establishment([
-            'name' => $data['name']
+            'name' => $data['name'],
+            'is_municipality' => $data['is_municipality']
         ]);
 
         $establishment->governorate()->associate($gov);

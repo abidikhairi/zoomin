@@ -16,7 +16,7 @@ class CreateObservationsTable extends Migration
         Schema::create('observations', function (Blueprint $table) {
             $table->id();
             $table->string('observation');
-            $table->enum('fault', \App\Models\CourtOfAudit\Observation::FAULTS);
+            //$table->enum('fault', \App\Models\CourtOfAudit\Observation::FAULTS);
             $table->float('financial_impact');
             $table->unsignedBigInteger('report_id');
             $table->timestamps();

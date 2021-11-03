@@ -9,11 +9,10 @@ export default class FinancialImpact extends React.Component {
     }
 
     componentDidMount() {
-        let governorate = this.props.governorate
 
         let chartElement = new Chartisan({
             el: '#financial-impact',
-            url: 'api/chart/financial_impact?id'+governorate.id,
+            url: 'api/chart/financial_impact',
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -25,11 +24,10 @@ export default class FinancialImpact extends React.Component {
     }
 
     render() {
-        let { governorate } = this.props
         let { chart } = this.state
         if (chart) {
             chart.update({
-                url: 'api/chart/financial_impact?id'+ governorate.id,
+                url: 'api/chart/financial_impact',
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('pie')
@@ -39,7 +37,7 @@ export default class FinancialImpact extends React.Component {
 
         return (<div className="card">
             <div className="card-header">
-                Governorate: { governorate.name}
+                Financial Impact
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

@@ -17,7 +17,7 @@ class CreateReportsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('link');
-            $table->enum('type', \App\Models\CourtOfAudit\Report::TYPES);
+            //$table->enum('type', \App\Models\CourtOfAudit\Report::TYPES);
             $table->string('year', 4);
             $table->string('pdf_file');
             $table->unsignedBigInteger('sector_id');

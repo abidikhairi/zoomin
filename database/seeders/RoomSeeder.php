@@ -17,7 +17,7 @@ class RoomSeeder extends Seeder
     {
         $govs = ['الكاف', 'سليانة', 'باجة', 'جندوبة'];
         $room = Room::create([
-            'name' => 'room-1'
+            'name' => 'الغرفة الجهوية بجندوبة'
         ]);
 
         $g = [];

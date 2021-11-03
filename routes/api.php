@@ -21,9 +21,15 @@ Route::get('/room', [\App\Http\Controllers\Api\RoomController::class, 'index']);
 Route::get('/claim/{governorate}', [App\Http\Controllers\Api\ClaimController::class, 'governorate']);
 Route::get('/governorate', [\App\Http\Controllers\Api\GovernorateController::class, 'index']);
 Route::get('/governorate/{governorate}', [\App\Http\Controllers\Api\GovernorateController::class, 'show']);
+Route::get('/governorate/{governorate}/establishment', [\App\Http\Controllers\Api\GovernorateController::class, 'establishments']);
 Route::get('/report', [\App\Http\Controllers\Api\ReportController::class, 'index']);
-Route::get('/establishment/{sector}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'index']);
-
+Route::get('/report/sector/{sector}', [\App\Http\Controllers\Api\ReportController::class, 'reportBySector']);
+Route::get('/report/sector/{sector}/{governorate}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorateAndSector']);
+Route::get('/report/governorate/{governorate}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorate']);
+Route::get('/report/{governorate}/{establishment}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorateEstablishment']);
+Route::get('/establishment/governorate/{governorate}/{sector}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'index']);
+Route::get('/establishment/show/{establishment}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'show']);
+Route::get('/sector', [\App\Http\Controllers\Api\SectorController::class, 'all']);
 Route::get('/room-president/claim/{roomPresident}', [\App\Http\Controllers\Api\RoomPresidentController::class, 'claims']);
 Route::get('/room-president/claim/citizen/priority/{roomPresident}', [\App\Http\Controllers\Api\RoomPresidentController::class, 'claimsOrderedByCitizenProfilePriority']);
 Route::get('/room-president/claim/establishment/{roomPresident}', [\App\Http\Controllers\Api\RoomPresidentController::class, 'claimsOrderedByEstablishments']);

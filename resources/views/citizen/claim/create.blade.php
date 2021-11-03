@@ -29,21 +29,31 @@
                                 </div>
                             </div> <!-- /.form-row -->
                             <div class="form-row">
-                                <div class="col-md-4 mb-3">
-                                    <label for="sector">{{ __('Sector') }}</label>
+                                <div class="col-md-3">
+                                    <label for="governorate">{{ __('fields.governorate.name') }}</label>
+                                    <select name="governorate" id="governorate" class="form-control">
+                                        <option value="" selected>Choisir ...</option>
+                                        @foreach($governorates as $governorate)
+                                            <option value="{{ $governorate->id }}">{{ $governorate->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="sector">{{ __('fields.sector.name') }}</label>
                                     <select name="sector" id="sector" class="form-control">
+                                        <option value="" selected>Choisir ...</option>
                                         @foreach($sectors as $sector)
                                             <option value="{{ $sector->id }}">{{ $sector->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3" id="establishment-field">
-                                    <label for="establishment">{{ __('Establishment') }}</label>
+                                <div class="col-md-3 mb-3" id="establishment-field">
+                                    <label for="establishment">{{ __('fields.establishment.name') }}</label>
                                     <select name="establishment" id="establishment" class="form-control">
 
                                     </select>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="col-md-3 mb-3">
                                     <label for="claim_type">{{ __('claim.type') }}</label>
                                     <select name="claim_type" id="claim_type" class="form-control">
                                         @foreach($types as $type)

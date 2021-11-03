@@ -14,7 +14,7 @@ class UpdateObservationsTable extends Migration
     public function up()
     {
         Schema::table('observations', function (Blueprint $table) {
-            $table->dropColumn('fault');
+            //$table->dropColumn('fault');
             $table->string('title');
             $table->integer('impact')->default(0);
         });

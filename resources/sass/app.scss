@@ -14,12 +14,17 @@
 @import "~datatables.net-colreorder-bs4/css/colReorder.bootstrap4.min.css";
 @import "~datatables.net-rowgroup-bs4/css/rowGroup.bootstrap4.min.css";
 
+div.tooltip-inner {
+    max-width: 450px;
+    white-space: pre-wrap;
+}
+
 path {
-    fill: #3498db;
+    fill: #74b9ff;
     stroke: #0b0b0b;
     stroke-width: 0.5px;
 }
 
 path:hover {
-    fill: #e74c3c;
+    fill: #fab1a0;
 }

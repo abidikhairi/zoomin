@@ -9,6 +9,12 @@ use App\Models\Administration\Governorate;
 
 class GovernorateController extends Controller
 {
+
+    public function establishments(Governorate $governorate)
+    {
+        return $governorate->establishments()->get();
+    }
+
     public function index()
     {
             return Governorate::all();

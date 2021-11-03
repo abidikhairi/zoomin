@@ -14499,12 +14499,17 @@ table.DTCR_clonedTable.dataTable{position:absolute !important;background-color:r
 
 table.dataTable tr.dtrg-group td{background-color:#e0e0e0}table.dataTable tr.dtrg-group.dtrg-level-0 td{font-weight:bold}table.dataTable tr.dtrg-group.dtrg-level-1 td,table.dataTable tr.dtrg-group.dtrg-level-2 td,table.dataTable tr.dtrg-group.dtrg-level-3 td,table.dataTable tr.dtrg-group.dtrg-level-4 td,table.dataTable tr.dtrg-group.dtrg-level-5 td{background-color:#f0f0f0;padding-top:.25em;padding-bottom:.25em;padding-left:2em;font-size:.9em}table.dataTable tr.dtrg-group.dtrg-level-2 td{background-color:#f3f3f3;padding-left:2.5em}table.dataTable tr.dtrg-group.dtrg-level-3 td{background-color:#f3f3f3;padding-left:3em}table.dataTable tr.dtrg-group.dtrg-level-4 td{background-color:#f3f3f3;padding-left:3.5em}table.dataTable tr.dtrg-group.dtrg-level-5 td{background-color:#f3f3f3;padding-left:4em}
 
+div.tooltip-inner {
+  max-width: 450px;
+  white-space: pre-wrap;
+}
+
 path {
-  fill: #3498db;
+  fill: #74b9ff;
   stroke: #0b0b0b;
   stroke-width: 0.5px;
 }
 
 path:hover {
-  fill: #e74c3c;
+  fill: #fab1a0;
 }

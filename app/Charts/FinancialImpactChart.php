@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Models\Administration\Sector;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
@@ -21,11 +22,26 @@ class FinancialImpactChart extends BaseChart
      * and never a string or an array.
      * @param Request $request
      * @return Chartisan
+     * @throws \Exception
      */
     public function handler(Request $request): Chartisan
     {
+        $labels = [];
+        foreach (Sector::all('name') as $sector) {
+            $labels[] = $sector->name;
+        }
+        $data = [];
+
+        foreach ($labels as $label) {
+            $data[] = DB::table('reports')
+                ->join('sectors', 'sectors.id', '=', 'reports.sector_id')
+                ->join('observations', 'observations.report_id', '=', 'reports.id')
+                ->where('sectors.name', '=', $label)
+                ->sum('observations.impact');
+        }
+
         return Chartisan::build()
-            ->labels(['Sector 1', 'Sector 2', 'Secteur 3'])
-            ->dataset('Jendouba', [random_int(500, 7800), random_int(1250, 7000), random_int(2000, 5000)]);
+            ->labels($labels)
+            ->dataset('القطاعات', $data);
     }
 }

@@ -13,20 +13,6 @@ class Report extends Model
     use HasFactory;
 
 
-    public const TYPE_DIAGNOSTIC = 'Rapport de Diagnostic';
-    public const TYPE_PRELIMINAIRE = 'Rapport Préliminaire';
-    public const TYPE_SYNTHESE = 'Rapport de Synthése';
-    public const TYPE_ANNUEL = 'Rapport Annuel';
-    public const TYPE_SPECIFIQUE = 'Rapport Spécifiques';
-
-    public const TYPES = [
-        self::TYPE_DIAGNOSTIC,
-        self::TYPE_PRELIMINAIRE,
-        self::TYPE_SYNTHESE,
-        self::TYPE_ANNUEL,
-        self::TYPE_SPECIFIQUE
-    ];
-
     protected $fillable = [
         'title',
         'year',

@@ -1,12 +1,22 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import axios from "axios";
-import $ from 'jquery';
 import Loader from "./Loader";
 import Governorate from "./Governorate";
-import ReportTable from "./ReportTable";
 import FaultChart from "./Charts/FaultChart";
 import FinancialImpact from "./Charts/FinancialImpact";
+import TableProxy from "./TableProxy";
+import ReportSectorTable from "./Tables/ReportSectorTable";
+import FinancialImpactPerRoom from "./Charts/FinancialImpactPerRoom";
+import FinancialImpactPerGovernorate from "./Charts/FinancialImpactPerGovernorate";
+import MunicipalitiesLineCharts from "./Charts/MunicipalitiesLineCharts";
+import NbObservationPerSector from "./Charts/NbObservationPerSector";
+
+const FILTERS = {
+    REPORTS: 'reports',
+    OBSERVATIONS: 'observations'
+}
+export { FILTERS };
 
 class PublicMap extends React.Component {
     constructor(props) {
@@ -16,8 +26,14 @@ class PublicMap extends React.Component {
             isLoading: true,
             governorates: [],
             rooms: [],
-            reports: [],
-            governorate: null
+            establishments: [],
+            establishment: null,
+            filter: FILTERS.REPORTS,
+            governorate: null,
+            sectors: [],
+            sector: null,
+            roomSelected: false,
+            room: null
         }
     }
 
@@ -40,21 +56,36 @@ class PublicMap extends React.Component {
             .catch(err => {
                 alert(err)
             })
-        axios.get('/api/report')
+        axios.get('/api/sector')
             .then(response => {
                 this.setState({
-                    reports: response.data
+                    sectors: response.data
                 })
-            }).catch(err => {
+            })
+            .catch(err => {
                 alert(err)
             })
     }
 
     handleClick(event, governorate) {
+
+        this.setState({
+            establishment: null
+        })
+
         axios.get('api/governorate/'+governorate)
             .then(response => {
                 this.setState({
                     governorate: response.data
+                })
+            }).catch(err => {
+                alert(err)
+            })
+
+        axios.get('api/governorate/'+governorate+'/establishment')
+            .then(response => {
+                this.setState({
+                    establishments: response.data
                 })
             }).catch(err => {
                 alert(err)
@@ -69,30 +100,85 @@ class PublicMap extends React.Component {
         this.setState({
             governorates: ngovs
         })
+        this.setState({
+            roomSelected: true,
+            room: room
+        })
+    }
+
+    handleEstablishmentChange(event, governorate, establishment) {
+        event.preventDefault()
+        axios.get('api/governorate/'+governorate.id)
+            .then(response => {
+                this.setState({
+                    governorate: response.data
+                })
+            }).catch(err => {
+            alert(err)
+        })
+
+        axios.get('api/establishment/show/'+establishment)
+            .then(response => {
+                this.setState({
+                    establishment: response.data
+                })
+            }).catch(err => {
+            alert(err)
+        })
+
     }
 
     render() {
-        const {isLoading, reports, governorates, governorate, rooms} = this.state
+        const {isLoading, sectors, room, roomSelected, governorates, governorate, rooms, sector, filter, establishments, establishment} = this.state
 
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
         }
+        let reportTableKey = null;
+        if (sector) {
+            reportTableKey = sector.id
+            if (governorate) {
+                reportTableKey = sector.id + governorate.id
+            }
+        }
 
         return (<div className={'container-fluid'}>
-            <div className={"row justify-content-between"}>
+            <div className={"row"}>
                 <div className="col-md-4">
                     <div className={'card'}>
                         <div className={'card-header'}>
                             Map Tunisia
                             <div className="dropdown float-right">
                                 <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
-                                        id="rangeDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                        id="list-sectors" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false"> Sectors
+                                </button>
+                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-sectors">
+                                    {sectors.map(sector => <a key={sector.id} className="dropdown-item small text-muted" href="#" onClick={() => this.setState({sector: sector, governorate: null})}>{sector.name}</a>)}
+                                </div>
+                            </div>
+
+                            <div className="dropdown float-right">
+                                <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
+                                        id="list-rooms" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false"> Rooms
                                 </button>
-                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="rangeDropdown">
+                                <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-rooms">
                                     <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>All</a>
-                                    {rooms.map(room => <a key={room.id} className="dropdown-item small text-muted" href="#" onClick={(e) => this.selectGovernoratesPerRoom(room)}>{room.name}</a>)}
+                                    {rooms.map(room => <a key={room.id} className="dropdown-item small text-muted" href="#" onClick={() => this.selectGovernoratesPerRoom(room)}>{room.name}</a>)}
                                 </div>
+                            </div>
+
+                            <div className="dropdown float-right">
+                                {governorate ? <>
+                                    <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
+                                            id="list-establishment" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false"> Establishments
+                                    </button>
+                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-establishment">
+                                        {establishments.map(estb => <a key={estb.id} href="#" className="dropdown-item small text-muted" onClick={(e) => this.handleEstablishmentChange(e, governorate, estb.id)}>{estb.name}</a>)}
+                                    </div>
+                                </> : null}
                             </div>
                         </div>
                         <div className={'card-body justify-content-center'}>
@@ -104,24 +190,39 @@ class PublicMap extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className={'col-md-8'}>
-                    <div className={"row"}>
-                        { governorate ?
-                            <div className={'col-md-6'}>
-                                <FinancialImpact governorate={governorate} />
-                            </div>:  <Loader kind={'progress'} color={'warning'} styles={{width: '15rem', height: '15rem'}} />
-                        }
-                        { reports ?
-                            <div className={'col-md-6'}>
-                                <ReportTable reports={reports}/>
-                            </div>: <Loader kind={'progress'} color={'warning'} styles={{width: '15rem', height: '15rem'}} />
-                        }
-                        { governorate ?
-                            <div className={'col-md-6'}>
-                                <FaultChart governorate={governorate}/>
-                            </div>: <Loader kind={'progress'} color={'success'} styles={{width: '15rem', height: '15rem'}} />
-                        }
+                <div className={'col-md-4'}>
+                    <div className="row">
+                        <div className="col-md-12">
+                            <ReportSectorTable governorate={governorate} sector={sector} key={reportTableKey} />
+                        </div>
                     </div>
+                    <div className="row mt-2">
+                        <div className="col-md-12">
+                            <NbObservationPerSector />
+                        </div>
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <FinancialImpact />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            {roomSelected ? <FinancialImpactPerRoom room={room} /> : null}
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-12">
+                            { governorate ? <FinancialImpactPerGovernorate governorate={governorate} /> : null }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={'row'}>
+                <div className="col-md-12 mt-2">
+                    {governorate ? <MunicipalitiesLineCharts governorate={governorate} /> : null}
                 </div>
             </div>
         </div>);
