@@ -4,9 +4,12 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Models\Administration\Room;
+use App\Models\Citizen\Claim;
 use Chartisan\PHP\Chartisan;
 use ConsoleTVs\Charts\BaseChart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClaimChart extends BaseChart
 {
@@ -23,11 +26,32 @@ class ClaimChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
-        if ($request->get('group'))
-        {
-            return $this->groupBy($request->get('group'));
+        $room = Room::query()->where('id', '=', $request->get('room'))->firstOrFail();
+        $labels = [];
+        $claimsStatus = Claim::STATUS;
+
+        foreach ($room->governorates as $governorate) {
+            $labels[] = $governorate->name;
         }
-        return $this->groupByGovernorate();
+
+        $chartisan = Chartisan::build()
+            ->labels($labels);
+
+        foreach ($claimsStatus as $status) {
+            $data = [];
+            foreach ($labels as $label) {
+                $data[] = DB::table('claims')
+                    ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
+                    ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
+                    ->where([
+                        ['governorates.name', '=', $label],
+                        ['claims.status', '=', $status]
+                    ])
+                    ->count();
+            }
+            $chartisan->dataset($status, $data);
+        }
+        return $chartisan;
     }
 
     /**
