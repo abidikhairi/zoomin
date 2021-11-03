@@ -70,8 +70,7 @@ class Map extends React.Component {
                             <GovernorateChart governorate={governorate.governorate} />
                         </div>
                     </div>
-                </div>) : <div>world</div>
-                }
+                </div>) : null }
         </div>);
     }
 }
