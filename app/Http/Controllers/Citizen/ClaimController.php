@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Citizen;
 
 
 use App\Models\Administration\Establishment;
+use App\Models\Administration\Governorate;
 use App\Models\Administration\Sector;
 use App\Models\Citizen\Claim;
 use App\Models\Citizen\ClaimType;
@@ -18,18 +19,21 @@ class ClaimController extends Controller
     {
         $sectors = Sector::all();
         $types = ClaimType::all();
-        return view('citizen.claim.create', compact('sectors', 'types'));
+        $governorates = Governorate::all();
+
+        return view('citizen.claim.create', compact('sectors', 'types', 'governorates'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'establishment' => 'required',
-            'sector' => 'required',
+            'establishment' => 'required|exists:establishments,id',
+            'sector' => 'required|exists:sectors,id',
             'subject' => 'required',
             'files' => 'required',
             'claim_type' => 'required'
         ]);
+
         $user = auth()->user();
         $sector = Sector::find($request->sector);
         $establishment = Establishment::find($request->establishment);

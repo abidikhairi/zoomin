@@ -85,7 +85,8 @@ class EstablishmentCrudController extends CrudController
         $sector = Sector::find($data['sector']);
 
         $establishment = new Establishment([
-            'name' => $data['name']
+            'name' => $data['name'],
+            'is_municipality' => $data['is_municipality']
         ]);
 
         $establishment->governorate()->associate($gov);

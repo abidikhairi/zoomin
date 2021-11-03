@@ -7,7 +7,9 @@ if (document.getElementById('claim-form') || document.getElementById('report-for
     $('#sector').change(function (event) {
         $('#establishment').find('option').remove().end()
         const sector_id = $(this).children("option:selected").val()
-        axios.get('http://localhost:8000/api/establishment/'+sector_id)
+        const gov_id = $('#governorate').children("option:selected").val()
+        console.log(gov_id)
+        axios.get('http://localhost:8000/api/establishment/governorate/'+ gov_id +'/'+sector_id)
             .then(response => {
                 const establishments = response.data
                 $('#establishment-field').show()
@@ -18,7 +20,6 @@ if (document.getElementById('claim-form') || document.getElementById('report-for
                 alert(err)
             })
         console.log(sector_id)
-        console.log('hello World')
     })
 }
 
