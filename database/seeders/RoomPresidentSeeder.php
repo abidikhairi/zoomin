@@ -20,13 +20,12 @@ class RoomPresidentSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Factory::create('ar_AR');
         $rooms = Room::all();
         $room = $rooms->get(0);
         $id = 1;
         $user = new User([
-            'first_name' => $faker->firstName,
-            'last_name' => $faker->lastName,
+            'first_name' => 'amel',
+            'last_name' => "charfedi",
             'password' => Hash::make('rootkit22'),
             'email' => "room-president-$id@zoomin.com",
         ]);
