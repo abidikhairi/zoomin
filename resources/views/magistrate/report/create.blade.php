@@ -87,6 +87,7 @@
         $('#observations-section').hide()
         $('#type').change(function () {
             let report_id = $(this).val();
+            console.log('type id', report_id)
             axios.get('/api/report-type/' + report_id).then(response => {
                 let reportType = response.data
                 if(reportType.has_establishment) {
@@ -114,6 +115,5 @@
                 alert(err)
             })
         })
-        console.log('hello world !!')
     </script>
 @endsection

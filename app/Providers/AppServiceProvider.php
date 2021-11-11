@@ -14,6 +14,7 @@ use App\Charts\FinancialImpactPerRoom;
 use App\Charts\GovernorateChart;
 use App\Charts\MunicipalitiesNbObservations;
 use App\Charts\NbObservationsPerSector;
+use App\Charts\ObservationsPerGovernorate;
 use App\Charts\ReportPerYearChart;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Events\QueryExecuted;
@@ -71,7 +72,8 @@ class AppServiceProvider extends ServiceProvider
             FinancialImpactPerRoom::class,
             FinancialImpactPerGovernorate::class,
             MunicipalitiesNbObservations::class,
-            NbObservationsPerSector::class
+            NbObservationsPerSector::class,
+            ObservationsPerGovernorate::class
         ]);
     }
 }

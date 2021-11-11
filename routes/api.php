@@ -28,6 +28,7 @@ Route::get('/report/sector/{sector}/{governorate}', [\App\Http\Controllers\Api\R
 Route::get('/report/governorate/{governorate}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorate']);
 Route::get('/report/{governorate}/{establishment}', [\App\Http\Controllers\Api\ReportController::class, 'reportByGovernorateEstablishment']);
 Route::get('/establishment/governorate/{governorate}/{sector}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'index']);
+Route::get('/establishment/sector/{sector}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'establishmentsBySector']);
 Route::get('/establishment/show/{establishment}', [\App\Http\Controllers\Api\Administration\EstablishmentController::class, 'show']);
 Route::get('/sector', [\App\Http\Controllers\Api\SectorController::class, 'all']);
 Route::get('/room-president/claim/{roomPresident}', [\App\Http\Controllers\Api\RoomPresidentController::class, 'claims']);
@@ -42,3 +43,5 @@ Route::get('/magistrate', [\App\Http\Controllers\Api\MagistrateController::class
 Route::get('/magistrate/room/{room}', [\App\Http\Controllers\Api\MagistrateController::class, 'magistrates']);
 
 Route::get('/report-type/{reportType}', [\App\Http\Controllers\Api\ReportTypeController::class, 'show']);
+
+Route::get('/observation/rank', [\App\Http\Controllers\Api\ObservationController::class, 'rankMunicipalities']);

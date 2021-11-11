@@ -13,7 +13,7 @@ export default class MunicipalitiesLineCharts extends Component {
         let {governorate} = this.props
         let chartElement = new Chartisan({
             el: '#municipalities-nb-observations',
-            url: 'api/chart/municipalities_count_observations?governorate='+governorate.id,
+            url: '/api/chart/municipalities_count_observations?governorate='+governorate.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets({ type: 'line', fill: false })
@@ -30,7 +30,7 @@ export default class MunicipalitiesLineCharts extends Component {
 
         if (chart) {
             chart.update({
-                url: 'api/chart/municipalities_count_observations?governorate=' + governorate.id,
+                url: '/api/chart/municipalities_count_observations?governorate=' + governorate.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets({ type: 'line', fill: false })
@@ -44,7 +44,7 @@ export default class MunicipalitiesLineCharts extends Component {
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">
-                    <div id="municipalities-nb-observations" style={{height: '600px'}}></div>
+                    <div id="municipalities-nb-observations" style={{height: '400px', width: '100%'}}></div>
                 </div>
             </div>
         </div>);
