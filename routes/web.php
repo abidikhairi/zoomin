@@ -19,6 +19,8 @@ Route::get('/', function () {
 });
 
 Route::get('/report/{report}/observation', [\App\Http\Controllers\ReportController::class, 'observations']);
+Route::get('/pages/stats/municipalities', [\App\Http\Controllers\Pages\MunicipalitiesStatsController::class, 'index'])
+    ->name('stats.municipalities');
 
 Auth::routes(['verify' => true]);
 

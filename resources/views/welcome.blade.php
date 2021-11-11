@@ -22,6 +22,14 @@
                             <i class="fe fe-x"><span class="sr-only"></span></i>
                         </a>
                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item dropdown">
+                                <a href="#" id="statsDropdown" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="ml-lg-2">Statistiques</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="statsDropdown">
+                                    <a class="nav-link pl-lg-2" href="{{ route('stats.municipalities') }}"><span class="ml-1">Municipalities</span></a>
+                                </div>
+                            </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
                                     <span class="ml-lg-2">Claim</span>
