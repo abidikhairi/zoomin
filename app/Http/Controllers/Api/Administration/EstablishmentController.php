@@ -11,6 +11,12 @@ use App\Models\Administration\Sector;
 
 class EstablishmentController extends Controller
 {
+
+    public function establishmentsBySector(Sector $sector)
+    {
+        return $sector->establishments()->get();
+    }
+
     public function index(Governorate $governorate, Sector $sector)
     {
         return $sector->establishments()

@@ -1,15 +1,14 @@
 const $ = require('jquery')
 const axios = require('axios')
 
-if (document.getElementById('claim-form') || document.getElementById('report-form')) {
+if (document.getElementById('claim-form')) {
     $('#establishment-field').hide()
 
     $('#sector').change(function (event) {
         $('#establishment').find('option').remove().end()
         const sector_id = $(this).children("option:selected").val()
-        const gov_id = $('#governorate').children("option:selected").val()
-        console.log(gov_id)
-        axios.get('http://localhost:8000/api/establishment/governorate/'+ gov_id +'/'+sector_id)
+        let gov_id = $('#governorate').children("option:selected").val()
+        axios.get('/api/establishment/governorate/'+ gov_id +'/'+sector_id)
             .then(response => {
                 const establishments = response.data
                 $('#establishment-field').show()
@@ -19,7 +18,25 @@ if (document.getElementById('claim-form') || document.getElementById('report-for
             }).catch(err => {
                 alert(err)
             })
-        console.log(sector_id)
+    })
+}
+
+if (document.getElementById('report-form')) {
+    $('#establishment-field').hide()
+
+    $('#sector').change(function (event) {
+        $('#establishment').find('option').remove().end()
+        const sector_id = $(this).children("option:selected").val()
+        axios.get('/api/establishment/sector/'+sector_id)
+            .then(response => {
+                const establishments = response.data
+                $('#establishment-field').show()
+                establishments.map(elem => {
+                    $('#establishment').append(new Option(elem.name, elem.id))
+                })
+            }).catch(err => {
+            alert(err)
+        })
     })
 }
 
@@ -27,7 +44,6 @@ if (document.getElementById('claim-form') || document.getElementById('report-for
 if (document.getElementsByClassName('assign-claim')) {
     $('.assign-claim').click(function (event) {
         const claim_id = $(event.target).data('claim')
-        console.log(claim_id)
         $('#claim-field').val(claim_id)
     })
 }
