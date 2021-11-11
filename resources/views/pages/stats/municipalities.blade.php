@@ -80,10 +80,10 @@
         </nav>
         <main role="main" class="main-content">
             <div class="container-fluid">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
-                        <h2 class="h5 page-title">Municipalities</h2>
-                        <div id="public-map-app">
+                <div class="row">
+                    <div class="col-md-10 justify-content-around">
+                        <h2 class="h5 page-title">Espace Communes</h2>
+                        <div id="municipalities-map-app">
                         </div>
                     </div> <!-- .col-12 -->
                 </div> <!-- .row -->

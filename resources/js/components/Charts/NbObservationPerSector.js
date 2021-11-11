@@ -11,7 +11,7 @@ export default class NbObservationPerSector extends Component {
     componentDidMount() {
         let chartElement = new Chartisan({
             el: '#nb-observations-per-sector',
-            url: 'api/chart/nb_observation_sector',
+            url: '/api/chart/nb_observation_sector',
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -28,7 +28,7 @@ export default class NbObservationPerSector extends Component {
 
         if (chart) {
             chart.update({
-                url: 'api/chart/nb_observation_sector',
+                url: '/api/chart/nb_observation_sector',
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('pie')
@@ -42,7 +42,7 @@ export default class NbObservationPerSector extends Component {
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">
-                    <div id="nb-observations-per-sector" style={{height: '200px'}}></div>
+                    <div id="nb-observations-per-sector" style={{height: '300px'}}></div>
                 </div>
             </div>
         </div>);

@@ -220,11 +220,6 @@ class PublicMap extends React.Component {
                     </div>
                 </div>
             </div>
-            <div className={'row'}>
-                <div className="col-md-12 mt-2">
-                    {governorate ? <MunicipalitiesLineCharts governorate={governorate} /> : null}
-                </div>
-            </div>
         </div>);
     }
 

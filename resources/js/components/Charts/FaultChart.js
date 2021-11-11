@@ -14,7 +14,7 @@ export default class FaultChart extends React.Component {
 
         let chartElement = new Chartisan({
             el: '#governorate-fault',
-            url: 'api/chart/fault_chart?id'+governorate.id,
+            url: '/api/chart/fault_chart?id'+governorate.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -30,7 +30,7 @@ export default class FaultChart extends React.Component {
         let { chart } = this.state
         if (chart) {
             chart.update({
-                url: 'api/chart/fault_chart?id'+ governorate.id,
+                url: '/api/chart/fault_chart?id'+ governorate.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('doughnut')
