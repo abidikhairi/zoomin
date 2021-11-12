@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Team::create([
+            'name' => 'magistrates'
+        ]);
+
+        Team::create([
+            'name' => 'G-24'
+        ]);
 
         $this->call(AdminSeeder::class);
         $this->call(GovernorateSeeder::class);
@@ -23,12 +30,5 @@ class DatabaseSeeder extends Seeder
         $this->call(RoomPresidentSeeder::class);
         $this->call(ProfileSeeder::class);
 
-        Team::create([
-            'name' => 'magistrates'
-        ]);
-
-        Team::create([
-            'name' => 'G-24'
-        ]);
     }
 }

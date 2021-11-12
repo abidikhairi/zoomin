@@ -6,6 +6,7 @@ use App\AppRoles;
 use App\Models\Administration\Room;
 use App\Models\Magistrate;
 use App\Models\Role;
+use App\Models\Team;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -42,6 +43,9 @@ class MagistrateSeeder extends Seeder
             $magistrate->user()->associate($user);
             $magistrate->room()->associate($room);
             $magistrate->save();
+            
+            $team = Team::query()->where('name', '=', 'magistrates')->firstOrCreate();
+            $team->sync($magistrate->user);
         }
     }
 }
