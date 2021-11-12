@@ -43,9 +43,9 @@ class MagistrateSeeder extends Seeder
             $magistrate->user()->associate($user);
             $magistrate->room()->associate($room);
             $magistrate->save();
-            
+
             $team = Team::query()->where('name', '=', 'magistrates')->firstOrCreate();
-            $team->sync($magistrate->user);
+            $team->users()->sync($magistrate->user);
         }
     }
 }
