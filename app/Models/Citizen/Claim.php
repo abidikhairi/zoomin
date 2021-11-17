@@ -22,6 +22,13 @@ class Claim extends Model
         self::STATUS_REJECTED
     ];
 
+    public static function statusAr() {
+        return [
+            __('charts.claim.accepted'),
+            __('charts.claim.rejected'),
+        ];
+    }
+
     protected $fillable = [
         'subject',
         'files',

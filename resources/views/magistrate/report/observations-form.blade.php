@@ -6,7 +6,7 @@
             <div class="col-md-11">
                 <div class="card card-accent-primary" id="observations-forms">
                     <div class="card-header">
-                        <strong>{{__('Observations')}}: {{ $report->title }}</strong>
+                        <strong>{{__('tables.observations')}}: {{ $report->title }}</strong>
                     </div>
                     <div class="card-body">
                         @for($i = 0; $i < $observations; $i++)
@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn mce-btn-flat btn-primary" id="send-observations">
-                            Send
+                            {{ __('forms.fields.accept') }}
                         </button>
                     </div>
                 </div>

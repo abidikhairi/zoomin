@@ -28,7 +28,10 @@ class ClaimChart extends BaseChart
     {
         $room = Room::query()->where('id', '=', $request->get('room'))->firstOrFail();
         $labels = [];
-        $claimsStatus = Claim::STATUS;
+
+        $dbStatus = Claim::STATUS;
+        $statusCount = count(Claim::STATUS);
+        $statusAr = Claim::statusAr();
 
         foreach ($room->governorates as $governorate) {
             $labels[] = $governorate->name;
@@ -37,7 +40,7 @@ class ClaimChart extends BaseChart
         $chartisan = Chartisan::build()
             ->labels($labels);
 
-        foreach ($claimsStatus as $status) {
+        for ($i = 0; $i < $statusCount; $i++) {
             $data = [];
             foreach ($labels as $label) {
                 $data[] = DB::table('claims')
@@ -45,11 +48,11 @@ class ClaimChart extends BaseChart
                     ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
                     ->where([
                         ['governorates.name', '=', $label],
-                        ['claims.status', '=', $status]
+                        ['claims.status', '=', $dbStatus[$i]]
                     ])
                     ->count();
             }
-            $chartisan->dataset($status, $data);
+            $chartisan->dataset($statusAr[$i], $data);
         }
         return $chartisan;
     }
