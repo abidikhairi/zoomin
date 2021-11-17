@@ -24,25 +24,16 @@
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item dropdown">
                                 <a href="#" id="statsDropdown" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="ml-lg-2">Statistiques</span>
+                                    <span class="ml-lg-2">{{ __('names.stats') }}</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="statsDropdown">
                                     <a class="nav-link pl-lg-2" href="{{ route('stats.municipalities') }}"><span class="ml-1">Municipalities</span></a>
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
-                                    <span class="ml-lg-2">Claim</span>
+                                <a href="{{ route('claim.create') }}" class="nav-link">
+                                    <span class="ml-lg-2">{{ __('names.claims.claim') }}</span>
                                 </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a href="#" id="formsDropdown" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="ml-lg-2">Liens utiles</span>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="formsDropdown">
-                                    <a class="nav-link pl-lg-2" href="./form_elements.html"><span class="ml-1">Basic Elements</span></a>
-                                    <a class="nav-link pl-lg-2" href="./form_advanced.html"><span class="ml-1">Advanced Elements</span></a>
-                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/') }}">
@@ -55,23 +46,23 @@
                         @auth()
                             <li class="nav-item ">
                                 <a class="nav-link" href="{{ auth()->user()->account }}" >
-                                    {{ __('Account') }}
+                                    {{ __('forms.account') }}
                                 </a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link" href="{{ url('/'.auth()->user()->roles->first()->name) }}" >
-                                    {{ __('Logout') }}
+                                    {{ __('forms.logout') }}
                                 </a>
                             </li>
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/login') }}" >
-                                    {{ __('Login') }}
+                                    {{ __('forms.login') }}
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/register') }}" >
-                                    {{ __('Register') }}
+                                    {{ __('forms.register') }}
                                 </a>
                             </li>
                         @endauth

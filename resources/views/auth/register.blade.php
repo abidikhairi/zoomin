@@ -2,8 +2,8 @@
 
 @section('body')
     <body class="light rtl">
-    <div class="wrapper vh-100">
-        <div class="row align-items-center h-100">
+    <div class="wrapper">
+        <div class="row align-items-center">
             <form class="col-lg-6 col-md-8 col-10 mx-auto" method="POST" action="{{ route('register') }}">
                 @csrf
                 <div class="mx-auto text-center my-4">
@@ -16,60 +16,68 @@
                 </g>
               </svg>
                     </a>
-                    <h2 class="my-3">{{ __('Register') }}</h2>
+                    <h2 class="my-3">{{ __('forms.register') }}</h2>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail4">{{ __('E-Mail Address') }}</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                    <label for="email">{{ __('forms.fields.email') }}</label>
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}">
+                    @error('email')
+                        <div class="invalid-feedback"> {{ $message }} </div>
+                    @enderror
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="first_name">{{ __('First Name') }}</label>
+                        <label for="first_name">{{ __('forms.fields.first_name') }}</label>
                         <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                        @error('first_name')
+                            <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="last_name">{{ __('Last Name') }}</label>
+                        <label for="last_name">{{ __('forms.fields.last_name') }}</label>
                         <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required autocomplete="last_name" autofocus>
+                        @error('last_name')
+                        <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <label for="telephone">{{__('Telephone')}}</label>
+                        <label for="telephone">{{__('forms.fields.telephone')}}</label>
                         <input id="telephone" type="text" class="form-control @error('telephone') is-invalid @enderror" name="telephone" value="{{ old('telephone') }}" required autocomplete="telephone" autofocus>
+                        @error('telephone')
+                        <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="profil">{{ __('Profil') }}</label>
+                        <label for="profil">{{ __('forms.fields.profil') }}</label>
                         <select id="profil" type="text" class="form-control @error('profil') is-invalid @enderror" name="profil" required>
                             @foreach(\App\Models\Citizen\Profile::all() as $profile)
                                 <option value="{{ $profile->id }}">{{ $profile->name }}</option>
                             @endforeach
                         </select>
+                        @error('profil')
+                            <div class="invalid-feedback"> {{ $message }} </div>
+                        @enderror
                     </div>
                 </div>
                 <hr class="my-4">
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="password">{{ __('Password') }}</label>
+                            <label for="password">{{ __('forms.fields.password') }}</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            @error('password')
+                                <div class="invalid-feedback"> {{ $message }} </div>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="password-confirm">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm">{{ __('forms.fields.confirm_password') }}</label>
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <p class="mb-2">Password requirements</p>
-                        <p class="small text-muted mb-2"> To create a new password, you have to meet all of the following requirements: </p>
-                        <ul class="small text-muted pl-4 mb-0">
-                            <li> Minimum 8 character </li>
-                            <li>At least one special character</li>
-                            <li>At least one number</li>
-                            <li>Can’t be the same as a previous password </li>
-                        </ul>
-                    </div>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('Register') }}</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('forms.register') }}</button>
                 <p class="mt-5 mb-3 text-muted text-center">© 2020</p>
             </form>
         </div>

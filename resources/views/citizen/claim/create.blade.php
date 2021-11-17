@@ -13,19 +13,19 @@
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="first_name">{{ __('first name') }}</label>
+                                    <label for="first_name">{{ __('forms.fields.first_name') }}</label>
                                     <input type="text" class="form-control" id="first_name" value="{{ auth()->user()->first_name }}" disabled>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="last_name">{{ __('last name') }}</label>
+                                    <label for="last_name">{{ __('forms.fields.last_name') }}</label>
                                     <input type="text" class="form-control" id="last_name" value="{{ auth()->user()->last_name }}" disabled>
                                 </div>
                             </div> <!-- /.form-row -->
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
-                                    <label for="email">{{ __('Email') }}</label>
+                                    <label for="email">{{ __('forms.fields.email') }}</label>
                                     <input type="email" class="form-control" id="email" aria-describedby="emailHelp" value="{{ auth()->user()->email }}" disabled>
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    <small id="emailHelp" class="form-text text-muted">لن نشارك بريدك الإلكتروني مع أي شخص آخر.</small>
                                 </div>
                             </div> <!-- /.form-row -->
                             <div class="form-row">
@@ -53,29 +53,21 @@
 
                                     </select>
                                 </div>
-                                <div class="col-md-3 mb-3">
-                                    <label for="claim_type">{{ __('claim.type') }}</label>
-                                    <select name="claim_type" id="claim_type" class="form-control">
-                                        @foreach($types as $type)
-                                            <option value="{{ $type->id }}">{{ $type->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
                             </div>
                             <div class="form-row mb-3">
                                 <div class="col-md-6 mb-3">
-                                    <label for="subject">{{ __('Subject') }}</label>
+                                    <label for="subject">{{ __('forms.fields.subject') }}</label>
                                     <textarea name="subject" id="subject" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="files">Custom file input</label>
+                                    <label for="files">{{ __('forms.fields.files') }}</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="files" name="files[]" multiple>
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary" type="submit">{{ __('Submit') }}</button>
+                            <button class="btn btn-primary" type="submit">{{ __('forms.fields.accept') }}</button>
                         </form>
                     </div> <!-- /.card-body -->
                 </div> <!-- /.card -->

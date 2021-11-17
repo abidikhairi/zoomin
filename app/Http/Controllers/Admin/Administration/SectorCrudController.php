@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 
 class SectorCrudController extends CrudController
 {
-    use ListOperation, CreateOperation, UpdateOperation, DeleteOperation;
+    use ListOperation, CreateOperation, DeleteOperation;
 
     public function setup()
     {
@@ -73,9 +73,4 @@ class SectorCrudController extends CrudController
         ]);
     }
 
-    public function update(Request $request)
-    {
-        // TODO: make this works
-        dd($request->all());
-    }
 }

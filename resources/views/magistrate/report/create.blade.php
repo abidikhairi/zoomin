@@ -8,27 +8,27 @@
                     @csrf
                     <div class="card shadow mb-4">
                         <div class="card-header">
-                            <strong class="card-title">{{ __('Add Report') }}</strong>
+                            <strong class="card-title">{{ __('sidebar.magistrate.add_report') }}</strong>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label for="title">{{ __('title') }}</label>
+                                        <label for="title">{{ __('forms.report.title') }}</label>
                                         <input type="text" id="title" name="title" class="form-control">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="year">{{ __('year') }}</label>
+                                        <label for="year">{{ __('forms.report.year') }}</label>
                                         <input type="number" id="year" name="year" class="form-control">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="link">{{ __('link') }}</label>
+                                        <label for="link">{{ __('forms.report.link') }}</label>
                                         <input type="text" name="link" id="link" class="form-control">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="type">{{ __('type') }}</label>
+                                        <label for="type">{{ __('forms.report.type') }}</label>
                                         <select name="type" id="type" class="form-control select2">
-                                            <option value="">Choose ...</option>
+                                            <option value="">{{ __('forms.fields.select.choose') }}</option>
                                             @foreach($types as $type)
                                                 <option value="{{ $type->id }}">{{ $type->type }}</option>
                                             @endforeach
@@ -37,9 +37,9 @@
                                 </div> <!-- /.col -->
                                 <div class="col-md-6">
                                     <div class="form-group mb-3" id="sector-section">
-                                        <label for="sector">{{ __('Sector') }}</label>
+                                        <label for="sector">{{ __('fields.sector.name') }}</label>
                                         <select name="sector" id="sector" class="form-control select2">
-                                            <option value="">Choose ...</option>
+                                            <option value="">{{ __('forms.fields.select.choose') }}</option>
                                             @foreach($sectors as $sector)
 
                                                 <option value="{{ $sector->id }}"> {{ $sector->name }} </option>
@@ -47,19 +47,19 @@
                                         </select>
                                     </div>
                                     <div class="form-group mb-3" id="establishment-section">
-                                        <label for="establishment">{{ __('Establishment') }}</label>
+                                        <label for="establishment">{{ __('fields.establishment.name') }}</label>
                                             <select name="establishment" id="establishment" class="form-control">
                                         </select>
                                     </div>
                                     <div class="form-group mb-3" id="observations-section">
-                                        <label for="observations">{{ __('observations') }}</label>
+                                        <label for="observations">{{ __('forms.report.observations') }}</label>
                                         <input type="number" name="observations" id="observations" class="form-control">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <label for="pdf_file">{{ __('Report File') }}</label>
+                                        <label for="pdf_file">{{ __('forms.report.report_file') }}</label>
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="pdf_file" id="pdf_file">
-                                            <label class="custom-file-label" for="pdf_file">{{ __('choose_file') }}</label>
+                                            <label class="custom-file-label" for="pdf_file">{{ __('forms.fields.choose_file') }}</label>
                                         </div>
                                     </div>
                                 </div>
@@ -67,10 +67,10 @@
                         </div>
                         <div class="card-footer">
                             <button class="btn btn-success" type="submit">
-                                {{ __('submit') }}
+                                {{ __('forms.fields.accept') }}
                             </button>
                             <button type="reset" class="btn btn-danger">
-                                {{ __('reset') }}
+                                {{ __('forms.fields.reset') }}
                             </button>
                         </div>
                     </div>
@@ -87,7 +87,6 @@
         $('#observations-section').hide()
         $('#type').change(function () {
             let report_id = $(this).val();
-            console.log('type id', report_id)
             axios.get('/api/report-type/' + report_id).then(response => {
                 let reportType = response.data
                 if(reportType.has_establishment) {
