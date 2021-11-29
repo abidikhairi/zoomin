@@ -22,7 +22,6 @@
                         <i class="fe fe-x"><span class="sr-only"></span></i>
                     </a>
                     <ul class="navbar-nav mr-auto">
-
                         <li class="nav-item dropdown">
                             <a href="#" id="statsDropdown" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="ml-lg-2">{{ __('names.stats') }}</span>
@@ -67,10 +66,37 @@
         </nav>
         <main role="main" class="main-content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-10 justify-content-around">
+                <div class="row justify-content-center">
+                    <div class="col-md-10 justify-content-center">
                         <h2 class="h5 page-title">{{'فضاء البلديات'}}</h2>
-                        <div id="municipalities-map-app">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>{{ __('fields.governorate.name') . ': '. $governorate->name }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ __('fields.establishment.name') }}</th>
+                                                    <th>{{ __('tables.observation') }}</th>
+                                                    <th>{{ __('tables.financial_impact') }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach($observations as $observation)
+                                                    <tr>
+                                                        <td>{{ $observation->name }}</td>
+                                                        <td>{{ $observation->observation }}</td>
+                                                        <td>{{ $observation->financial_impact }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div> <!-- .col-12 -->
                 </div> <!-- .row -->

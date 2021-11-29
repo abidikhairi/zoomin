@@ -21,7 +21,8 @@ Route::get('/', function () {
 Route::get('/report/{report}/observation', [\App\Http\Controllers\ReportController::class, 'observations']);
 Route::get('/pages/stats/municipalities', [\App\Http\Controllers\Pages\MunicipalitiesStatsController::class, 'index'])
     ->name('stats.municipalities');
-
+Route::get('/pages/observation/{governorate}', [\App\Http\Controllers\Pages\ObservationController::class, 'index'])
+    ->name('page.observation');
 Auth::routes(['verify' => true]);
 
 Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function (){
