@@ -67,7 +67,7 @@
         </nav>
         <main role="main" class="main-content">
             <div class="container-fluid">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-md-10 justify-content-around">
                         <h2 class="h5 page-title">{{'فضاء البلديات'}}</h2>
                         <div id="municipalities-map-app">
