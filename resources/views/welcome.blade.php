@@ -27,7 +27,7 @@
                                     <span class="ml-lg-2">{{ __('names.stats') }}</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="statsDropdown">
-                                    <a class="nav-link pl-lg-2" href="{{ route('stats.municipalities') }}"><span class="ml-1">Municipalities</span></a>
+                                    <a class="nav-link pl-lg-2" href="{{ route('stats.municipalities') }}"><span class="ml-1">{{ 'البلديات' }}</span></a>
                                 </div>
                             </li>
                             <li class="nav-item">
