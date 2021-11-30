@@ -13,7 +13,7 @@ export default class MunicipalitiesLineCharts extends Component {
         let {governorate} = this.props
         let chartElement = new Chartisan({
             el: '#municipalities-nb-observations',
-            url: '/api/chart/municipalities_count_observations?governorate='+governorate.id,
+            url: '/zoomin/api/chart/municipalities_count_observations?governorate='+governorate.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets({ type: 'line', fill: false })
@@ -30,7 +30,7 @@ export default class MunicipalitiesLineCharts extends Component {
 
         if (chart) {
             chart.update({
-                url: '/api/chart/municipalities_count_observations?governorate=' + governorate.id,
+                url: '/zoomin/api/chart/municipalities_count_observations?governorate=' + governorate.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets({ type: 'line', fill: false })
