@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">الشكاوي المقبولة و المرفضة
+                            <div class="card-header">الشكاوي المقبولة و المرفوضة
                             </div>
                             <div class="card-body">
                                 <div class="c-chart-wrapper">

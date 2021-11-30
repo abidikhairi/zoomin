@@ -6,14 +6,14 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        {{ ('قائمة الغرف') }}
+                        {{ ('قائمة الدوائر') }}
                     </div>
                     <div class="card-body">
                         <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>{{ ('الغرفة') }}</th>
-                                    <th>{{ ('رئيس الغرفة') }}</th>
+                                    <th>{{ ('الدائرة') }}</th>
+                                    <th>{{ ('رئيس الدائرة') }}</th>
                                     <th>{{ ('الولايات') }}</th>
                                     <th>{{ ('القضاة') }}</th>
                                     <th>{{ ('أجراءات') }}</th>
@@ -27,7 +27,7 @@
                                     <td>{{ $room->magistrates->count() }}</td>
                                     <td>
                                         <a href="{{ route('first-president.room.assign', ['room' => $room->id]) }}" class="btn btn-primary">
-                                            {{ __('تعيين رئيس الغرفة')  }}
+                                            {{ __('تعيين رئيس الدائرة')  }}
                                         </a>
                                     </td>
                                 </tr>

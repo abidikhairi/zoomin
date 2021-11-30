@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header">الشكاوي المقبولة و المرفضة</div>
+                        <div class="card-header">الشكاوي المقبولة و المرفوضة</div>
                         <div class="card-body">
                             <div class="c-chart-wrapper">
                                 <div id="claim-chart" style="height: 300px;" data-room="{{ auth()->user()->roomPresident->room->id }}"></div>

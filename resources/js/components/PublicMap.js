@@ -161,7 +161,7 @@ class PublicMap extends React.Component {
                             <div className="dropdown float-right">
                                 <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
                                         id="list-rooms" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"> الغرف
+                                        aria-expanded="false"> الدوائر
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-rooms">
                                     <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>All</a>
