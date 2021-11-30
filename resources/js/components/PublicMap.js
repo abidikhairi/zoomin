@@ -73,7 +73,7 @@ class PublicMap extends React.Component {
             establishment: null
         })
 
-        axios.get('api/governorate/'+governorate)
+        axios.get('/api/governorate/'+governorate)
             .then(response => {
                 this.setState({
                     governorate: response.data
@@ -82,7 +82,7 @@ class PublicMap extends React.Component {
                 alert(err)
             })
 
-        axios.get('api/governorate/'+governorate+'/establishment')
+        axios.get('/api/governorate/'+governorate+'/establishment')
             .then(response => {
                 this.setState({
                     establishments: response.data
@@ -108,7 +108,7 @@ class PublicMap extends React.Component {
 
     handleEstablishmentChange(event, governorate, establishment) {
         event.preventDefault()
-        axios.get('api/governorate/'+governorate.id)
+        axios.get('/api/governorate/'+governorate.id)
             .then(response => {
                 this.setState({
                     governorate: response.data
@@ -117,7 +117,7 @@ class PublicMap extends React.Component {
             alert(err)
         })
 
-        axios.get('api/establishment/show/'+establishment)
+        axios.get('/api/establishment/show/'+establishment)
             .then(response => {
                 this.setState({
                     establishment: response.data
