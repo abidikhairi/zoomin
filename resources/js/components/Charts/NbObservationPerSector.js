@@ -38,7 +38,7 @@ export default class NbObservationPerSector extends Component {
 
         return (<div className="card">
             <div className="card-header">
-                # Observations Per Sector
+                عدد الملاحظات حسب القطاعات
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

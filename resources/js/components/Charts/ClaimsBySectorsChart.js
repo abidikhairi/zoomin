@@ -11,9 +11,10 @@ class ClaimsBySectorsChart extends Component {
 
     componentDidMount() {
         let {roomPresident} = this.props
+
         let chartElement = new Chartisan({
             el: '#claim-sector',
-            url: '/api/chart/claim_sector_chart?roomPresident='+roomPresident,
+            url: '/api/chart/claim_sector_chart?room='+roomPresident,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -27,7 +28,7 @@ class ClaimsBySectorsChart extends Component {
     render() {
         return (<div className="card">
             <div className="card-header">
-                Claims By Establishment
+                تقسيم الشكاوي حسب القطاعات
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

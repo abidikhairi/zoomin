@@ -73,7 +73,7 @@ class RoomPresidentController extends Controller
             ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
             ->join('claim_types', 'claim_types.id', '=', 'claims.claim_type_id')
             ->whereIn('governorates.id', $governorates)
-            ->whereNull('claims.status')
+            //->whereNull('claims.status')
             ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.claim_type_id', 'claims.magistrate_id'])
             ->with(['establishment', 'sector', 'citizen', 'magistrate', 'claimType', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
             ->paginate(self::CLAIMS_PER_PAGE);

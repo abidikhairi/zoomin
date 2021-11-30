@@ -89,8 +89,8 @@ export default class ReportSectorTable extends Component {
                     </th>
                 </tr>
                 <tr>
-                    <th>Financial Impact</th>
-                    <th>Observation</th>
+                    <th>الاثر المالي</th>
+                    <th>الملاحظات</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -103,11 +103,11 @@ export default class ReportSectorTable extends Component {
 
         return (<div className="card">
             <div className="card-header">
-                Liste Des Rapport
+                قائمة التقارير
                 {showEstablishmentsDropdown ? <div className="dropdown float-right">
                     <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
                             id="list-establishment-sector-table" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false"> Establishments
+                            aria-expanded="false"> المؤسسات
                     </button>
                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-establishment-sector-table">
                         {establishments.map(establishment => <a key={establishment.id} className="dropdown-item small text-muted" href="#" onClick={() => this.filterReports(establishment)}>{establishment.name}</a>)}
@@ -119,10 +119,10 @@ export default class ReportSectorTable extends Component {
                     <thead>
                     <tr>
                         <th className={'text-center'}>
-                            Title
+                            العنوان
                         </th>
-                        <th>Observations</th>
-                        <th>PDF</th>
+                        <th>الملاحظات</th>
+                        <th>التقرير</th>
                     </tr>
                     </thead>
                         {reports.map(report => {
@@ -130,11 +130,11 @@ export default class ReportSectorTable extends Component {
                                 <td>{report.title}</td>
                                 <td>
                                     <a href={'/report/{report}/observation'.replace('{report}', report.id)} target={'_blank'} className={'btn btn-sm btn-primary'}>
-                                        Voir Observations
+                                        الملاحظات
                                     </a>
                                 </td>
                                 <td>
-                                    <a href={'storage/reports/'+report.pdf_file} target={'_blank'} className={'btn btn-sm btn-info'}>Télecharger Rapport</a>
+                                    <a href={'storage/reports/'+report.pdf_file} target={'_blank'} className={'btn btn-sm btn-info'}>تحميل التقرير</a>
                                 </td>
                             </tr>
                         })}

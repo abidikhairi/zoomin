@@ -6,6 +6,7 @@ use App\AppRoles;
 use App\Models\Administration\Room;
 use App\Models\Magistrate;
 use App\Models\Role;
+use App\Models\Team;
 use App\Models\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
@@ -21,12 +22,13 @@ class MagistrateSeeder extends Seeder
     public function run()
     {
         Magistrate::query()->delete();
-        $faker = Factory::create('ar_AR');
         $rooms = Room::all();
         $room = $rooms->get(0);
-        for ($j = 0; $j < 6; $j++) {
-            $first_name = $faker->unique()->firstName;
-            $last_name = $faker->unique()->lastName;
+        $firstNames = ['salah', 'mondher', 'ameni', 'wassim'];
+        $lastNames = ['abidi', 'bousetta', 'abidi', 'abidi'];
+        for ($j = 0; $j < 4; $j++) {
+            $first_name = $firstNames[$j];
+            $last_name = $lastNames[$j];
             $user = new User([
                 'first_name' => $first_name,
                 'last_name' => $last_name,
@@ -41,6 +43,9 @@ class MagistrateSeeder extends Seeder
             $magistrate->user()->associate($user);
             $magistrate->room()->associate($room);
             $magistrate->save();
+
+            $team = Team::query()->where('name', '=', 'magistrates')->firstOrCreate();
+            $team->users()->sync($magistrate->user);
         }
     }
 }

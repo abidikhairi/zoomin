@@ -9,8 +9,8 @@ return [
         'governorates' => 'الولايات',
         'establishment' => 'موئسسة|الموئسسة',
         'establishments' => 'المؤسسات',
-        'room' => 'غرفة',
-        'rooms' => 'الغرف',
+        'room' => 'الدائرة',
+        'rooms' => 'الدوائر',
         'users' => 'المستخدمون',
         'user' => 'مستخدم',
         'magistrate' => 'قاضي|القاضي',
@@ -22,9 +22,11 @@ return [
     ],
     'claims' => [
         'plural' => 'الشكاوي',
-        'archived' => 'الأرشيف'
+        'archived' => 'الأرشيف',
+        'claim' => 'شكوى'
     ],
     'citizen' => [
         'name' => 'مواطن|المواطن'
-    ]
+    ],
+    'stats' => 'إحصائيات'
 ];

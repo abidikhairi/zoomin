@@ -5,15 +5,15 @@ export default function (props) {
 
     return (<div className="card">
                 <div className="card-header">
-                    <i className="fa fa-align-justify"/>Claims: {governorate.name}</div>
+                    <i className="fa fa-align-justify"/>الشكاوي: {governorate.name}</div>
                 <div className="card-body">
                     <table className="table table-responsive-sm">
                         <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>Date</th>
-                                <th>Sector</th>
-                                <th>Establishment</th>
+                                <th>الموضوع</th>
+                                <th> التاريخ</th>
+                                <th> القطاع</th>
+                                <th> المؤسسة</th>
                             </tr>
                         </thead>
                         <tbody>

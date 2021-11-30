@@ -45,8 +45,8 @@ export default class ReportGovernorateTable extends Component {
                             </th>
                         </tr>
                         <tr>
-                            <th>Financial Impact</th>
-                            <th>Observation</th>
+                            <th>الاثر المالي</th>
+                            <th>الملاحظات</th>
                         </tr>
                     </thead>
                     <tbody>

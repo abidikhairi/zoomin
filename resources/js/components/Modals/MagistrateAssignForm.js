@@ -39,12 +39,12 @@ const MagistrateAssignForm = (props) => {
 
     return (<Modal show={show} onHide={hideModal} className={'modal-shortcut modal-slide'}>
             <Modal.Header closeButton>
-                <Modal.Title>Magistrates</Modal.Title>
+                <Modal.Title>القضاة</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form.Control type={'hidden'} value={claim.id} />
                 <Form.Group controlId="Magistrate.Control">
-                    <Form.Label>Magistrate</Form.Label>
+                    <Form.Label>القاضي</Form.Label>
                     <Form.Control as="select" onChange={onChangeMagistrate.bind(this)}>
                         {magistrates.map(magistrate => <option key={magistrate.id} value={magistrate.id}>{magistrate.user.email}</option>)}
                     </Form.Control>
@@ -52,10 +52,10 @@ const MagistrateAssignForm = (props) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={hideModal}>
-                    Close
+                    غلق
                 </Button>
                 <Button variant="primary" onClick={handleClick}>
-                    Save Changes
+                    الموافقة
                 </Button>
             </Modal.Footer>
         </Modal>

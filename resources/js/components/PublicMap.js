@@ -147,11 +147,11 @@ class PublicMap extends React.Component {
                 <div className="col-md-4">
                     <div className={'card'}>
                         <div className={'card-header'}>
-                            Map Tunisia
+                            التوزيع الجغرافي :التقارير
                             <div className="dropdown float-right">
                                 <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
                                         id="list-sectors" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"> Sectors
+                                        aria-expanded="false"> القطاعات
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-sectors">
                                     {sectors.map(sector => <a key={sector.id} className="dropdown-item small text-muted" href="#" onClick={() => this.setState({sector: sector, governorate: null})}>{sector.name}</a>)}
@@ -161,7 +161,7 @@ class PublicMap extends React.Component {
                             <div className="dropdown float-right">
                                 <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
                                         id="list-rooms" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false"> Rooms
+                                        aria-expanded="false"> الدوائر
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-rooms">
                                     <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>All</a>
@@ -173,7 +173,7 @@ class PublicMap extends React.Component {
                                 {governorate ? <>
                                     <button className="btn btn-sm btn-link text-muted dropdown-toggle p-0" type="button"
                                             id="list-establishment" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false"> Establishments
+                                            aria-expanded="false"> المؤسسات
                                     </button>
                                     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-establishment">
                                         {establishments.map(estb => <a key={estb.id} href="#" className="dropdown-item small text-muted" onClick={(e) => this.handleEstablishmentChange(e, governorate, estb.id)}>{estb.name}</a>)}

@@ -25,7 +25,6 @@ class ReportController extends Controller
     public function index()
     {
         $reports = $this->magistrate()->reports()->paginate(self::REPORTS_PER_PAGE);
-
         return view('magistrate.report.index', compact('reports'));
     }
 
@@ -132,7 +131,7 @@ class ReportController extends Controller
             ->join('report_types', 'report_types.id', '=', 'reports.report_type_id')
             ->join('rooms', 'rooms.id', '=', 'magistrates.room_id')
             ->where('magistrates.room_id', '=', $roomId)
-            ->select(['reports.id', 'reports.sector_id', 'reports.establishment_id', 'reports.magistrate_id', 'reports.visible', 'report_types.type'])
+            ->select(['reports.id', 'reports.title', 'reports.sector_id', 'reports.establishment_id', 'reports.magistrate_id', 'reports.visible', 'report_types.type'])
             ->get();
 
         return view('magistrate.report.room.index', compact('reports'));

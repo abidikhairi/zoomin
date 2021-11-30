@@ -25,9 +25,8 @@
                   </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">{{ __('Settings') }}</a>
                             <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                {{ __('forms.logout') }}
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
@@ -43,13 +42,7 @@
                 <nav class="vertnav navbar navbar-light">
                     <div class="w-100 mb-4 d-flex">
                         <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{ url("/") }}">
-                            <svg id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
-                                <g>
-                                    <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                                    <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                                    <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                                </g>
-                            </svg>
+                            <img src="{{ asset('/images/cdc-logo.png') }}" alt="logo-cdc" class="img-circle img-fluid" width="80px" height="80px">
                         </a>
                     </div>
                     @switch(auth()->user()->role)
@@ -80,9 +73,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="list-group list-group-flush my-n3">
+                                <div class="list-group list-group-flush my-n3" id="notifications-modal">
                                     @foreach(auth()->user()->unreadNotifications as $notification)
-                                        <div class="list-group-item bg-transparent">
+                                        <div class="list-group-item bg-transparent notification-group-item" data-notification="{{ $notification->id }}">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
                                                     <span class="fe fe-{{$notification->data['icon']}} fe-24"></span>
@@ -101,7 +94,7 @@
                                 </div> <!-- / .list-group -->
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">{{ __('names.notifications.clear-all') }}</button>
+                                <button type="button" class="btn btn-secondary btn-block" id="clear-notifications" data-dismiss="modal">{{ __('names.notifications.clear-all') }}</button>
                             </div>
                         </div>
                     </div>

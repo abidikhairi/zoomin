@@ -21,7 +21,7 @@ class RoleCrudController extends CrudController
     {
         $this->crud->setModel(Role::class);
         $this->crud->setRoute('/admin/role');
-        $this->crud->setEntityNameStrings(trans('role'), trans('roles'));
+        $this->crud->setEntityNameStrings('دور', 'الأدوار');
     }
 
     public function setupListOperation()
@@ -29,15 +29,11 @@ class RoleCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'name' => 'display_name',
-                'label' => 'display_name'
+                'label' => 'اسم العرض'
             ],
             [
                 'name' => 'description',
-                'label' => 'description',
-            ],
-            [
-                'name' => 'permissions',
-                'entity' => 'permissions',
+                'label' => 'وصف',
             ]
         ]);
     }

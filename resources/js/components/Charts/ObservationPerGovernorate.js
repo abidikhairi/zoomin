@@ -40,7 +40,7 @@ export default class ObservationPerGovernorate extends Component {
 
         return (<div className="card">
             <div className="card-header">
-                # Observations Per Governorate
+                عدد الملاحظات في ولاية {governorate.name}
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

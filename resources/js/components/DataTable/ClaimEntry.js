@@ -36,11 +36,11 @@ class ClaimEntry extends Component {
     render() {
         const { show } = this.state
         let { claim, reloadClaimFunc } = this.props
-        let statusCell = <span className="badge badge-warning">Pending</span>
+        let statusCell = <span className="badge badge-warning">الموافقة</span>
         if (claim.status === 'accepted') {
-            statusCell = <span className="badge badge-success">Accepted</span>
+            statusCell = <span className="badge badge-success">مقبول</span>
         }else if (claim.status === 'rejected') {
-            statusCell = <span className="badge badge-danger">Rejected</span>
+            statusCell = <span className="badge badge-danger">مرفوض</span>
         }
         return (
             <tr>
@@ -49,7 +49,6 @@ class ClaimEntry extends Component {
                 <td>{ claim.sector.name }</td>
                 <td>{ claim.establishment.name }</td>
                 <td>{ claim.governorate.name }</td>
-                <td>{ claim.claim_type.name }</td>
                 <td>
                     { statusCell }
                 </td>
@@ -59,8 +58,8 @@ class ClaimEntry extends Component {
                         <span className="text-muted sr-only">Action</span>
                     </button>
                     <div className="dropdown-menu dropdown-menu-right">
-                        <a className="dropdown-item" href="#" onClick={this.archiveClaim}>Archive</a>
-                        <a className="dropdown-item assign-claim" onClick={this.showModal} href="#">Assign</a>
+                        <a className="dropdown-item" href="#" onClick={this.archiveClaim}>أرشيف</a>
+                        <a className="dropdown-item assign-claim" onClick={this.showModal} href="#">تعيين</a>
                         { show === true ? <MagistrateAssignForm reloadClaimFunc={reloadClaimFunc} claim={claim} show={show} hideModal={this.hideModal} />: null }
                     </div>
                 </td>

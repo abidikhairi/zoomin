@@ -20,20 +20,22 @@ class TeamCrudController extends CrudController
     {
         $this->crud->setModel(Team::class);
         $this->crud->setRoute('admin/team');
-        $this->crud->setEntityNameStrings(__('group'), __('groups'));
+        $this->crud->setEntityNameStrings(('مجموعة'), ('المجموعات'));
     }
 
     public function setupListOperation()
     {
         $this->crud->addColumn([
-            'name' => 'name'
+            'name' => 'name',
+            'label' => 'اسم'
         ]);
     }
 
     public function setupCreateOperation()
     {
         $this->crud->addField([
-            'name' => 'name'
+            'name' => 'name',
+            'label' => 'اسم'
         ]);
     }
 

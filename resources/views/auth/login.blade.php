@@ -14,22 +14,22 @@
               </g>
             </svg>
             </a>
-            <h1 class="h6 mb-3">{{ __('Login') }}</h1>
+            <h1 class="h6 mb-3">{{ __('forms.login') }}</h1>
             <div class="form-group">
-                <label for="inputEmail" class="sr-only">Email address</label>
+                <label for="inputEmail" class="sr-only">{{ __('forms.fields.email') }}</label>
                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
             </div>
             <div class="form-group">
-                <label for="inputPassword" class="sr-only">Password</label>
+                <label for="inputPassword" class="sr-only">{{ __('forms.fields.password') }}</label>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
             </div>
             <div class="checkbox mb-3">
                 <label>
                     <input type="checkbox" value="remember-me" name="remember">
-                    {{ __('Remember Me') }}
+                    {{ __('forms.remebmer_me') }}
                 </label>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Let me in</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">{{ __('forms.enter') }}</button>
         </form>
     </div>
     </body>

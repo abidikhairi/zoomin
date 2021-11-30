@@ -37,7 +37,7 @@ export default class FinancialImpact extends React.Component {
 
         return (<div className="card">
             <div className="card-header">
-                Financial Impact
+                الاثر المالي
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

@@ -119,8 +119,7 @@ class MagistrateCrudController extends CrudController
         $magistrate->save();
 
         $team = Team::query()->where('name', '=', 'magistrates')->firstOrCreate();
-        $team->sync($magistrate->user);
-
+        $team->users()->sync($magistrate->user);
         Notification::send($user, new MagistrateCreated($plainPassword, $user->email));
 
         return redirect()->to($request->get('http_referrer', '/admin'));

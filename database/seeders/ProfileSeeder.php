@@ -22,10 +22,6 @@ class ProfileSeeder extends Seeder
             [
                 'name' => 'Fonctionnaire',
                 'priority' => 2
-            ],
-            [
-                'name' => 'Maire',
-                'priority' => 3
             ]
         ];
 

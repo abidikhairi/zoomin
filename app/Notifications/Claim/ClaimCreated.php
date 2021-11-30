@@ -47,7 +47,7 @@ class ClaimCreated extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => __('notifications.claim.created'),
+            'message' => ('شكوى جديدة'),
             'claim' => $this->claim->toArray(),
             'icon' => 'printer',
         ];

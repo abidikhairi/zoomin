@@ -32,20 +32,20 @@ export default class RankTable extends Component {
 
         return <div className={'card'}>
             <div className="card-header">
-                Municipalities Rank By # Observations
+                ترتيب البلدايات حسب عدد الملاحظات
             </div>
             <div className="card-body">
                 <table className={'table'}>
                     <thead>
                         <tr>
-                            <th>Governorate</th>
-                            <th>Municipality</th>
-                            <th># Observations</th>
+                            <th>الولاية</th>
+                            <th>البلدية</th>
+                            <th>عدد الملاحظات</th>
                         </tr>
                     </thead>
                     <tbody>
                         { items.map((item, index) => {
-                            return <tr index={index} key={index}>
+                            return <tr onClick={(e) => this.gotoObservationPage(e, item)} index={index} key={index}>
                                 <td>{item.governorate}</td>
                                 <td>{item.name}</td>
                                 <td>{item.observations}</td>
@@ -55,5 +55,11 @@ export default class RankTable extends Component {
                 </table>
             </div>
         </div>
+    }
+
+    gotoObservationPage(e, item) {
+        e.preventDefault()
+        let {governorate} = item
+        window.location.href = '/pages/observation/{governorate}'.replace('{governorate}', governorate);
     }
 }

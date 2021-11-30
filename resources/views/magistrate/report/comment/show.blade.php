@@ -6,15 +6,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <strong>{{ __('Report: '). $report->title }}</strong>
+                        <strong>{{ __('forms.report.title'). ': '. $report->title }}</strong>
                     </div>
                     <div class="card-body">
-                        <h5 class="text-black-50"><strong>Observations</strong></h5>
+                        <h5 class="text-black-50"><strong>{{ __('tables.observations') }}</strong></h5>
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>{{ __('observation') }}</th>
-                                <th>{{ __('financial impact') }}</th>
+                                <th>{{ __('tables.observation') }}</th>
+                                <th>{{ __('tables.financial_impact') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +34,7 @@
             <div class="col-12">
                 <div class="card card-fill timeline">
                     <div class="card-header">
-                        <strong class="card-title">Comments</strong>
+                        <strong class="card-title">{{ __('tables.comments') }}</strong>
                     </div>
                     <div class="card-body">
                         @foreach($comments as $comment)
@@ -61,7 +61,7 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            <strong>Leave a Comment</strong>
+                            <strong>{{ __('tables.leave_comment') }}</strong>
                         </div>
                         <div class="card-body">
                             <div class="form-group">
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button class="btn btn-primary" type="submit">comment</button>
+                            <button class="btn btn-primary" type="submit">{{ __('forms.fields.accept') }}</button>
                         </div>
                     </div>
                 </form>

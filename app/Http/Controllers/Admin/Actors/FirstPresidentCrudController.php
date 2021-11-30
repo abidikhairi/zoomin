@@ -25,7 +25,7 @@ class FirstPresidentCrudController extends CrudController
     {
         $this->crud->setModel(FirstPresident::class);
         $this->crud->setRoute('/admin/first-president');
-        $this->crud->setEntityNameStrings(__('First President'), __('First Presidents'));
+        $this->crud->setEntityNameStrings(('الرئيس الأول'), ('الرئيس الأول'));
     }
 
     public function setupListOperation()
@@ -35,19 +35,19 @@ class FirstPresidentCrudController extends CrudController
                 'name' => 'first_name',
                 'entity' => 'user',
                 'attribute' => 'first_name',
-                'label' => 'first_name'
+                'label' => __('forms.fields.first_name')
             ],
             [
                 'name' => 'last_name',
                 'entity' => 'user',
                 'attribute' => 'last_name',
-                'label' => 'last_name'
+                'label' => __('forms.fields.last_name')
             ],
             [
                 'name' => 'email',
                 'entity' => 'user',
                 'attribute' => 'email',
-                'label' => 'email'
+                'label' => __('forms.fields.email')
             ]
         ]);
     }
@@ -57,13 +57,16 @@ class FirstPresidentCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name' => 'first_name',
+                'label' => __('forms.fields.first_name')
             ],
             [
                 'name' => 'last_name',
+                'label' => __('forms.fields.last_name')
             ],
             [
                 'name' => 'email',
-                'type' => 'email'
+                'type' => 'email',
+                'label' => __('forms.fields.email')
             ]
         ]);
     }

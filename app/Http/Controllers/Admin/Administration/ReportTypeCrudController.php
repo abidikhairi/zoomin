@@ -19,25 +19,30 @@ class ReportTypeCrudController extends CrudController
     {
         $this->crud->setModel(ReportType::class);
         $this->crud->setRoute('admin/report-type');
-        $this->crud->setEntityNameStrings(__('report-type'), __('report-type'));
+        $this->crud->setEntityNameStrings(('نوع التقرير'), ('أنواع التقارير'));
     }
 
     public function setupListOperation() {
         $this->crud->addColumns([
             [
-                'name' => 'type'
+                'name' => 'type',
+                'label' => 'نوع التقرير'
             ],
             [
-                'name' => 'is_public'
+                'name' => 'is_public',
+                'label' => 'تقرير عمومي'
             ],
             [
                 'name' => 'has_observations',
+                'label' => 'ملاحظات'
             ],
             [
-                'name' => 'has_sector'
+                'name' => 'has_sector',
+                'label' => 'قطاع'
             ],
             [
-                'name' => 'has_establishment'
+                'name' => 'has_establishment',
+                'label' => 'مؤسسة'
             ]
         ]);
     }
@@ -45,28 +50,34 @@ class ReportTypeCrudController extends CrudController
     public function setupCreateOperation() {
         $this->crud->addFields([
             [
-                'name' => 'type'
+                'name' => 'type',
+                'label' => 'نوع التقرير'
             ],
             [
                 'name' => 'is_public',
-                'type' => 'checkbox'
+                'type' => 'checkbox',
+                'label' => 'تقرير عمومي'
             ],
             [
                 'name' => 'has_establishment',
-                'type' => 'checkbox'
+                'type' => 'checkbox',
+                'label' => 'مؤسسة'
             ],
             [
                 'name' => 'has_sector',
-                'type' => 'checkbox'
+                'type' => 'checkbox',
+                'label' => 'قطاع'
             ],
             [
                 'name' => 'has_observations',
-                'type' => 'checkbox'
+                'type' => 'checkbox',
+                'label' => 'ملاحظات'
             ],
             [
                 'name' => 'teams',
                 'type' => 'select2_multiple',
-                'entity' => 'teams'
+                'entity' => 'teams',
+                'label' => 'المجموعات'
             ]
         ]);
     }

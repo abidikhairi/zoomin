@@ -3,22 +3,22 @@
 
 <li class="nav-item nav-dropdown">
     <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon las la-cogs"></i>
-        {{ __('Authentication') }}
+        {{ ('حقوق الدخول') }}
     </a>
     <ul class="nav-dropdown-items">
         <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('role') }}'><i class='nav-icon la la-question'></i>
-                {{ __('Roles') }}
+                {{ ('الادوار') }}
             </a>
         </li>
         <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('permission') }}'><i class='nav-icon la la-question'></i>
-                {{ __('Permissions') }}
+                {{ ('الأذونات') }}
             </a>
         </li>
         <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('team') }}'><i class='nav-icon la la-question'></i>
-                {{ __('Teams') }}
+                {{ ('المجموعات') }}
             </a>
         </li>
     </ul>
@@ -50,8 +50,8 @@
             </a>
         </li>
         <li class='nav-item'>
-            <a class='nav-link' href='{{ backpack_url('report-type') }}'><i class='nav-icon la la-question'></i>
-                {{ __('names.administration.report-type') }}
+            <a class='nav-link' href='{{ backpack_url('report-type') }}'><i class='nav-icon la la-book-reader'></i>
+                {{ ('نوع التقرير') }}
             </a>
         </li>
     </ul>
@@ -70,39 +70,36 @@
                 {{ __('names.administration.magistrates') }}
             </a>
         </li>
-        <li class='nav-item'>
-            <a class='nav-link' href='{{ backpack_url('government-commission') }}'><i class='nav-icon la la-question'></i>
-                {{ __('government-commissioner') }}
-            </a>
-        </li>
+{{--
+<li class='nav-item'>
+    <a class='nav-link' href='{{ backpack_url('government-commission') }}'><i class='nav-icon la la-question'></i>
+        {{ __('government-commissioner') }}
+    </a>
+</li>
+--}}
         <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('room-president') }}'><i class='nav-icon la la-question'></i>
-                {{ __('Room Presidents') }}
+                {{ ('رؤساء الدوائر') }}
             </a>
         </li>
 
         <li class='nav-item'>
             <a class='nav-link' href='{{ backpack_url('first-president') }}'><i class='nav-icon la la-question'></i>
-                {{ __('First Presidents') }}
+                {{ ('الرئيس الاول') }}
             </a>
         </li>
     </ul>
 </li>
 
 <li class="nav-item nav-dropdown">
-    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-users-cog"></i>
-        {{ __('Citizens') }}
+<a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon fa fa-users-cog"></i>
+{{ ('المواطنين') }}
+</a>
+<ul class="nav-dropdown-items">
+<li class='nav-item'>
+    <a class='nav-link' href='{{ backpack_url('profile') }}'><i class='nav-icon la la-question'></i>
+        {{ ('الصفة') }}
     </a>
-    <ul class="nav-dropdown-items">
-        <li class='nav-item'>
-            <a class='nav-link' href='{{ backpack_url('profile') }}'><i class='nav-icon la la-question'></i>
-                {{ __('profiles') }}
-            </a>
-        </li>
-        <li class='nav-item'>
-            <a class='nav-link' href='{{ backpack_url('claim-type') }}'><i class='nav-icon la la-question'></i>
-                {{ __('Claim.Types') }}
-            </a>
-        </li>
-    </ul>
+</li>
+</ul>
 </li>

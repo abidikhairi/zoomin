@@ -21,7 +21,8 @@ Route::get('/', function () {
 Route::get('/report/{report}/observation', [\App\Http\Controllers\ReportController::class, 'observations']);
 Route::get('/pages/stats/municipalities', [\App\Http\Controllers\Pages\MunicipalitiesStatsController::class, 'index'])
     ->name('stats.municipalities');
-
+Route::get('/pages/observation/{governorate:name}', [\App\Http\Controllers\Pages\ObservationController::class, 'index'])
+    ->name('page.observation');
 Auth::routes(['verify' => true]);
 
 Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function (){
@@ -31,12 +32,13 @@ Route::prefix('/citizen')->middleware(['auth', 'role:citizen'])->group(function 
     Route::post('/claim/store', [\App\Http\Controllers\Citizen\ClaimController::class, 'store'])
         ->name('claim.store');
 });
-
+/*
 Route::prefix('/government-commissioner')->middleware(['auth', 'role:government-commissioner'])->group(function (){
     Route::get('/', function (){
         throw new Exception('Not Implemented: Government Commissioner Profile');
     });
 });
+*/
 
 Route::prefix('/magistrate')->middleware(['auth', 'role:magistrate'])->group(function (){
     Route::get('/', [\App\Http\Controllers\Magistrate\HomeController::class, 'home']);

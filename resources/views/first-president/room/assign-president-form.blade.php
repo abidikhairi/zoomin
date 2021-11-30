@@ -9,11 +9,11 @@
                     <input type="hidden" name="room" value="{{ $room->id }}">
                     <div class="card">
                         <div class="card-header">
-                            {{ __('Assign Room President') }}
+                            {{ ('تعيين رئيس الدائرة') }}
                         </div>
                         <div class="card-body">
                             <div class="form-row">
-                                <label for="room_president">{{ __('Room President') }}</label>
+                                <label for="room_president">{{ ('رئيس الدائرة') }}</label>
                                 <select name="room_president" id="room_president" class="form-control select2">
                                     @foreach($presidents as $president)
                                         <option value="{{ $president->id }}">{{ $president->user->email }}</option>
@@ -23,7 +23,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-success">
-                                {{ __('Assign') }}
+                                {{ __('forms.fields.accept') }}
                             </button>
                         </div>
                     </div>

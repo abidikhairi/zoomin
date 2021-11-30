@@ -22,11 +22,14 @@ class RoomPresidentCrudController extends CrudController
 {
     use ListOperation, CreateOperation, DeleteOperation;
 
+    /**
+     * @throws \Exception
+     */
     public function setup()
     {
         $this->crud->setModel(RoomPresident::class);
         $this->crud->setRoute('/admin/room-president');
-        $this->crud->setEntityNameStrings(__('Room President'), __('Room Presidents'));
+        $this->crud->setEntityNameStrings(('رئيس الدائرة'), ('رؤساء الدوائر'));
     }
 
     public function setupListOperation()
@@ -36,24 +39,25 @@ class RoomPresidentCrudController extends CrudController
                 'name' => 'first_name',
                 'entity' => 'user',
                 'attribute' => 'first_name',
-                'label' => 'first_name'
+                'label' => __('forms.fields.first_name')
             ],
             [
                 'name' => 'last_name',
                 'entity' => 'user',
                 'attribute' => 'last_name',
-                'label' => 'last_name'
+                'label' => __('forms.fields.last_name')
             ],
             [
                 'name' => 'email',
                 'entity' => 'user',
                 'attribute' => 'email',
-                'label' => 'email'
+                'label' => __('forms.fields.email')
             ],
             [
                 'name' => 'room',
                 'entity' => 'room',
-                'attribute' => 'name'
+                'attribute' => 'name',
+                'label' => __('names.administration.room')
             ]
         ]);
     }
@@ -63,13 +67,16 @@ class RoomPresidentCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name' => 'first_name',
+                'label' => __('forms.fields.first_name')
             ],
             [
                 'name' => 'last_name',
+                'label' => __('forms.fields.last_name')
             ],
             [
                 'name' => 'email',
-                'type' => 'email'
+                'type' => 'email',
+                'label' => __('forms.fields.email')
             ]
         ]);
     }

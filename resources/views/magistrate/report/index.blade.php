@@ -6,16 +6,16 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        {{ __('Reports List') }}
+                        {{ __('sidebar.magistrate.list_report') }}
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th>{{ __('title') }}</th>
-                                    <th>{{ __('sector') }}</th>
-                                    <th>{{ __('establishment') }}</th>
-                                    <th>{{ __('governorate') }}</th>
+                                    <th>{{ __('forms.report.title') }}</th>
+                                    <th>{{ __('fields.sector.name') }}</th>
+                                    <th>{{ __('fields.establishment.name') }}</th>
+                                    <th>{{ __('fields.governorate.name') }}</th>
                                     <th>{{ __('type') }}</th>
                                 </tr>
                             </thead>

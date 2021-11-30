@@ -8,7 +8,7 @@ return [
         'name' => 'المؤسسة'
     ],
     'room' => [
-        'name' => 'الغرفة'
+        'name' => 'الدائرة'
     ],
     'governorate' => [
         'name' => 'الولاية'
