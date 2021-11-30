@@ -6,13 +6,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-white flex-row border-bottom shadow">
                 <div class="container-fluid">
                     <a class="navbar-brand mx-lg-1 mr-0" href="{{ url('/') }}">
-                        <svg id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
-                  <g>
-                      <polygon class="st0" points="78,105 15,105 24,87 87,87" />
-                      <polygon class="st0" points="96,69 33,69 42,51 105,51" />
-                      <polygon class="st0" points="78,33 15,33 24,15 87,15" />
-                  </g>
-                </svg>
+                        <img src="{{ asset('/images/cdc-logo.png') }}" alt="logo-cdc" class="img-circle img-fluid" width="80px" height="80px">
                     </a>
                     <button class="navbar-toggler mt-2 mr-auto toggle-sidebar text-muted">
                         <i class="fe fe-menu navbar-toggler-icon"></i>
