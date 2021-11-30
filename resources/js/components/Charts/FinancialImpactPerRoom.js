@@ -40,7 +40,7 @@ export default class FinancialImpactPerRoom extends Component {
 
         return (<div className="card mt-2">
             <div className="card-header">
-                Financial Impact Per Room
+                الاثر المالي حسب الغرف
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

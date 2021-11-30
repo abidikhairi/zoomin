@@ -39,7 +39,7 @@ export default class FinancialImpactPerGovernorate extends Component {
 
         return (<div className="card mt-2">
             <div className="card-header">
-                Financial Impact: Governorate
+                الاثر المالي الولاية: { governorate.name}
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

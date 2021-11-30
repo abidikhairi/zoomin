@@ -40,7 +40,7 @@ export default class MunicipalitiesLineCharts extends Component {
 
         return (<div className="card">
             <div className="card-header">
-                Municipalities here
+                البلديات
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">
