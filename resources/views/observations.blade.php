@@ -32,22 +32,8 @@
                                 <span class="ml-lg-2">{{ __('names.stats') }}</span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="statsDropdown">
-                                <a class="nav-link pl-lg-2" href="{{ route('stats.municipalities') }}"><span class="ml-1">Municipalities</span></a>
+                                <a class="nav-link pl-lg-2" href="{{ route('stats.municipalities') }}"><span class="ml-1">{{ 'البلديات' }}</span></a>
                             </div>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a href="#" id="formsDropdown" class="dropdown-toggle nav-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="ml-lg-2">Liens utiles</span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="formsDropdown">
-                                <a class="nav-link pl-lg-2" href="./form_elements.html"><span class="ml-1">Basic Elements</span></a>
-                                <a class="nav-link pl-lg-2" href="./form_advanced.html"><span class="ml-1">Advanced Elements</span></a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">
-                                <span class="ml-lg-2">A propos</span>
-                            </a>
                         </li>
                     </ul>
                 </div>
@@ -59,9 +45,12 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link" href="{{ url('/'.auth()->user()->roles->first()->name) }}" >
+                            <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('forms.logout') }}
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     @else
                         <li class="nav-item">

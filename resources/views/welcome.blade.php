@@ -35,11 +35,6 @@
                                     <span class="ml-lg-2">{{ __('names.claims.claim') }}</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/') }}">
-                                    <span class="ml-lg-2">A propos</span>
-                                </a>
-                            </li>
                         </ul>
                     </div>
                     <ul class="navbar-nav">
@@ -50,9 +45,12 @@
                                 </a>
                             </li>
                             <li class="nav-item ">
-                                <a class="nav-link" href="{{ url('/'.auth()->user()->roles->first()->name) }}" >
+                                <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     {{ __('forms.logout') }}
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </li>
                         @else
                             <li class="nav-item">
