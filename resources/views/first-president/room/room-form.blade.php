@@ -8,19 +8,19 @@
                     @csrf
                     <div class="card">
                         <div class="card-header">
-                            {{ __('Assign Room President') }}
+                            {{ ('تعيين رئيس الدائرة') }}
                         </div>
                         <div class="card-body">
-                            <div class="form-row">
-                                <label for="room">{{ __('Room') }}</label>
+                            <div class="form-row mt-2">
+                                <label for="room">{{ __('names.administration.room') }}</label>
                                 <select name="room" id="room" class="form-control select2">
                                     @foreach($rooms as $room)
                                         <option value="{{ $room->id }}">{{ $room->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-row">
-                                <label for="room_president">{{ __('Room President') }}</label>
+                            <div class="form-row mt-2">
+                                <label for="room_president">{{ ('رئيس الدائرة') }}</label>
                                 <select name="room_president" id="room_president" class="form-control select2">
                                     @foreach($presidents as $president)
                                         <option value="{{ $president->id }}">{{ $president->user->email }}</option>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-success">
-                                {{ __('Assign') }}
+                                {{ __('forms.fields.accept') }}
                             </button>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Models\Administration\Governorate;
 use App\Models\Administration\Room;
 use App\Models\Citizen\Claim;
 use Chartisan\PHP\Chartisan;
@@ -26,6 +27,37 @@ class ClaimChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
+        if ($request->get('room') == -1) {
+            $labels = [];
+
+            $dbStatus = Claim::STATUS;
+            $statusCount = count(Claim::STATUS);
+            $statusAr = Claim::statusAr();
+
+            foreach (Governorate::all() as $governorate) {
+                $labels[] = $governorate->name;
+            }
+
+            $chartisan = Chartisan::build()
+                ->labels($labels);
+
+            for ($i = 0; $i < $statusCount; $i++) {
+                $data = [];
+                foreach ($labels as $label) {
+                    $data[] = DB::table('claims')
+                        ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
+                        ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
+                        ->where([
+                            ['governorates.name', '=', $label],
+                            ['claims.status', '=', $dbStatus[$i]]
+                        ])
+                        ->count();
+                }
+                $chartisan->dataset($statusAr[$i], $data);
+            }
+            return $chartisan;
+        }
+
         $room = Room::query()->where('id', '=', $request->get('room'))->firstOrFail();
         $labels = [];
 

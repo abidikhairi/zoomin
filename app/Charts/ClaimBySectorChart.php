@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Charts;
 
+use App\Models\Administration\Governorate;
 use App\Models\Administration\Room;
 use App\Models\Citizen\Claim;
 use App\Models\RoomPresident;
@@ -27,6 +28,26 @@ class ClaimBySectorChart extends BaseChart
      */
     public function handler(Request $request): Chartisan
     {
+        if ($request->get('room') == -1) {
+            $governorates = Governorate::all()->map(function($g) { return $g->id;})->toArray();
+
+            $result = Claim::query()
+                ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
+                ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
+                ->join('sectors', 'sectors.id', '=', 'claims.sector_id')
+                ->whereIn('governorates.id', $governorates)
+                ->groupBy('sectors.id', 'sectors.name')
+                ->select('sectors.id', 'sectors.name', DB::raw('count(*) as total'))
+                ->get();
+
+            $labels = $result->map(function ($elem) { return $elem->name; })->toArray();
+            $data = $result->map(function ($elem) { return $elem->total; })->toArray();
+
+            return Chartisan::build()
+                ->labels($labels)
+                ->dataset(__('fields.sector.name'), $data);
+        }
+
         $room = Room::query()->where('id', '=', $request->get('room'))->firstOrFail();
 
         $governorates = $room->governorates->map(function($g) { return $g->id;})->toArray();
