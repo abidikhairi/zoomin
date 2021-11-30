@@ -14,7 +14,7 @@ export default class GovernorateChart extends React.Component {
 
         let chartElement = new Chartisan({
             el: '#claim-governorate-sector',
-            url: '/api/chart/chart_governorate?governorate='+governorate.id,
+            url: '/zoomin/api/chart/chart_governorate?governorate='+governorate.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('doughnut')
@@ -30,7 +30,7 @@ export default class GovernorateChart extends React.Component {
         let { chart } = this.state
         if (chart) {
             chart.update({
-                url: '/api/chart/chart_governorate?governorate='+ governorate.id,
+                url: '/zoomin/api/chart/chart_governorate?governorate='+ governorate.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('doughnut')
