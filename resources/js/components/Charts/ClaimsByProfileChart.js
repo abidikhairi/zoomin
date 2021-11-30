@@ -28,7 +28,7 @@ class ClaimsByProfileChart extends Component {
     render() {
         return (<div className="card">
             <div className="card-header">
-                Claims By Profile:
+                تقسيم الشكاوي حسب صفة المواطن
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

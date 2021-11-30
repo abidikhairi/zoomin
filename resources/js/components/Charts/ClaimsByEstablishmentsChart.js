@@ -27,7 +27,7 @@ class ClaimsByEstablishmentsChart extends Component {
     render() {
         return (<div className="card">
             <div className="card-header">
-                Claims By Establishment
+                تقسيم الشكاوي حسب المؤسسات
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

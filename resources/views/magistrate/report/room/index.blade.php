@@ -16,7 +16,7 @@
                                 <th>{{ __('fields.sector.name') }}</th>
                                 <th>{{ __('fields.establishment.name') }}</th>
                                 <th>{{ __('fields.governorate.name') }}</th>
-                                <th>{{ __('type') }}</th>
+                                <th>{{ ('نوع التقرير') }}</th>
                                 <th>{{ __('tables.actions') }}</th>
                             </tr>
                             </thead>

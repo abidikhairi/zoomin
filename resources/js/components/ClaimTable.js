@@ -5,7 +5,7 @@ export default function (props) {
 
     return (<div className="card">
                 <div className="card-header">
-                    <i className="fa fa-align-justify"/>Claims: {governorate.name}</div>
+                    <i className="fa fa-align-justify"/>الشكاوي: {governorate.name}</div>
                 <div className="card-body">
                     <table className="table table-responsive-sm">
                         <thead>

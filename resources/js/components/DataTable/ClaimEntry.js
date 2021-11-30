@@ -36,11 +36,11 @@ class ClaimEntry extends Component {
     render() {
         const { show } = this.state
         let { claim, reloadClaimFunc } = this.props
-        let statusCell = <span className="badge badge-warning">Pending</span>
+        let statusCell = <span className="badge badge-warning">الموافقة</span>
         if (claim.status === 'accepted') {
-            statusCell = <span className="badge badge-success">Accepted</span>
+            statusCell = <span className="badge badge-success">مقبول</span>
         }else if (claim.status === 'rejected') {
-            statusCell = <span className="badge badge-danger">Rejected</span>
+            statusCell = <span className="badge badge-danger">مرفوض</span>
         }
         return (
             <tr>

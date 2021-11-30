@@ -8,7 +8,6 @@ import ClaimEntry from "./ClaimEntry";
 import ClaimsByProfileChart from "../Charts/ClaimsByProfileChart";
 import ClaimsByEstablishmentsChart from "../Charts/ClaimsByEstablishmentsChart";
 import ClaimsBySectorsChart from "../Charts/ClaimsBySectorsChart";
-import ClaimsByTypesChart from "../Charts/ClaimsByTypesChart";
 
 
 class ClaimTable extends Component {
@@ -163,11 +162,11 @@ class ClaimTable extends Component {
                                 <h2 className="h4 mb-1"> الشكاوي: {roomPresident.room.name}</h2>
                             </div>
                             <div className="col-md-6">
-                                <button className="btn btn-primary mr-2 d-inline" type="button" onClick={(e) => this.loadClaims(e)}> Clear
+                                <button className="btn btn-primary mr-2 d-inline" type="button" onClick={(e) => this.loadClaims(e)}> امسح
                                 </button>
                                 <div className="dropdown d-inline">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="actionMenuButton"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Filters
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> فلتر
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="actionMenuButton">
                                         <a className="dropdown-item" href="#" role={'button'} onClick={(e) => this.loadClaimsOrderedByCitizenProfile(e)}>
@@ -194,7 +193,7 @@ class ClaimTable extends Component {
                             </tr>
                             <tr role="row">
                                 <th>البريد الالكتروني</th>
-                                <th>Profile</th>
+                                <th>الصفة</th>
                                 <th>القطاع</th>
                                 <th>المؤسسة</th>
                                 <th>الولاية</th>
@@ -221,10 +220,9 @@ class ClaimTable extends Component {
                 </div>
             </div>
             <div className={'col-md-4'}>
-                {chart === 'type' ? <ClaimsByTypesChart roomPresident={room_president_id} /> : null }
                 {chart === 'citizen' ? <ClaimsByProfileChart roomPresident={room_president_id} />: null}
                 {chart === 'establishment' ? <ClaimsByEstablishmentsChart roomPresident={room_president_id} />: null}
-                {chart === 'sector' ? <ClaimsBySectorsChart roomPresident={room_president_id} />: null}
+                {chart === 'sector' ? <ClaimsBySectorsChart roomPresident={roomPresident.room.id} />: null}
             </div>
         </div>)
     }
