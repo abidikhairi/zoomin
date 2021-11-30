@@ -22,7 +22,7 @@ export default class ReportSectorTable extends Component {
                         }).catch(err => {
                         alert(err)
                     })
-                axios.get('api/governorate/'+governorate.id+'/establishment')
+                axios.get('/api/governorate/'+governorate.id+'/establishment')
                     .then(response => {
                         this.setState({
                             establishments: response.data
