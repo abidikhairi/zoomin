@@ -7,7 +7,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-header">Pie Chart
+                            <div class="card-header">الشكاوي المقبولة و المرفضة
                             </div>
                             <div class="card-body">
                                 <div class="c-chart-wrapper">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-12 mt-2">
                         <div class="card">
-                            <div class="card-header">Pie Chart
+                            <div class="card-header">توزيع الشكاوي حسب القطاعات
                             </div>
                             <div class="card-body">
                                 <div class="c-chart-wrapper">
@@ -32,7 +32,7 @@
             <div class="col-md-8" style="height: auto;">
                 <div class="card">
                     <div class="card-header">
-                        Tunisia Map
+                        التوزيع الجغرافي للشكاوي
                     </div>
                     <div class="card-body">
                         <div id="map-app">

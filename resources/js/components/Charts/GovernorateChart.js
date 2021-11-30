@@ -39,7 +39,7 @@ export default class GovernorateChart extends React.Component {
         }
 
         return (<div className="card">
-            <div className="card-header">Governorate: { governorate.name}
+            <div className="card-header">الولاية: { governorate.name}
             </div>
             <div className="card-body">
                 <div className="c-chart-wrapper">

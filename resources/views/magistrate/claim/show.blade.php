@@ -6,7 +6,7 @@
             <div class="col-md-10 col-lg-10">
                 <div class="row align-items-center my-4">
                     <div class="col">
-                        <h2 class="page-title">{{ __('files') }}</h2>
+                        <h2 class="page-title">{{ 'الملفات' }}</h2>
                     </div>
                 </div>
                 <div class="card-deck mb-4">

@@ -160,36 +160,24 @@ class ClaimTable extends Component {
                     <div className="card-header">
                         <div className="row d-flex justify-content-between">
                             <div className="col-md-3">
-                                <h2 className="h4 mb-1">Claims: {roomPresident.room.name}</h2>
+                                <h2 className="h4 mb-1"> الشكاوي: {roomPresident.room.name}</h2>
                             </div>
                             <div className="col-md-6">
                                 <button className="btn btn-primary mr-2 d-inline" type="button" onClick={(e) => this.loadClaims(e)}> Clear
                                 </button>
-                                <div className={'dropdown d-inline'}>
-                                    <button className="btn btn-secondary mr-2 dropdown-toggle" type="button" id="actionClaimType"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Types
-                                    </button>
-                                    <div className="dropdown-menu" aria-labelledby="actionClaimType" id={"actionClaimType"}>
-                                        {claimTypes.map(type => {
-                                            return <a key={type.id} className="dropdown-item" href="#" onClick={(e) => this.loadClaimsByType(e, type.name)}>
-                                                {type.name}
-                                            </a>
-                                        })}
-                                    </div>
-                                </div>
                                 <div className="dropdown d-inline">
                                     <button className="btn btn-secondary dropdown-toggle" type="button" id="actionMenuButton"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Filters
                                     </button>
                                     <div className="dropdown-menu" aria-labelledby="actionMenuButton">
                                         <a className="dropdown-item" href="#" role={'button'} onClick={(e) => this.loadClaimsOrderedByCitizenProfile(e)}>
-                                            Citizen Profile
+                                            المواطن
                                         </a>
                                         <a className="dropdown-item" href="#" role={'button'} onClick={(e) => this.loadClaimsByEstablishments(e)}>
-                                            Establishment
+                                            المؤسسة
                                         </a>
                                         <a className="dropdown-item" href="#" role={'button'} onClick={(e) => this.loadClaimsBySectors(e)}>
-                                            Sector
+                                            القطاع
                                         </a>
                                     </div>
                                 </div>
@@ -200,19 +188,18 @@ class ClaimTable extends Component {
                         <table className="table table-bordered">
                             <thead>
                             <tr role="row">
-                                <th colSpan="2">Citizen</th>
-                                <th colSpan="3">Establishment</th>
-                                <th colSpan="3">Claim</th>
+                                <th colSpan="2">المواطن</th>
+                                <th colSpan="3">المؤسسة</th>
+                                <th colSpan="3">الشكوى</th>
                             </tr>
                             <tr role="row">
-                                <th>Email</th>
+                                <th>البريد الالكتروني</th>
                                 <th>Profile</th>
-                                <th>Sector</th>
-                                <th>Establishment</th>
-                                <th>Governorate</th>
-                                <th>Type</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>القطاع</th>
+                                <th>المؤسسة</th>
+                                <th>الولاية</th>
+                                <th>الحالة</th>
+                                <th>أجراءات</th>
                             </tr>
                             </thead>
                             <tbody>

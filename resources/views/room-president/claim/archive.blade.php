@@ -6,7 +6,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title">{{ __('names.claims.responded') }}: {{ $roomPresident->room->name }}</h5>
+                        <h5 class="card-title">{{ ('الشكاوي المقبولة') }}: {{ $roomPresident->room->name }}</h5>
                         <table class="table table-hover">
                             <thead class="thead-dark">
                             <tr>
@@ -14,7 +14,7 @@
                                 <th>{{ trans_choice('names.administration.sector', 1) }}</th>
                                 <th>{{ trans_choice('names.administration.establishment', 1) }}</th>
                                 <th>{{ trans_choice('names.administration.governorate', 1) }}</th>
-                                <th>{{ __('actions') }}</th>
+                                <th>{{ ('أجراءات') }}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +34,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('room-president.claim.response.show', ['response' => $claim->response->id]) }}" class="btn btn-sm btn-primary">
-                                            {{ __('response.show') }}
+                                            {{ ('الاضطلاع') }}
                                         </a>
                                     </td>
                                 </tr>
@@ -47,7 +47,7 @@
             <div class="col-md-6">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h5 class="card-title">{{ __('names.claims.waiting') }}: {{ $roomPresident->room->name }}</h5>
+                        <h5 class="card-title">{{ ('الشكاوي') }}: {{ $roomPresident->room->name }}</h5>
                         <table class="table table-hover">
                             <thead class="thead-dark">
                             <tr>

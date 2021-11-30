@@ -2,7 +2,7 @@
     <li class="nav-item">
         <a href="{{ auth()->user()->account }}" class="nav-link">
             <i class="fe fe-home fe-16"></i>
-            <span class="ml-3 item-text">{{ __('Dashboard') }}</span>
+            <span class="ml-3 item-text">{{ __('sidebar.dashboard') }}</span>
         </a>
     </li>
 </ul>
@@ -13,7 +13,7 @@
     <li class="nav-item dropdown">
         <a href="#ui-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
             <i class="fe fe-box fe-16"></i>
-            <span class="ml-3 item-text">{{ __('Rooms') }}</span>
+            <span class="ml-3 item-text">{{ __('names.administration.rooms') }}</span>
         </a>
         <ul class="collapse list-unstyled pl-4 w-100" id="ui-elements">
             <li class="nav-item">

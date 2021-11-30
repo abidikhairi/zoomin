@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import axios from "axios";
 import Governorate from './Governorate';
 import Loader from "./Loader";
-import ClaimTable from "./ClaimTable";
 import GovernorateChart from "./Charts/GovernorateChart";
 
 class Map extends React.Component {

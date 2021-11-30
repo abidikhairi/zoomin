@@ -12,7 +12,6 @@ if (document.getElementById('claim-chart')) {
             .responsive()
             .beginAtZero()
             .legend({ position: 'bottom' })
-            .title('Top 3 Governorat')
     });
 }
 

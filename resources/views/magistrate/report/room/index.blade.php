@@ -35,7 +35,7 @@
                                             <a href="{{ route('room-president.report.comment.index', ['report' => $report->id]) }}" class="btn btn-sm btn-primary">{{ __('tables.comment') }}</a>
                                         @endif
                                         @if(auth()->user()->role == \App\AppRoles::ROLE_ROOM_PRESIDENT && $report->visible == false)
-                                            <a href="{{ route('room-president.report.publish', ['report' => $report->id]) }}" class="btn btn-sm btn-info">publish</a>
+                                            <a href="{{ route('room-president.report.publish', ['report' => $report->id]) }}" class="btn btn-sm btn-info">{{ 'نشر' }}</a>
                                         @endif
                                     </td>
                                 </tr>

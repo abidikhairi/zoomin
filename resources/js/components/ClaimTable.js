@@ -10,10 +10,10 @@ export default function (props) {
                     <table className="table table-responsive-sm">
                         <thead>
                             <tr>
-                                <th>Subject</th>
-                                <th>Date</th>
-                                <th>Sector</th>
-                                <th>Establishment</th>
+                                <th>الموضوع</th>
+                                <th> التاريخ</th>
+                                <th> القطاع</th>
+                                <th> المؤسسة</th>
                             </tr>
                         </thead>
                         <tbody>
