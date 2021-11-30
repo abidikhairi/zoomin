@@ -23,3 +23,18 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+if (document.getElementById('notifications-modal')) {
+    document.getElementById('clear-notifications').addEventListener('click', function (e) {
+        e.preventDefault()
+        let $notifications = $('.notification-group-item')
+        $notifications.fadeOut(1000, function() { $(this).remove() })
+        $notifications.each(function (index, $elem) {
+            const $notification_id = $($elem).data('notification')
+            axios.get('/api/notification/'+$notification_id)
+                .then((response) => {
+                    console.log(response)
+                })
+        })
+    })
+}

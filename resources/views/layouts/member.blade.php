@@ -79,9 +79,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <div class="list-group list-group-flush my-n3">
+                                <div class="list-group list-group-flush my-n3" id="notifications-modal">
                                     @foreach(auth()->user()->unreadNotifications as $notification)
-                                        <div class="list-group-item bg-transparent">
+                                        <div class="list-group-item bg-transparent notification-group-item" data-notification="{{ $notification->id }}">
                                             <div class="row align-items-center">
                                                 <div class="col-auto">
                                                     <span class="fe fe-{{$notification->data['icon']}} fe-24"></span>
@@ -100,7 +100,7 @@
                                 </div> <!-- / .list-group -->
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">{{ __('names.notifications.clear-all') }}</button>
+                                <button type="button" class="btn btn-secondary btn-block" id="clear-notifications" data-dismiss="modal">{{ __('names.notifications.clear-all') }}</button>
                             </div>
                         </div>
                     </div>

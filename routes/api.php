@@ -45,3 +45,5 @@ Route::get('/magistrate/room/{room}', [\App\Http\Controllers\Api\MagistrateContr
 Route::get('/report-type/{reportType}', [\App\Http\Controllers\Api\ReportTypeController::class, 'show']);
 
 Route::get('/observation/rank', [\App\Http\Controllers\Api\ObservationController::class, 'rankMunicipalities']);
+
+Route::get('/notification/{id}', [\App\Http\Controllers\Api\NotificationController::class, 'markNotificationAsRead']);
