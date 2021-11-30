@@ -19,7 +19,7 @@ class PermissionCrudController extends CrudController
     {
         $this->crud->setModel(Permission::class);
         $this->crud->setRoute('/admin/permission');
-        $this->crud->setEntityNameStrings(__('permission'), __('permissions'));
+        $this->crud->setEntityNameStrings(('إذن'), ('الأذونات'));
     }
 
     public function setupListOperation()
@@ -27,11 +27,11 @@ class PermissionCrudController extends CrudController
         $this->crud->addColumns([
             [
                 'name' => 'display_name',
-                'label' => 'display_name'
+                'label' => 'اسم العرض'
             ],
             [
                 'name' => 'description',
-                'label' => 'description',
+                'label' => 'وصف',
             ],
         ]);
     }
@@ -40,13 +40,16 @@ class PermissionCrudController extends CrudController
     {
         $this->crud->addFields([
             [
-                'name' => 'name'
+                'name' => 'name',
+                'label' => 'اسم'
             ],
             [
-                'name' => 'display_name'
+                'name' => 'display_name',
+                'label' => 'اسم العرض'
             ],
             [
-                'name' => 'description'
+                'name' => 'description',
+                'label' => 'وصف'
             ],
         ]);
     }

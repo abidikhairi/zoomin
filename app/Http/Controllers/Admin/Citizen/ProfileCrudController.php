@@ -18,7 +18,7 @@ class ProfileCrudController extends CrudController
     {
         $this->crud->setModel(Profile::class);
         $this->crud->setRoute('admin/profile');
-        $this->crud->setEntityNameStrings(__('profile'), __('profiles'));
+        $this->crud->setEntityNameStrings(('صفة'), ('الصفات'));
         $this->crud->enableExportButtons();
     }
 
@@ -26,10 +26,12 @@ class ProfileCrudController extends CrudController
     {
         $this->crud->addColumns([
             [
-                'name' => 'name'
+                'name' => 'name',
+                'label' => 'صفة'
             ],
             [
-                'name' => 'priority'
+                'name' => 'priority',
+                'label' => 'الأولوية'
             ]
         ]);
     }
@@ -39,11 +41,13 @@ class ProfileCrudController extends CrudController
         $this->crud->addFields([
             [
                 'name' => 'name',
-                'type' => 'text'
+                'type' => 'text',
+                'label' => 'صفة'
             ],
             [
                 'name' => 'priority',
-                'type' => 'number'
+                'type' => 'number',
+                'label' => 'الأولوية'
             ]
         ]);
     }
