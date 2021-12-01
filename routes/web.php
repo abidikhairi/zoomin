@@ -96,4 +96,8 @@ Route::prefix('/first-president')->middleware(['auth', 'role:first-president'])-
         ->name('assign-president.save');
     Route::get('/room/president', [\App\Http\Controllers\FirstPresident\RoomController::class, 'roomPresidentForm'])
         ->name('first-president.room-president.form');
+    Route::get('/claim', [\App\Http\Controllers\FirstPresident\ClaimController::class, 'index'])
+        ->name('first-president.claim.index');
+    Route::get('/claim/archive', [\App\Http\Controllers\FirstPresident\ClaimController::class, 'archive'])
+        ->name('first-president.claim.archive.index');
 });

@@ -47,3 +47,8 @@ Route::get('/report-type/{reportType}', [\App\Http\Controllers\Api\ReportTypeCon
 Route::get('/observation/rank', [\App\Http\Controllers\Api\ObservationController::class, 'rankMunicipalities']);
 
 Route::get('/notification/{id}', [\App\Http\Controllers\Api\NotificationController::class, 'markNotificationAsRead']);
+
+Route::get('/first-president/claim', [\App\Http\Controllers\Api\FPClaimApi::class, 'claims']);
+Route::get('/first-president/claim/citizen/priority/', [\App\Http\Controllers\Api\FPClaimApi::class, 'claimsOrderedByCitizenProfilePriority']);
+Route::get('/first-president/claim/establishment/', [\App\Http\Controllers\Api\FPClaimApi::class, 'claimsOrderedByEstablishments']);
+Route::get('/first-president/claim/sector/', [\App\Http\Controllers\Api\FPClaimApi::class, 'claimsOrderedBySectors']);

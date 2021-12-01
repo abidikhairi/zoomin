@@ -31,5 +31,26 @@
                 </a>
             </li>
         </ul>
+
+    </li>
+    <li class="nav-item dropdown">
+        <a href="#claims-elements" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+            <i class="fe fe-box fe-16"></i>
+            <span class="ml-3 item-text">{{ ('الشكاوي') }}</span>
+        </a>
+        <ul class="collapse list-unstyled pl-4 w-100" id="claims-elements">
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('first-president.claim.index') }}">
+                    <i class="fe fe-layers fe-16"></i>
+                    <span class="ml-3 item-text">{{ __('sidebar.magistrate.list_claim') }}</span>
+                </a>
+            </li>
+            <li class="nav-item w-100">
+                <a class="nav-link" href="{{ route('first-president.claim.archive.index') }}">
+                    <i class="fe fe-archive fe-16"></i>
+                    <span class="ml-3 item-text">{{ ('الارشيف') }}</span>
+                </a>
+            </li>
+        </ul>
     </li>
 </ul>
