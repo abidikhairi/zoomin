@@ -23,13 +23,14 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
+/*
 window.axios.interceptors.request.use(function (config) {
     config.url = '/zoomin'+config.url
     return config
     }, function (error) {
         return Promise.reject(error)
     })
+*/
 
 if (document.getElementById('notifications-modal')) {
     document.getElementById('clear-notifications').addEventListener('click', function (e) {

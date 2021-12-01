@@ -12,7 +12,7 @@ class ClaimsByTypesChart extends Component {
         let {roomPresident} = this.props
         let chartElement = new Chartisan({
             el: '#claim-type',
-            url: '/zoomin/api/chart/claim_type_chart?roomPresident='+roomPresident,
+            url: '/api/chart/claim_type_chart?roomPresident='+roomPresident,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('bar')

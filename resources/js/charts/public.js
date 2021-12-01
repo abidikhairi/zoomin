@@ -6,7 +6,7 @@ if (document.getElementById('claim-chart')) {
 
     new Chartisan({
         el: '#claim-chart',
-        url: '/zoomin/api/chart/claim_chart?room='+room_id,
+        url: '/api/chart/claim_chart?room='+room_id,
         hooks: new ChartisanHooks()
             .colors(['#ECC94B', '#4299E1'])
             .responsive()
@@ -20,7 +20,7 @@ if (document.getElementById('claim-sector-chart')) {
 
     new Chartisan({
         el: '#claim-sector-chart',
-        url: '/zoomin/api/chart/claim_sector_chart?room='+room_id,
+        url: '/api/chart/claim_sector_chart?room='+room_id,
         hooks: new ChartisanHooks()
             .responsive()
             .datasets('doughnut')
