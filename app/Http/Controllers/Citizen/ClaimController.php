@@ -31,13 +31,11 @@ class ClaimController extends Controller
             'sector' => 'required|exists:sectors,id',
             'subject' => 'required',
             'files' => 'required',
-            'claim_type' => 'required'
         ]);
 
         $user = auth()->user();
         $sector = Sector::find($request->sector);
         $establishment = Establishment::find($request->establishment);
-        $type = ClaimType::find($request->claim_type);
 
         $files = [];
         foreach ($request->file('files') as $index => $file){
@@ -52,7 +50,7 @@ class ClaimController extends Controller
             'files' => $files
         ]);
 
-        $claim->claimType()->associate($type);
+        $claim->claimType()->associate(null);
         $claim->citizen()->associate($user->citizen);
         $claim->sector()->associate($sector);
         $claim->establishment()->associate($establishment);
