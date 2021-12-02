@@ -29,8 +29,13 @@ export default class RankTable extends Component {
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
         }
-        console.log(items)
 
+        let observations = []
+
+        for (let obj in items) {
+            observations.push(items[obj])
+        }
+        console.log(observations)
         return <div className={'card'}>
             <div className="card-header">
                 ترتيب البلدايات حسب عدد الملاحظات
@@ -45,7 +50,7 @@ export default class RankTable extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        { items.map((item, index) => {
+                        { observations.map((item, index) => {
                             return <tr onClick={(e) => this.gotoObservationPage(e, item)} index={index} key={index}>
                                 <td>{item.governorate}</td>
                                 <td>{item.name}</td>
