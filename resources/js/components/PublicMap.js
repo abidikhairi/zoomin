@@ -164,7 +164,7 @@ class PublicMap extends React.Component {
                                         aria-expanded="false"> الدوائر
                                 </button>
                                 <div className="dropdown-menu dropdown-menu-right" aria-labelledby="list-rooms">
-                                    <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>All</a>
+                                    <a className="dropdown-item small text-muted" href="#" onClick={(e) => this.reloadGovernorates(e)}>الولايات</a>
                                     {rooms.map(room => <a key={room.id} className="dropdown-item small text-muted" href="#" onClick={() => this.selectGovernoratesPerRoom(room)}>{room.name}</a>)}
                                 </div>
                             </div>
