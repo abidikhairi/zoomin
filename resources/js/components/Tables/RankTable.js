@@ -33,6 +33,7 @@ export default class RankTable extends Component {
         if (typeof items === "object") {
             console.log(items)
         }
+        console.log(items)
 
         return <div className={'card'}>
             <div className="card-header">
