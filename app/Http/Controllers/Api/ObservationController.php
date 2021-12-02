@@ -30,7 +30,7 @@ class ObservationController
             ->get();
         $result = ObservationController::getObservationsForMunicipalities($municipalities);
 
-        return collect($result)->whereNotNull()->sortByDesc('observations')->take(10);
+        return collect($result)->whereNotNull()->sortByDesc('observations')->take(10)->toArray();
     }
 
 }
