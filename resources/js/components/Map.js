@@ -17,7 +17,7 @@ class Map extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/governorate')
+        axios.get('/zoomin/api/governorate')
             .then(response => {
                 this.setState({
                     isLoading: false,
@@ -29,7 +29,7 @@ class Map extends React.Component {
     }
 
     handleClick(event, governorate) {
-        const endpoint = '/api/claim/{governorate}'.replace('{governorate}', governorate)
+        const endpoint = '/zoomin/api/claim/{governorate}'.replace('{governorate}', governorate)
         axios.get(endpoint)
             .then(response => {
                 let claims = response.data.claims

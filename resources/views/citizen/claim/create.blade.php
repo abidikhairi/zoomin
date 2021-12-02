@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card shadow mb-4">
                     <div class="card-header">
-                        <strong class="card-title">{{ __('Send Claim') }}</strong>
+                        <strong class="card-title">{{ ('استمارة: شكوى') }}</strong>
                     </div>
                     <div class="card-body">
                         <form id="claim-form" class="needs-validation was-validated" action="{{ route('claim.store') }}" method="post" enctype="multipart/form-data">
@@ -32,7 +32,7 @@
                                 <div class="col-md-3">
                                     <label for="governorate">{{ __('fields.governorate.name') }}</label>
                                     <select name="governorate" id="governorate" class="form-control">
-                                        <option value="" selected>Choisir ...</option>
+                                        <option value="" selected>{{'الاختيار ...'}}</option>
                                         @foreach($governorates as $governorate)
                                             <option value="{{ $governorate->id }}">{{ $governorate->name }}</option>
                                         @endforeach
@@ -41,7 +41,7 @@
                                 <div class="col-md-3 mb-3">
                                     <label for="sector">{{ __('fields.sector.name') }}</label>
                                     <select name="sector" id="sector" class="form-control">
-                                        <option value="" selected>Choisir ...</option>
+                                        <option value="" selected>{{ 'الاختيار ...' }}</option>
                                         @foreach($sectors as $sector)
                                             <option value="{{ $sector->id }}">{{ $sector->name }}</option>
                                         @endforeach

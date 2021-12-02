@@ -15,7 +15,7 @@ class ClaimEntry extends Component {
     archiveClaim(e) {
         e.preventDefault()
         const { claim, reloadClaimFunc } = this.props
-        axios.post('/api/room-president/claim/archive', {
+        axios.post('/zoomin/api/room-president/claim/archive', {
             claim_id: claim.id
         }).then(response => {
             alert(response.data.message)
@@ -36,7 +36,7 @@ class ClaimEntry extends Component {
     render() {
         const { show } = this.state
         let { claim, reloadClaimFunc } = this.props
-        let statusCell = <span className="badge badge-warning">الموافقة</span>
+        let statusCell = <span className="badge badge-warning">في الانتظار</span>
         if (claim.status === 'accepted') {
             statusCell = <span className="badge badge-success">مقبول</span>
         }else if (claim.status === 'rejected') {

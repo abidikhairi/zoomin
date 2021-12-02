@@ -87,7 +87,7 @@
         $('#observations-section').hide()
         $('#type').change(function () {
             let report_id = $(this).val();
-            axios.get('/api/report-type/' + report_id).then(response => {
+            axios.get('/zoomin/api/report-type/' + report_id).then(response => {
                 let reportType = response.data
                 if(reportType.has_establishment) {
                     $('#establishment-section').show()

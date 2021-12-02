@@ -38,7 +38,7 @@ class PublicMap extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('/api/governorate')
+        axios.get('/zoomin/api/governorate')
             .then(response => {
                 this.setState({
                     isLoading: false,
@@ -47,7 +47,7 @@ class PublicMap extends React.Component {
             }).catch(err => {
             alert(err)
         })
-        axios.get('/api/room')
+        axios.get('/zoomin/api/room')
             .then(response => {
                 this.setState({
                     rooms: response.data
@@ -56,7 +56,7 @@ class PublicMap extends React.Component {
             .catch(err => {
                 alert(err)
             })
-        axios.get('/api/sector')
+        axios.get('/zoomin/api/sector')
             .then(response => {
                 this.setState({
                     sectors: response.data
@@ -73,7 +73,7 @@ class PublicMap extends React.Component {
             establishment: null
         })
 
-        axios.get('/api/governorate/'+governorate)
+        axios.get('/zoomin/api/governorate/'+governorate)
             .then(response => {
                 this.setState({
                     governorate: response.data
@@ -82,7 +82,7 @@ class PublicMap extends React.Component {
                 alert(err)
             })
 
-        axios.get('/api/governorate/'+governorate+'/establishment')
+        axios.get('/zoomin/api/governorate/'+governorate+'/establishment')
             .then(response => {
                 this.setState({
                     establishments: response.data
@@ -108,7 +108,7 @@ class PublicMap extends React.Component {
 
     handleEstablishmentChange(event, governorate, establishment) {
         event.preventDefault()
-        axios.get('/api/governorate/'+governorate.id)
+        axios.get('/zoomin/api/governorate/'+governorate.id)
             .then(response => {
                 this.setState({
                     governorate: response.data
@@ -117,7 +117,7 @@ class PublicMap extends React.Component {
             alert(err)
         })
 
-        axios.get('/api/establishment/show/'+establishment)
+        axios.get('/zoomin/api/establishment/show/'+establishment)
             .then(response => {
                 this.setState({
                     establishment: response.data
@@ -225,7 +225,7 @@ class PublicMap extends React.Component {
 
     reloadGovernorates(e) {
         e.preventDefault();
-        axios.get('/api/governorate')
+        axios.get('/zoomin/api/governorate')
             .then(response => {
                 this.setState({
                     governorates: response.data

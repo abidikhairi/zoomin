@@ -8,7 +8,7 @@ const MagistrateAssignForm = (props) => {
     const [magistrate, setMagistrate] = useState('')
     const [magistrates, setMagistrates] = useState([])
     const {show, hideModal} = props
-    axios.get('/api/magistrate/room/'+ claim.governorate.room.id)
+    axios.get('/zoomin/api/magistrate/room/'+ claim.governorate.room.id)
         .then(response => {
             setMagistrates(response.data.magistrates)
         }).catch(err => {
@@ -17,7 +17,7 @@ const MagistrateAssignForm = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        axios.post('/api/room-president/claim/assign', {
+        axios.post('/zoomin/api/room-president/claim/assign', {
             claim_id: claim.id,
             magistrate_id: parseInt(magistrate)
         }).then(response => {

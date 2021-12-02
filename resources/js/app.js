@@ -39,3 +39,5 @@ require('./components/DataTable/ClaimTable')
 // Municipalities App
 require('./components/MunicipalitiesMap')
 
+require('./components/DataTable/FirstPresidentClaimTable')
+
