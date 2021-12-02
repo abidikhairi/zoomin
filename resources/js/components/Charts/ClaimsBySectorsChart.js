@@ -14,7 +14,7 @@ class ClaimsBySectorsChart extends Component {
 
         let chartElement = new Chartisan({
             el: '#claim-sector',
-            url: '/api/chart/claim_sector_chart?room='+roomPresident,
+            url: '/zoomin/api/chart/claim_sector_chart?room='+roomPresident,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')

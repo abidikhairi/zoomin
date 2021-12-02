@@ -14,7 +14,7 @@ export default class ReportGovernorateTable extends Component {
 
     componentDidMount() {
         let { governorate, establishment } = this.props
-        let endpoint = '/api/report/{governorate}/{establishment}'
+        let endpoint = '/zoomin/api/report/{governorate}/{establishment}'
             .replace('{governorate}', governorate.id)
             .replace('{establishment}', establishment.id)
 

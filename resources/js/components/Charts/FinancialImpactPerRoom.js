@@ -14,7 +14,7 @@ export default class FinancialImpactPerRoom extends Component {
 
         let chartElement = new Chartisan({
             el: '#financial-impact-per-room',
-            url: '/api/chart/financial_impact_per_room?room='+room.id,
+            url: '/zoomin/api/chart/financial_impact_per_room?room='+room.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -30,7 +30,7 @@ export default class FinancialImpactPerRoom extends Component {
         let { chart } = this.state
         if (chart) {
             chart.update({
-                url: '/api/chart/financial_impact_per_room?room='+room.id,
+                url: '/zoomin/api/chart/financial_impact_per_room?room='+room.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('pie')

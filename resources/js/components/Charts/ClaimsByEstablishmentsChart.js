@@ -13,7 +13,7 @@ class ClaimsByEstablishmentsChart extends Component {
         let {roomPresident} = this.props
         let chartElement = new Chartisan({
             el: '#claim-establishment',
-            url: '/api/chart/claim_establishment_chart?roomPresident='+roomPresident,
+            url: '/zoomin/api/chart/claim_establishment_chart?roomPresident='+roomPresident,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')

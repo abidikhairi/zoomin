@@ -13,7 +13,7 @@ export default class FinancialImpactPerGovernorate extends Component {
 
         let chartElement = new Chartisan({
             el: '#financial-impact-per-governorate',
-            url: '/api/chart/financial_impact_per_governorate?governorate='+governorate.id,
+            url: '/zoomin/api/chart/financial_impact_per_governorate?governorate='+governorate.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -29,7 +29,7 @@ export default class FinancialImpactPerGovernorate extends Component {
         let { chart } = this.state
         if (chart) {
             chart.update({
-                url: '/api/chart/financial_impact_per_governorate?governorate='+governorate.id,
+                url: '/zoomin/api/chart/financial_impact_per_governorate?governorate='+governorate.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('pie')

@@ -13,7 +13,7 @@ export default class ObservationPerGovernorate extends Component {
         let {governorate} = this.props
         let chartElement = new Chartisan({
             el: '#nb-observations-per-governorate',
-            url: '/api/chart/observations_governorate?governorate='+governorate.id,
+            url: '/zoomin/api/chart/observations_governorate?governorate='+governorate.id,
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -30,7 +30,7 @@ export default class ObservationPerGovernorate extends Component {
 
         if (chart) {
             chart.update({
-                url: '/api/chart/observations_governorate?governorate='+governorate.id,
+                url: '/zoomin/api/chart/observations_governorate?governorate='+governorate.id,
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('pie')
