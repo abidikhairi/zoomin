@@ -29,10 +29,6 @@ export default class RankTable extends Component {
         if (isLoading === true) {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
         }
-
-        if (typeof items === "object") {
-            items = items.values()
-        }
         console.log(items)
 
         return <div className={'card'}>
