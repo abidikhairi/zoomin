@@ -30,6 +30,10 @@ export default class RankTable extends Component {
             return (<Loader kind={'grow'} color={'primary'} styles={{width: '20rem', height: '20rem'}} />);
         }
 
+        if (typeof items === "object") {
+            console.log(items)
+        }
+
         return <div className={'card'}>
             <div className="card-header">
                 ترتيب البلدايات حسب عدد الملاحظات
