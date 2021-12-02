@@ -8,7 +8,7 @@ if (document.getElementById('claim-form')) {
         $('#establishment').find('option').remove().end()
         const sector_id = $(this).children("option:selected").val()
         let gov_id = $('#governorate').children("option:selected").val()
-        axios.get('/zoomin/api/establishment/governorate/'+ gov_id +'/'+sector_id)
+        axios.get('/api/establishment/governorate/'+ gov_id +'/'+sector_id)
             .then(response => {
                 const establishments = response.data
                 $('#establishment-field').show()
@@ -27,7 +27,7 @@ if (document.getElementById('report-form')) {
     $('#sector').change(function (event) {
         $('#establishment').find('option').remove().end()
         const sector_id = $(this).children("option:selected").val()
-        axios.get('/zoomin/api/establishment/sector/'+sector_id)
+        axios.get('/api/establishment/sector/'+sector_id)
             .then(response => {
                 const establishments = response.data
                 $('#establishment-field').show()

@@ -25,7 +25,7 @@ class FirstPresidentClaimTable extends Component {
             isLoading: true
         })
 
-        axios.get('/zoomin/api/first-president/claim/establishment/')
+        axios.get('/api/first-president/claim/establishment/')
             .then(response => {
                 console.log(response.data)
                 let { claims } = response.data
@@ -44,7 +44,7 @@ class FirstPresidentClaimTable extends Component {
         this.setState({
             isLoading: true
         })
-        axios.get('/zoomin/api/first-president/claim/sector/')
+        axios.get('/api/first-president/claim/sector/')
             .then(response => {
                 let { claims } = response.data
                 this.setState({
@@ -64,7 +64,7 @@ class FirstPresidentClaimTable extends Component {
             isLoading: false,
         })
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/first-president/claim/')
+        axios.get('/api/first-president/claim/')
             .then(response => {
                 let { claims, roomPresident } = response.data
                 this.setState({
@@ -82,7 +82,7 @@ class FirstPresidentClaimTable extends Component {
         this.setState({
             isLoading: true,
         })
-        axios.get('/zoomin/api/first-president/claim/citizen/priority/')
+        axios.get('/api/first-president/claim/citizen/priority/')
             .then(response => {
                 let { claims} = response.data
                 this.setState({
@@ -96,7 +96,7 @@ class FirstPresidentClaimTable extends Component {
     }
 
     componentDidMount() {
-        axios.get('/zoomin/api/first-president/claim/')
+        axios.get('/api/first-president/claim/')
             .then(response => {
                 let { claims, roomPresident, claimTypes } = response.data
                 this.setState({

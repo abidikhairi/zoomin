@@ -12,7 +12,7 @@ export default class RankTable extends Component {
     }
 
     componentDidMount() {
-        axios.get('/zoomin/api/observation/rank')
+        axios.get('/api/observation/rank')
             .then(response => {
                 this.setState({
                     items: response.data,

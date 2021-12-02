@@ -15,7 +15,7 @@ class ClaimEntry extends Component {
     archiveClaim(e) {
         e.preventDefault()
         const { claim, reloadClaimFunc } = this.props
-        axios.post('/zoomin/api/room-president/claim/archive', {
+        axios.post('/api/room-president/claim/archive', {
             claim_id: claim.id
         }).then(response => {
             alert(response.data.message)

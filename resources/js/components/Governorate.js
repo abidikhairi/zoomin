@@ -8,7 +8,7 @@ export default class Governorate extends React.Component {
     }
 
     handleFocusEvent(e, id) {
-        axios.get('/zoomin/api/report/governorate/'+id)
+        axios.get('/api/report/governorate/'+id)
             .then(response => {
                 $(e.target).tooltip({
                     title: response.data.join("<br/>"),

@@ -29,7 +29,7 @@ class ClaimTable extends Component {
             isLoading: true
         })
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/room-president/claim/establishment/'+president_id)
+        axios.get('/api/room-president/claim/establishment/'+president_id)
             .then(response => {
                 console.log(response.data)
                 let { claims } = response.data
@@ -49,7 +49,7 @@ class ClaimTable extends Component {
             isLoading: true
         })
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/room-president/claim/sector/'+president_id)
+        axios.get('/api/room-president/claim/sector/'+president_id)
             .then(response => {
                 let { claims } = response.data
                 this.setState({
@@ -64,7 +64,7 @@ class ClaimTable extends Component {
 
     loadClaimsByType(e, type = '') {
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/room-president/claim/'+president_id+'/type?type='+type)
+        axios.get('/api/room-president/claim/'+president_id+'/type?type='+type)
             .then(response => {
                 const { claims } = response.data
                 this.setState({
@@ -82,7 +82,7 @@ class ClaimTable extends Component {
             isLoading: false,
         })
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/room-president/claim/'+president_id)
+        axios.get('/api/room-president/claim/'+president_id)
             .then(response => {
                 let { claims, roomPresident } = response.data
                 this.setState({
@@ -101,7 +101,7 @@ class ClaimTable extends Component {
             isLoading: true,
         })
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/room-president/claim/citizen/priority/'+president_id)
+        axios.get('/api/room-president/claim/citizen/priority/'+president_id)
             .then(response => {
                 let { claims} = response.data
                 this.setState({
@@ -116,7 +116,7 @@ class ClaimTable extends Component {
 
     componentDidMount() {
         let president_id = $('#claim-table-app').data('room-president')
-        axios.get('/zoomin/api/room-president/claim/'+president_id)
+        axios.get('/api/room-president/claim/'+president_id)
             .then(response => {
                 let { claims, roomPresident, claimTypes } = response.data
                 this.setState({

@@ -14,7 +14,7 @@ export default class ReportSectorTable extends Component {
         let { sector, governorate } = this.props
         if (sector) {
             if (governorate) {
-                    axios.get('/zoomin/api/report/sector/'+sector.id+'/'+governorate.id)
+                    axios.get('/api/report/sector/'+sector.id+'/'+governorate.id)
                         .then(response => {
                             this.setState({
                                 reports: response.data
@@ -22,7 +22,7 @@ export default class ReportSectorTable extends Component {
                         }).catch(err => {
                         alert(err)
                     })
-                axios.get('/zoomin/api/governorate/'+governorate.id+'/establishment')
+                axios.get('/api/governorate/'+governorate.id+'/establishment')
                     .then(response => {
                         this.setState({
                             establishments: response.data
@@ -31,7 +31,7 @@ export default class ReportSectorTable extends Component {
                     alert(err)
                 })
             }else {
-                axios.get('/zoomin/api/report/sector/' + sector.id)
+                axios.get('/api/report/sector/' + sector.id)
                     .then(response => {
                         this.setState({
                             reports: response.data
@@ -41,7 +41,7 @@ export default class ReportSectorTable extends Component {
                 })
             }
         } else {
-            axios.get('/zoomin/api/report')
+            axios.get('/api/report')
                 .then(response => {
                     this.setState({
                         reports: response.data
@@ -55,7 +55,7 @@ export default class ReportSectorTable extends Component {
     reloadReportWithGovernorate() {
         let {sector, governorate} = this.props
 
-        axios.get('/zoomin/api/report/sector/'+sector.id+'/'+governorate.id)
+        axios.get('/api/report/sector/'+sector.id+'/'+governorate.id)
             .then(response => {
                 this.setState({
                     reports: response.data

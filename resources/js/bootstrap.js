@@ -39,7 +39,7 @@ if (document.getElementById('notifications-modal')) {
         $notifications.fadeOut(1000, function() { $(this).remove() })
         $notifications.each(function (index, $elem) {
             const $notification_id = $($elem).data('notification')
-            axios.get('/zoomin/api/notification/'+$notification_id)
+            axios.get('/api/notification/'+$notification_id)
                 .then((response) => {
                     console.log(response)
                 })

@@ -12,7 +12,7 @@ export default class FinancialImpact extends React.Component {
 
         let chartElement = new Chartisan({
             el: '#financial-impact',
-            url: '/zoomin/api/chart/financial_impact',
+            url: '/api/chart/financial_impact',
             hooks: new ChartisanHooks()
                 .responsive()
                 .datasets('pie')
@@ -27,7 +27,7 @@ export default class FinancialImpact extends React.Component {
         let { chart } = this.state
         if (chart) {
             chart.update({
-                url: '/zoomin/api/chart/financial_impact',
+                url: '/api/chart/financial_impact',
                 hooks: new ChartisanHooks()
                     .responsive()
                     .datasets('pie')
