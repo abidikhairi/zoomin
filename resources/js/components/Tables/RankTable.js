@@ -31,7 +31,7 @@ export default class RankTable extends Component {
         }
 
         if (typeof items === "object") {
-            console.log(items)
+            items = items.values()
         }
         console.log(items)
 
