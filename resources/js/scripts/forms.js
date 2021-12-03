@@ -65,7 +65,7 @@ if (document.getElementById('observations-forms')) {
                 }
             }).then(response => {
                 const {message} = response.data
-                alert(message)
+                alert('لقد تم التسجيل بنجاح')
                 form.reset()
             }).catch(err => {
                 alert(err)

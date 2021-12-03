@@ -21,7 +21,7 @@ const MagistrateAssignForm = (props) => {
             claim_id: claim.id,
             magistrate_id: parseInt(magistrate)
         }).then(response => {
-            alert(response.data.message)
+            alert('لقد تم ابلاغ القاضي')
         }).catch(err => {
             alert(err)
         })

@@ -18,7 +18,7 @@ class ClaimEntry extends Component {
         axios.post('/api/room-president/claim/archive', {
             claim_id: claim.id
         }).then(response => {
-            alert(response.data.message)
+            alert('لقد تم حفظ الشكوى')
         }).catch(err => {
             alert(err)
         })
