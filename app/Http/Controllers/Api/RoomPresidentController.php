@@ -71,16 +71,16 @@ class RoomPresidentController extends Controller
         $claims = Claim::query()
             ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
             ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
-            ->join('claim_types', 'claim_types.id', '=', 'claims.claim_type_id')
+            //->join('claim_types', 'claim_types.id', '=', 'claims.claim_type_id')
             ->whereIn('governorates.id', $governorates)
             //->whereNull('claims.status')
-            ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.claim_type_id', 'claims.magistrate_id'])
-            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'claimType', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
+            ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.magistrate_id'])
+            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
             ->paginate(self::CLAIMS_PER_PAGE);
 
-        $claimTypes = ClaimType::all();
+        //$claimTypes = ClaimType::all();
 
-        return response()->json(compact('claims', 'roomPresident', 'claimTypes'));
+        return response()->json(compact('claims', 'roomPresident'));
     }
 
     public function claimsForType(Request $request, RoomPresident $roomPresident)
@@ -115,10 +115,10 @@ class RoomPresidentController extends Controller
             ->join('citizens', 'citizens.id', '=', 'claims.citizen_id')
             ->join('profiles', 'profiles.id', '=', 'citizens.profile_id')
             ->whereIn('governorates.id', $governorates)
-            ->select(['profiles.priority', 'claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.claim_type_id', 'claims.magistrate_id'])
-            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'claimType', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
+            ->select(['profiles.priority', 'claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.magistrate_id'])
+            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
             ->orderByDesc('profiles.priority')
-            ->whereNull('claims.status')
+            //->whereNull('claims.status')
             ->paginate(self::CLAIMS_PER_PAGE);
 
         return response()->json(compact('claims'));
@@ -132,9 +132,9 @@ class RoomPresidentController extends Controller
             ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
             ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
             ->whereIn('governorates.id', $governorates)
-            ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.claim_type_id', 'claims.magistrate_id'])
-            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'claimType', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
-            ->whereNull('claims.status')
+            ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.magistrate_id'])
+            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
+            //->whereNull('claims.status')
             ->get()
             ->groupBy('establishment_id')
             ->flatten()
@@ -151,9 +151,9 @@ class RoomPresidentController extends Controller
             ->join('establishments', 'establishments.id', '=', 'claims.establishment_id')
             ->join('governorates', 'governorates.id', '=', 'establishments.governorate_id')
             ->whereIn('governorates.id', $governorates)
-            ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.claim_type_id', 'claims.magistrate_id'])
-            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'claimType', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
-            ->whereNull('claims.status')
+            ->select(['claims.status', 'claims.id', 'establishment_id', 'citizen_id', 'claims.sector_id', 'claims.governorate_id', 'claims.magistrate_id'])
+            ->with(['establishment', 'sector', 'citizen', 'magistrate', 'citizen.profile', 'citizen.user', 'governorate', 'governorate.room'])
+            //->whereNull('claims.status')
             ->get()
             ->groupBy('sector_id')
             ->flatten()
