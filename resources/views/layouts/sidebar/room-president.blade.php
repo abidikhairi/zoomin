@@ -1,6 +1,6 @@
 <ul class="navbar-nav flex-fill w-100 mb-2">
     <li class="nav-item dropdown">
-        <a href="{{ url(auth()->user()->account) }}" data-toggle="collapse" aria-expanded="false" class="nav-link">
+        <a href="{{ url(auth()->user()->account) }}"  class="nav-link">
             <i class="fe fe-home fe-16"></i>
             <span class="ml-3 item-text">{{ __('sidebar.dashboard') }}</span>
         </a>
